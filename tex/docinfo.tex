@@ -1,0 +1,48 @@
+% -------------------------------------------------------
+% Daten für die Arbeit
+% Wenn hier alles korrekt eingetragen wurde, wird das Titelblatt
+% automatisch generiert. D.h. die Datei titelblatt.tex muss nicht mehr
+% angepasst werden.
+
+\newcommand{\hsmasprache}{de} % de oder en für Deutsch oder Englisch
+% Für korrekt sortierte Literatureinträge, noch preambel.tex anpassen
+% und zwar bei \usepackage[main=ngerman, english]{babel},
+% \usepackage[pagebackref=false,german]{hyperref},
+% \usepackage[autostyle=true,german=quotes]{csquotes} und bei
+% der Literatur die Sortierreihenfolge mit sortlocale=en_US.
+
+% Titel der Arbeit auf Deutsch
+\newcommand{\hsmatitelde}{Konzeption und Entwicklung eines MQTT Proxies für Security Assesments}
+
+% Titel der Arbeit auf Englisch
+\newcommand{\hsmatitelen}{Conception and developement of an MQTT Proxy for Security Assesments}
+
+% Weitere Informationen zur Arbeit
+\newcommand{\hsmaort}{Mannheim}    % Ort
+\newcommand{\hsmaautorvname}{Patrick} % Vorname(n)
+\newcommand{\hsmaautornname}{Eisenschmidt} % Nachname(n)
+\newcommand{\hsmadatum}{01.07.2019} % Datum der Abgabe
+\newcommand{\hsmajahr}{2019} % Jahr der Abgabe
+\newcommand{\hsmafirma}{} % Firma bei der die Arbeit durchgeführt wurde
+\newcommand{\hsmabetreuer}{Prof. Dr. Sachar Paulus, Hochschule Mannheim} % Betreuer an der Hochschule
+\newcommand{\hsmazweitkorrektor}{Prof. Dr. Martin Damm, Hochschule Mannheim} % Betreuer im Unternehmen oder Zweitkorrektor
+\newcommand{\hsmafakultaet}{I} % I für Informatik oder E, S, B, D, M, N, W, V
+\newcommand{\hsmastudiengang}{IB} % IB IMB UIB IM MTB (weitere siehe titleblatt.tex)
+
+% Zustimmung zur Veröffentlichung
+\setboolean{hsmapublizieren}{true}   % Einer Veröffentlichung wird zugestimmt
+\setboolean{hsmasperrvermerk}{false} % Die Arbeit hat keinen Sperrvermerk
+
+% -------------------------------------------------------
+% Abstract
+
+% Kurze (maximal halbseitige) Beschreibung, worum es in der Arbeit geht auf Deutsch
+\newcommand{\hsmaabstractde}{Immer mehr intelligente Geräte werden im häuslichen Umfeld und der Industrie eingesetzt. Dies ist auf die Reduktion der Kosten sowie der Bequemlichkeit von Menschen zurückzuführen. Oft verwenden diese Geräte ein Protokoll, welches im Standard keine Sicherheit garantiert, und Hersteller müssen somit eigene Sicherheitsmechanismen implementieren.
+Das zweite Problem, neben den Eigenschaften des Protokolls, ist die fehlerhafte Konfiguration und Einrichtung der Produkte. Um die unter anderem daraus resultierenden Schwachstellen zu finden und auch um zu erfahren, welche Daten wirklich an den externen Provider gesendet werden ist es notwendig ein Tool zu entwickeln, das es möglich macht die Kommunikation einer Reihe von Geräten zu analysieren und zu manipulieren.
+Die geplante Arbeit hat zum Ziel, eine Software zu Konzipieren und zu Entwickeln, die es möglich macht, die \acs{MQTT} Kommunikation zwischen \acs{IoT} Geräten und dessen Ziel abzufangen. Anschließend kann der Inhalt der Nachrichten ausgelesen oder manipuliert werden, um die Entstelle oder das Gerät selbst zu testen.}
+
+% Kurze (maximal halbseitige) Beschreibung, worum es in der Arbeit geht auf Englisch
+\newcommand{\hsmaabstracten}{More and more intelligent devices are used in the domestic environment and industry. Most of the time this is due to the reduction of costs and the convenience of people. Often, these devices use a protocol that does not guarantee security by design, and manufacturers must therefore implement their own security mechanisms.
+The second problem, besides the characteristics of the protocol, is the misconfiguration and wrong setup of these devices. 
+To find the herby resulting vulnerabilities and to be able to gain knowledge about the information provided to third parties, through monitoring the data send or received, it is mendatory to develope a tool for analyzing and manipulating this kind of traffic.
+The goal of this paper is too write a concept and create the programm with the ability to intercept the \acs{MQTT} communication between an \acs{IoT} device and its target. After that the content of the messages can be read or altered to be able to monitory or test the device itself or the target.}

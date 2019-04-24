@@ -1,0 +1,52 @@
+\chapter{Verwandte Arbeiten}
+In diesem Kapitel wird auf zwei Arbeiten eingegangen, welche sich mit dem Thema Sicherheit im Bereich \ac{IoT} beschäftigen. Anschließend werden zwei bereits existierende Lösungen zum Thema weiterleiten / Abfangen des \ac{MQTT} Protokolls genauer betrachtet.
+
+\section{IoT Security}
+    \subsection{OWASP IoT Guide}
+    Das \ac{OWASP} ist eine offene Gemeinschaft, welche offene und unentgeltliche nutzbare Software zum Testen von IT Sicherheit bereitstellt. Darüber hinaus veröffentlichen sie ebenfalls jährliche Ranglisten bezüglich der am häufigsten vorgefundenen Schwachstellen des vergangenen Jahres. Die Ziele sind vor allem Personen auf die Probleme hinzuweisen, und sie somit zum kritischeren Nachdenken bringen sowie darauf Hinweisen vorsichtiger im Umgang mit digitalen Medien zu sein. Ebenfalls werden Entwickler durch Informationen oft auftretender Schwachstellen und dessen Behebung sowie Methodiken unterstützt die für eine sichere Entwicklung und auch Architektur entscheidend sind.
+    
+    Aus diesem Zusammenschluss vieler Sicherheitsexperten ist ebenfalls das Manufacturer \ac{IoT} Security Guidance Dokument entstanden. Es beschreibt wie Hersteller von intelligenten Geräten sichere Produkte erstellen können. Es wird den Entwicklern ein Reihe an grundlegenden Richtlinien bereitgestellt, welche mindestens berücksichtigt werden sollten, um die Sicherheit stark zu erhöhen ohne die Kosten ins Unermessliche steigen zu lassen. %cite{https://www.owasp.org/index.php/IoT_Security_Guidance}
+    Im Folgenden wird auf ausgewählte Probleme des zuvor genannten Dokuments eingegangen, welche im Rahmen dieser Arbeit thematisiert werden.
+    \begin{itemize}
+        \item "I3: Insecure Network Services"
+        \item "I4: Lack of Transport Encryption"
+        \item "I5: Privacy Concerns"
+        \item "I8: Insufficient Security Configurability"
+    \end{itemize}
+    
+    \subsection{Internet of things (IoT) security}
+    IoT Security: Ongoing Challenges and Research Opportunities: https://ieeexplore.ieee.org/abstract/document/6978614
+    
+    %Zusätzliche Quellen%
+    %A Survey on the Internet of Things Security: https://ieeexplore.ieee.org/abstract/document/6746513
+    %Blockchain for IoT security and privacy: The case study of a smart home: https://ieeexplore.ieee.org/abstract/document/7917634
+    %A Critical Analysis on the Security Concerns of Internet of Things (IoT): http://www.pcporoje.com/filedata/592496.pdf
+    %Internet of things (IoT) security: Current status, challenges and prospective measures: https://ieeexplore.ieee.org/abstract/document/7412116
+    %A Systemic Approach for IoT Security: https://ieeexplore.ieee.org/abstract/document/6569455
+    %Security analysis on consumer and industrial IoT devices: https://ieeexplore.ieee.org/abstract/document/7428064
+    %Botnets and Internet of Things Security: https://www.computer.org/csdl/magazine/co/2017/02/mco2017020076/13rRUxZRbvu
+
+\section{Implementierungen}
+    \subsection{Confluent MQTT Proxy}
+    Implementierungen auf dem Markt
+    Confluent MQTT Proxy
+    https://www.confluent.io/confluent-mqtt-proxy/
+    https://docs.confluent.io/current/kafka-mqtt/index.html
+    MQTT Proxy provides a scalable and lightweight interface that allows MQTT clients to produce messages to Apache Kafka® directly, in a Kafka-native way that avoids redundant replication and increased lag.
+    Ist wohl nur ein Addon über das mithilfe von Clients an Kafaka .. kein ahnnung was das ist Daten geschickt werden können.
+    
+    \subsection{Axway-API-Management-Plus}
+    Axway-API-Management-Plus
+    https://github.com/Axway-API-Management-Plus/mqtt-proxy
+    The MQTT-Proxy itself sits between the MQTT-Provider \& -Consumer and intercepts incoming MQTT-Commands, with the ability to call a REST-API at the API-Gateway. With that, it is for instance possible to validate, that a certain MQTT-Consumer can subscribe to a topic, as the API-Gateway can easily validate the Subscription-Request using a database, another downstream API, whatever.
+    Der Aufbau ist relativ ähnlich.
+    Alle MQTT Nachrichten werden auf den Proxy weitergeleitet, dort wird mithilfe eines über REST bereitgestellten Regelwerks die Informationen bearbeitet.
+    Einschränkungen (gleich):
+    - No configurable routes: Only one broker per mqtt-proxy instance
+    - NO TLS support
+    - No additional TLS options between the client and mqtt-proxy
+    Eigenentwicklunge kann aber:
+    - HTTP API to publish a MQTT custom crafted message
+    - Replay
+    - Modifizieren
+    - Löschen
