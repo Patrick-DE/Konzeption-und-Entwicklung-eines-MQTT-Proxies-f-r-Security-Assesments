@@ -8,11 +8,50 @@ In diesem Kapitel wird auf zwei Arbeiten eingegangen, welche sich mit dem Thema 
     Aus diesem Zusammenschluss vieler Sicherheitsexperten ist ebenfalls das Manufacturer \ac{IoT} Security Guidance Dokument entstanden. Es beschreibt wie Hersteller von intelligenten Geräten sichere Produkte erstellen können. Es wird den Entwicklern ein Reihe an grundlegenden Richtlinien bereitgestellt, welche mindestens berücksichtigt werden sollten, um die Sicherheit stark zu erhöhen ohne die Kosten ins Unermessliche steigen zu lassen. %cite{https://www.owasp.org/index.php/IoT_Security_Guidance}
     Im Folgenden wird auf ausgewählte Probleme des zuvor genannten Dokuments eingegangen, welche im Rahmen dieser Arbeit thematisiert werden.
     \begin{itemize}
-        \item "I3: Insecure Network Services"
-        \item "I4: Lack of Transport Encryption"
-        \item "I5: Privacy Concerns"
-        \item "I8: Insufficient Security Configurability"
+        \item I2:  Unzureichende Authentifizierung
+        
+        Grundlegend sollte es möglich sein, das vom Hersteller eingestellte Passwort von einem Nutzer abzuändern.
+        
+        Des Weiteren werden Grundregeln für Passwörter bei der Auslieferung und Änderung empfohlen. Dies soll sicherstellen, dass nicht nur zur Inbetriebnahme sondern auch während der Verwendung des Produktes beim Endkunden der Zugriff zu privilegierten Funktionen und Bereichen unberechtigten effektiv verwehrt wird. Das Bundesamt für Informationssicherheit %cite{https://www.bsi-fuer-buerger.de/BSIFB/DE/Empfehlungen/Passwoerter/passwoerter_node.html} 
+        empfiehlt als Minimum die folgenden Regeln.
+        \begin{enumerate}
+            \item Mindestens 8 Zeichen
+            \item Großbuchstaben
+            \item Kleinbuchstaben
+            \item Zahlen
+            \item Sonderzeichen (,.?!=()-...)
+            \item Keine Wörter die im Wörterbuch stehen
+        \end{enumerate}
+        
+        Des Weiteren wird eine zwei Faktor Authentifizierung als notwendig angesehen, für den Fall, dass das Passwort doch ausgelesen oder abgefangen wurde. Zwei Faktor bedeutet, dass ein zweiter Weg für die Bestätigung der Identität genutzt wird wie zum Beispiel eine SMS oder Benachrichtigung in einer Applikation über das Handy.
+        
+        \item I4: Fehlende Transportverschlüsselung
+        
+        Dies ist der Angriffspunkt, mit dem sich die Arbeit und Erstellung der Software am meisten beschäftigt.
+        Der Datenverkehr zwischen den Komponenten sowie den Geräten und dem Ziel sollte verschlüsselt sein um das Mitlesen oder Manipulieren der Nachrichten zu verhindern.
+        
+        Eine Verschlüsselungen zu verwenden hilft jedoch nicht immer beim erreichen der Sicherheitsziele Integrität, Vertraulichkeit. Nur für den Fall, dass die Verschlüsselung auch noch auf dem aktuelle Stand und noch nicht ausgehebelt wurde. %cite{https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102.pdf?__blob=publicationFile}
+        
+        Für die sichere Übertragung steht SSL/TLS zur Verfügung welche verwendet werden sollte um ebenfalls eine Manipulation zu vermeiden. Diese ist ebenfalls im Falle vom \ac{MQTT} Protokoll möglich, jedoch nicht im Standard enthalten wie im Kapitel 2.2.3 erklärt wird.
+        
+        \item I5: Datenschutzbedenken
+        
+        Dies ist ein weiterer Teil, welcher mithilfe der hier zu entwickelten Software untersucht werden soll. Die Frage, welche Daten übertragen werden.
+        
+        Sicherstellen, dass nur die nötigsten personenbezogenen Daten gesammelt und übertragen werden. Diese sollten dann auch anonymisiert werden um keinen Rückschluss auf die Person oder den Account schließend zu können.
+        Selbstverständlich dürfen auch nur speziell zugelassene Personen die Daten erheben und übertragen können.
+        Des Weiteren spielt auch im Bereich des Datenschutzes spielt die Verschlüsselung eine Rolle, denn die sensiblen Daten sollten zu jeder Zeit verschlüsselt sein.
+
+        \item I8: Unzureichende Anpassungen im Bereich der Sicherheit
+        
+        Unzureichendes Loggen von Sicherheitsevents wie Angriffen oder Meldung über manipulierte oder unrealistische Nachrichten sind ebenfalls notwendig um rechtzeitig reagieren zu können. Der Nutzer sollte darüber schnellstmöglich informiert werden um entsprechende Maßnahmen einleiten zu können wie Passwörter ändern oder das Gerät vom Netz nehmen.
+        
+        Mithilfe dieser Maßnahmen wäre es ebenfalls möglich unberechtigte Aktivitäten Dritter schnellstmöglich zu unterbinden.
+        
     \end{itemize}
+    
+    Aus diesen ausgewählten Punkten ergeben sich ebenfalls eine Auswahl an entsprechenden Angriffsvektoren auf \ac{IoT} Geräte. Diese unterstützen, im Gegensatz zu den Herstellern, die Sicherheitsprüfer oder -tester und gelten als strukturierter Leitfaden für die Suche nach Schwachstellen. Ein solches Dokument ist ebenfalls auf der Seite des \ac{OWASP} unter dem Namen "IoT Testing Guides" %\cite{https://www.owasp.org/index.php/IoT_Testing_Guides}
+    verfügbar.
     
     \subsection{Internet of things (IoT) security}
     IoT Security: Ongoing Challenges and Research Opportunities: https://ieeexplore.ieee.org/abstract/document/6978614
