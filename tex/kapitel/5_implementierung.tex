@@ -1,32 +1,65 @@
 \chapter{Implementierung}
 \section{Rahmenbedingungen}
     Welche Voraussetzungen sind für das Programm notwendig?
-        OS
-        Speicher
-        RAM
-        Prozessor
-        Auch nochmal was für Einschränkungen bezüglich der Sicherheitsmechanismen oder nur in Konzept oder nur hier????
-    Warum die, was für Konsequenzen würden die haben?
-    Wäre es mit anderen Voraussetzungen immer noch möglich?
+    \begin{itemize}
+        \item Betriebsystem: ab Windows 7, Linux (mit Mono*)
+        \item Abhängigkeiten: Dot.Net Framework XYZ**
+        \item Speicher: 
+        \item RAM: 
+        \item Prozessor: 
+    \end{itemize}
+    %Auch nochmal was für Einschränkungen bezüglich der Sicherheitsmechanismen oder nur in Konzept oder nur hier????
+    
+    %Was ist Mono?
+    *Mono ist ein Programm...
+    **Warum die, was für Konsequenzen würden die haben?
 
+\section{Umgebung und Konfiguration} %Projektierung TODO stimmt das?
+    %IDE
+    Als Entwicklungsumgebung für das Backend wurde \ac{VS} 2016 %\cite{https://visualstudio.microsoft.com/de/vs/}
+    von Microsoft verwendet. Dadurch sind auch die Projektdateien, in dem Repository \glqq MQTT-Proxy\grqq{} %\cite{https://github.com/Patrick-DE/MQTT-Proxy}
+    gefunden werden können, in einem Visual Studio Projektfile (.sln) definiert.
+    %Warum VS 16
+    
+    %Konfiguration
+    Das Projekt ist im Standard auf x86 Prozessoren ausgerichtet, kann allerdings bei Bedarf auch auf x64 Prozessoren durch Änderung der entsprechenden Einstellung in \ac{VS} geändert werden.
+    Eine Unterstützung für weitere Architekturen ist nicht gegeben.
+    Zusätzlich ist bei Ausführung der Anwendung ein privilegierter Account erforderlich um die Berichtigung für Zugriff auf die erforderlichen Port zu erhalten.
+    Es werden Port 1883 für die Kommunikation mit dem \ac{MQTT}-Protokoll und Port 80 für die \ac{REST} Schnittstelle, welche auch die Weboberfläche bereitstellt, benötigt.
+    Der Proxy ist ausschließlich über die Adresse \glqq 127.0.0.1\grqq{} oder \glqq localhost\grqq{} erreichbar, da keine Benutzerauthentifizierung implementiert wurde. Da eine unberechtigte Verwendung im lokalen Netz oder bei Bereitstellung über eine öffentlich erreichbare Adresse nicht ausgeschlossen werden kann, wird die Änderung auch nicht empfohlen. Sofern jedoch Bedarf sein sollte, ist es möglich die Adresse im Quellcode, durch die lokale IP-Adresse des Gerätes auf dem der Proxy läuft, auszutauschen um eine parallele oder externe Verwendung zu ermöglichen.
+    
+    
+    Für das Frontend, also die Weboberfläche mit der der Nutzer interagiert und die Applikation steuern kann, wurde Visual Studio Code ebenfalls von Microsoft verwendet.
+    %Warum VC 
+    Desweitern ist wurde durch die Verwendung von Vue.js %\cite{https://vuejs.org}
+    auf Basis von Node.js %\cite{https://nodejs.org/de/}
+    entschieden.
 
-\section{Konfiguration} Projektierung/ stimmt das?
-    IDE
-    Framework XYZ
-    OS
-    Abhängigkeiten wie Libs oder Files (vllt packagen dll in exe packen)
+    Nuget %\cite{https://www.nuget.org}
+    Github Quellcodeverwaltung %\cite{https://github.com}
 
 \section{Sprachen}
     Gewählte Sprache für ProxyBroker
+    Backend
         Anforderungen an die Programmiersprache
         Welche Sprachen wären basierend darauf möglich/naheliegend gewesen
             Warum sind die Entwickelt worden? / Vorteile
             Was macht die Programmiersprachen aus? / Schwerpunkt
-        Warum C#
+        Warum C\#
             Vorteile der Sprache
             Nachteile der Sprache 
             Probleme resultierend aus der Entscheidung
             Vorteile aus der Entscheidung
+    Frontend
+        Anforderungen an die Programmiersprache
+        Welche Sprachen wären basierend darauf möglich/naheliegend gewesen
+            Warum sind die Entwickelt worden? / Vorteile
+            Was macht die Programmiersprachen aus? / Schwerpunkt
+        Warum Node.js
+            Node.js ist eine JavaScript-Laufzeitumgebung, die auf der JavaScript-Engine V8 des Chrome-Projekts basiert[12]. Die Umgebung sieht asynchrone und ereignisbasierte Programmierung vor: während auf Antwort von langsamen Systemen (bei z.B. Dateioperationen oder Webanfragen) gewartet wird, kann weiterer Code ausgeführt werden [13]. Der zugehörige Paketmanager, npm (Node.js Package Manager), ermöglicht die einfache Installation von einer Vielzahl an frei verfügbaren Open-Source-Bibliotheken. 
+        Warum Vue
+            Vue.js ist eine neben Angular und React sehr populäre Frontendtechnologie, die das MVVM-Architekturmuster (model-view-viewmodel) und Wiederverwendung von Code durch Nutzung von Komponenten einsetzt[14]. In Kombination mit Node.js können Prototypen für Frontends in kurzen Entwicklungszyklen erstellt, erprobt und vorgeführt werden.
+            %Eiskalt von moritz geklaut :D
     Gewählte Sprache für Client und Broker
         Anforderungen an die Programmiersprache
         Welche Sprachen wären basierend darauf möglich/naheliegend gewesen
@@ -40,6 +73,7 @@
      
 \section{Bibliotheken}
     Open-Source Bibliotheken MQTTProxy
+    Backend
         NewsoftJSON
             Was ist das
             Vorteile
@@ -55,11 +89,13 @@
             Vorteile
             Probleme
             Alternativen
-        VueJS
+    Frontend
+        Bootstrap-vue
             Was ist das
             Vorteile
             Probleme
             Alternativen
+            
     Open-Source Bibliotheken Client/Broker
         paho
             Was ist das

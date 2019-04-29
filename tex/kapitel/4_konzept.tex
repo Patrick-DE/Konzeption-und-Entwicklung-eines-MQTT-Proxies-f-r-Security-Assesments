@@ -1,8 +1,30 @@
 \chapter{Konzept}
 \section{Vorgehensweise}
+    %Ist es möglich, mithilfe eines Programms, die übertragenen Daten der intelligenten Geräte, Hersteller übergreifend überwachen und manipulieren zu können.
+    Um die Frage beantworten zu können, ob es möglich ist die übertragenen Daten der intelligenten Geräte, herstellerübergreifend überwachen zu können, ist es nötig Zugriff auf die eingehenden, sowie ausgehenden Daten der Geräte zu erhalten. In diesen Daten, welche vom IoT-Gerät zum Broker und anders herum, geschickt werden befinden sich möglicherweise personenbezogene Daten sowie Hinweise auf mögliche Schwachstellen.
+    Die nächste Herausforderung ist die gesammelten Daten auch einem Nutzer in einer aufbereiteten Sicht zugänglich zu machen und die direkte Interaktion mit den Daten zu ermöglichen.
+    
+    
+    
     Vorgehensweise zur Konzepterstellung beschreiben
     MITM (APR Spoof, ICMP ,FW)
     Mölgichkeit1: Scapy
     Möglichkeit2: FW
+    Ähnlichkeiten mit MQTT Bridges
 
 \section{Im Detail}
+
+    Um dieses Ziel zu erreichen, lassen sich folgende Hauptaufgaben ausmachen.
+    \begin{enumerate}
+        \item Test Client implementieren
+        \item Test Broker implementieren
+        \item Implementieren des Proxy-Brokers (normale Broker Funktionalität)
+        \item Nachrichten des IoT-Clients auf eigenen Broker umleiten
+            ARP
+            DNS
+            ICMP
+            FW
+        \item Implementieren des Proxy-Brokers (weiterleiten an Broker)
+        \item Implementieren des Proxy-Brokers (empfangen vom Broker)
+        \item Implementieren der Oberfläche zum Steuern
+    \end{enumerate}

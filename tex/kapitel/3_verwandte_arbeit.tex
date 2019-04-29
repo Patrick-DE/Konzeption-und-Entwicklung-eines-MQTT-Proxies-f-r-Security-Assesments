@@ -1,5 +1,5 @@
 \chapter{Verwandte Arbeiten}
-In diesem Kapitel wird auf zwei Arbeiten eingegangen, welche sich mit dem Thema Sicherheit im Bereich \ac{IoT} beschäftigen. Anschließend werden zwei bereits existierende Lösungen zum Thema weiterleiten / Abfangen des \ac{MQTT} Protokolls genauer betrachtet.
+In diesem Kapitel wird auf zwei Arbeiten eingegangen, welche sich mit dem Thema Sicherheit im Bereich \ac{IoT} beschäftigen. Anschließend werden zwei bereits existierende Lösungen zum Thema weiterleiten / abfangen von Nachrichten des \ac{MQTT} Protokolls genauer betrachtet.
 
 \section{IoT Security}
     \subsection{OWASP IoT Guide}
@@ -54,8 +54,36 @@ In diesem Kapitel wird auf zwei Arbeiten eingegangen, welche sich mit dem Thema 
     verfügbar.
     
     \subsection{Internet of things (IoT) security}
-    IoT Security: Ongoing Challenges and Research Opportunities: https://ieeexplore.ieee.org/abstract/document/6978614
+    %https://ieeexplore.ieee.org/abstract/document/6978614
+    In dem Forschungsartikel "IoT Security: Ongoing Challenges and Research Opportunities" von Z. Zhang et al. \cite{6978614} beschreiben die Autoren das durch den Anstieg in dem Feld nicht nur die Angriffsfläche steigen wird sondern auch neue Angriffsvektoren hinzukommen.
+    Sie nennen zwei Sicherheitsprobleme, welche eine entscheidende Rolle in Zukunft spielen werden.
+    \begin{enumerate}
+        \item Die Geräte
+        
+        Die Geräte verwenden eine Software, wo die Architektur nicht immer vollständig durchdacht oder mit Fokus auf Sicherheit entwickelt wurde. Dies kann zu Schwachstellen und dadurch Kompromittierungen von Daten der Geräten führen. Bereits gelöste Probleme kommen wieder zum Vorschein, da die Geräte nicht die gleichen Spezifikationen haben wie die, die wir jeden Tag verwenden um uns die Arbeit zu erleichtern. 
     
+        Es ist laut einer Umfrage von Statista %cite{https://www.statista.com/statistics/831577/us-usage-of-antivirus-software-by-device/} 
+        heutzutage oft der Fall, dass Antivirus Software zum Schutz des Computers oder Smartphone verwendet werden. Diese Software benötigt allerdings viele Ressourcen um verwendet werden zu können.
+        Kaspersky %cite{https://support.kaspersky.com/13908}
+        als Beispiel, setzt 1150 MB Festplattenspeicher mit einem Intel/AMD 32/64 Bit Prozessor mit 1 GHz und 1 GB freien Arbeitsspeicher nur für die Funktionalität der Software voraus. Vergleicht man das nun mit den Ressourcen, die der intelligenten Sprachsteuerung von Google "Google Home" %\cite{https://de.ifixit.com/Teardown/Google+Home+Teardown/72684}
+        zur Verfügung stehen erkennt man eine Diskrepanz in mehreren Punkten. Der Prozessor besitzt eine ARM Architektur, taktet mit 1.2-1.6GHz %\cite{https://developer.arm.com/ip-products/processors/cortex-a/cortex-a7} 
+        und ist 64 Bit fähig. Der Prozessor entspricht also nicht nur den Mindestanforderungen der Architektur nicht sondern würde der eigentlichen Anwendung auf dem Gerät eine zu geringe Performance ermöglichen. Des Weiteren entspricht auch der Festplatten-Speicher von 265MB und Arbeitsspeicher 512MB nicht den Mindestanforderungen.
+        Somit kommen Sicherheitsprobleme, welche in der Vergangenheit bereits gelöst wurden, erneut zum Vorschein und bedürfen einer neuen Lösung.
+        
+        Zusätzlich zu den Sicherheitsmechanismen, welche nun nicht mehr verwendet werden können, sind \ac{IoT} Geräte nicht nur von einem Typ. Es gibt viele verschiedene Hersteller und Geräte die sich in den Funktionen, Erscheinungen und Spezifikationen unterscheiden. Diese heterogene Landschaft erhöht die Komplexität, eine Lösungen für alle Geräte zu finden oder den Aufwand für jedes Gerät einen eigenen Sicherheitsmechanismus zu implementieren.
+        
+        \item Die Kommunikation
+        Die heterogene Landschaft beeinflusst jedoch nicht nur die Komplexität auf der Seite der Geräte sondern auch in Bezug auf die Kommunikation.
+    
+        Es ist denkbar, dass der Wecker mit den Rollläden kommunizieren kann, dieser wiederum die Fenster dazu bringt sich zum Lüften zu öffnen. Automatisch wird die Kaffeemaschine und das Radio angeschaltet damit der Besitzer Kaffee während den neuesten Meldungen genießen kann.
+        Nur dieser einzelne Prozess beinhaltet bereits fünf verschiedene Geräte, welche im ersten Moment nichts miteinander zu tun haben. Doch sind alle voneinander abhängig und der Prozess kann durch das manipulieren eines einzelnen Gerätes in der Kette, entweder gestoppt werden oder auch zu einem ungewollten Ergebnis führen.
+        
+        Ein Problem innerhalb der Kommunikation ist die Identifikation der Geräte. Aktuell wird \ac{DNS} zum Auflösen der Hostnamen auf die dazugehörige IP-Adresse verwendet. Dieses System ist allerdings anfällig gegen Attacken wie DNS cache poisoning oder \ac{MITM} und somit auch nicht sicher.
+        DNS cache poisoning bedeutet, dass durch manipulierte DNS Antworten der Zwischenspeicher, welcher die Gegenüberstellung von IP und Hostnamen besitzt verändert wird. Die Folge daraus ist, dass nicht mehr die IP Adresse des legitime Ziels neben dem Namen (z.B. google.de) sondern die IP Adresse des Angreifers steht und somit auf den Angreifer weiterleitet.
+        \ac{DNSSEC} wird von der zentralen Registrierungsstelle für die deutsche Domainendung \glqq .de\grqq{} %\cite{https://www.denic.de/wissen/dnssec/}
+        als \ac{DNS} Zusatz beschrieben, der verwendet wird um sicherzustellen, dass der Eintrag sowie der Transportweg zwischen der legitimen Adresse und dem DNS-Server geschützt ist und sich kein dritter Akteur einmischen kann.
+        
+    \end{enumerate}
     %Zusätzliche Quellen%
     %A Survey on the Internet of Things Security: https://ieeexplore.ieee.org/abstract/document/6746513
     %Blockchain for IoT security and privacy: The case study of a smart home: https://ieeexplore.ieee.org/abstract/document/7917634
@@ -66,13 +94,14 @@ In diesem Kapitel wird auf zwei Arbeiten eingegangen, welche sich mit dem Thema 
     %Botnets and Internet of Things Security: https://www.computer.org/csdl/magazine/co/2017/02/mco2017020076/13rRUxZRbvu
 
 \section{Implementierungen}
-    \subsection{Confluent MQTT Proxy}
-    Implementierungen auf dem Markt
-    Confluent MQTT Proxy
-    https://www.confluent.io/confluent-mqtt-proxy/
-    https://docs.confluent.io/current/kafka-mqtt/index.html
-    MQTT Proxy provides a scalable and lightweight interface that allows MQTT clients to produce messages to Apache Kafka® directly, in a Kafka-native way that avoids redundant replication and increased lag.
-    Ist wohl nur ein Addon über das mithilfe von Clients an Kafaka .. kein ahnnung was das ist Daten geschickt werden können.
+    %\subsection{Confluent MQTT Proxy}
+    %Implementierungen auf dem Markt
+    %Confluent MQTT Proxy
+    %https://www.confluent.io/confluent-mqtt-proxy/
+    %https://docs.confluent.io/current/kafka-mqtt/index.html
+    %MQTT Proxy provides a scalable and lightweight interface that allows MQTT clients to produce messages %to Apache Kafka® directly, in a Kafka-native way that avoids redundant replication and increased lag.
+    %Ist wohl nur ein Addon über das mithilfe von Clients an Kafaka .. kein Ahnnung was das ist Daten %geschickt werden können.
+    \subsection{MQTT Bridges}
     
     \subsection{Axway-API-Management-Plus}
     Axway-API-Management-Plus
