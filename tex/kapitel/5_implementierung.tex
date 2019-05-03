@@ -2,8 +2,8 @@
 \section{Rahmenbedingungen}
     Welche Voraussetzungen sind für das Programm notwendig?
     \begin{itemize}
-        \item Betriebsystem: ab Windows 7, Linux (mit Mono*)
-        \item Abhängigkeiten: Dot.Net Framework XYZ**
+        \item Betriebssystem: ab Windows 7, Linux (mit Mono*)
+        \item Abhängigkeiten: .NetFramework XYZ**
         \item Speicher: 
         \item RAM: 
         \item Prozessor: 
@@ -32,7 +32,7 @@
     
     Für das Frontend, also die Weboberfläche mit der der Nutzer interagiert und die Applikation steuern kann, wurde Visual Studio Code ebenfalls von Microsoft verwendet.
     %Warum VC 
-    Desweitern ist wurde durch die Verwendung von Vue.js %\cite{https://vuejs.org}
+    Des Weiteren ist wurde durch die Verwendung von Vue.js %\cite{https://vuejs.org}
     auf Basis von Node.js %\cite{https://nodejs.org/de/}
     entschieden.
 
@@ -45,7 +45,7 @@
     Backend
         Anforderungen an die Programmiersprache
         Welche Sprachen wären basierend darauf möglich/naheliegend gewesen
-            Warum sind die Entwickelt worden? / Vorteile
+            Warum sind die Entwickelt worden? / Vorteile Background
             Was macht die Programmiersprachen aus? / Schwerpunkt
         Warum C\#
             Vorteile der Sprache
@@ -59,7 +59,7 @@
             Was macht die Programmiersprachen aus? / Schwerpunkt
         Warum Node.js
             Node.js ist eine JavaScript-Laufzeitumgebung, die auf der JavaScript-Engine V8 des Chrome-Projekts basiert[12]. Die Umgebung sieht asynchrone und ereignisbasierte Programmierung vor: während auf Antwort von langsamen Systemen (bei z.B. Dateioperationen oder Webanfragen) gewartet wird, kann weiterer Code ausgeführt werden [13]. Der zugehörige Paketmanager, npm (Node.js Package Manager), ermöglicht die einfache Installation von einer Vielzahl an frei verfügbaren Open-Source-Bibliotheken. 
-        Warum Vue
+        Warum Vue.js
             Vue.js ist eine neben Angular und React sehr populäre Frontendtechnologie, die das MVVM-Architekturmuster (model-view-viewmodel) und Wiederverwendung von Code durch Nutzung von Komponenten einsetzt[14]. In Kombination mit Node.js können Prototypen für Frontends in kurzen Entwicklungszyklen erstellt, erprobt und vorgeführt werden.
             %Eiskalt von moritz geklaut :D
     Gewählte Sprache für Client und Broker
@@ -74,7 +74,7 @@
             Vorteile aus der Entscheidung
      
 \section{Bibliotheken}
-    Open-Source Bibliotheken MQTTProxy
+    Wurden viele Open-Source Bibliotheken verwendet um den Fokus der Arbeit auf die Neuentwicklung und Lösung der Fragestellung zu haben.
     Backend
         NewsoftJSON
             Was ist das
@@ -109,3 +109,15 @@
             Vorteile
             Probleme
             Alternativen
+        
+Um dieses Ziel zu erreichen, lassen sich folgende Hauptaufgaben ausmachen.
+\begin{enumerate}
+    \item Test Client implementieren
+    \item Test Broker implementieren
+    \item Implementieren des Proxy-Brokers (normale Broker Funktionalität)
+    \item Nachrichten des IoT-Clients auf eigenen Broker umleiten
+        MITM (APR Spoof, DNS, ICMP, FW)
+    \item Implementieren des Proxy-Brokers (weiterleiten an Broker)
+    \item Implementieren des Proxy-Brokers (empfangen vom Broker)
+    \item Implementieren der Oberfläche zum Steuern
+\end{enumerate}

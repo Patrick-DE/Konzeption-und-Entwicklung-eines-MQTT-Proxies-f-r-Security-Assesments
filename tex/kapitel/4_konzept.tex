@@ -1,30 +1,67 @@
 \chapter{Konzept}
 \section{Vorgehensweise}
     %Ist es möglich, mithilfe eines Programms, die übertragenen Daten der intelligenten Geräte, Hersteller übergreifend überwachen und manipulieren zu können.
-    Um die Frage beantworten zu können, ob es möglich ist die übertragenen Daten der intelligenten Geräte, herstellerübergreifend überwachen zu können, ist es nötig Zugriff auf die eingehenden, sowie ausgehenden Daten der Geräte zu erhalten. In diesen Daten, welche vom IoT-Gerät zum Broker und anders herum, geschickt werden befinden sich möglicherweise personenbezogene Daten sowie Hinweise auf mögliche Schwachstellen.
-    Die nächste Herausforderung ist die gesammelten Daten auch einem Nutzer in einer aufbereiteten Sicht zugänglich zu machen und die direkte Interaktion mit den Daten zu ermöglichen.
+    Um die Frage beantworten zu können, ob es möglich ist die übertragenen Daten der intelligenten Geräte, herstellerübergreifend überwachen zu können, ist es nötig Zugriff auf die eingehenden, sowie ausgehenden Daten der Geräte zu erhalten. In diesen Daten, welche vom \ac{IoT}-Gerät zum Broker und anders herum, geschickt werden befinden sich möglicherweise personenbezogene Daten sowie Hinweise auf mögliche Schwachstellen.
+    Die nächste Herausforderung ist die gesammelten Daten auch einem Nutzer in einer aufbereiteten Ansicht zugänglich zu machen und die direkte Interaktion mit den Daten zu ermöglichen.
     
+%wer? Nutzerrolle: Security Auditor
+    Aus diesem Szenario heraus ergeben sich zwei wichtige Nutzerrollen.
     
+    % Motivation
+    Auf der einen Seite existiert der Security Auditor oder auch Penetration Tester, welcher versucht Schwachstellen in der Kommunikation oder dem Gerät oder dem Endpunkt zu identifizieren.
+% Ziel
+    Dies ermöglicht auf der einen Seite den Hersteller, von dem der Tester beauftragt wird, die Produkte im Rahmen der Qualitätssicherung vor Veröffentlichung zu testen um Probleme zu vermeiden. Dies ist nicht für Vertrauen innerhalb der Branche wichtig, sondern auch in bestimmten Bereichen z.B. kritischen Infrastrukturen im Gesetz verankert.
+    Auf der anderen Seite bestätigt es ebenfalls, dass der Dienst eines Unternehmens gute und effiziente Sicherheitsmechanismen korrekt implementiert hat um die Kundendaten vor Gefährdungen der Vertraulichkeit, Integrität oder Verfügbarkeit zu schützen.
     
-    Vorgehensweise zur Konzepterstellung beschreiben
-    MITM (APR Spoof, ICMP ,FW)
-    Mölgichkeit1: Scapy
-    Möglichkeit2: FW
-    Ähnlichkeiten mit MQTT Bridges
+%Was für Arbeitsabläufe
+    Um den Arbeitsablauf eines Penetration Tester aufzuzeigen, werden die 7 Schritte des \ac{PTES}
+    %\cite{https://www.owasp.org/index.php/Penetration_testing_methodologies}
+    zitiert.
+    \begin{enumerate}
+        \item \glqq Pre-engagement Interactions\grqq{}
+        Es werden alle Vorbereitungen und Absprachen zum Umfang, wie Zeit und IP Adressen, und Art des Tests, Netzwerk- Web Penetration-Test, besprochen.
+        \item \glqq Intelligence Gathering\grqq{}
+        Hier werden so viele Informationen über das Ziel herausgefunden wie nur möglich. Dies ist notwendig um ein bestmögliches Bild über das Ziel zu bekommen und sich somit viele Angriffsvektoren einfallen lassen kann. Des Weiteren ist es auch essentiell, um nicht direkt aufzufallen da Sicherheitsmaßnahmen im Vorhinein identifiziert und möglicherweise umgangen werden können. Das reduziert die Aktionen, welche in Logdateien gespeichert werden und macht die Anwesenheit nicht so leicht identifizierbar. Als Beispiel ist es möglich eine Aktion mit zufällig generierten Werten aufzurufen. Dies würde allerdings eine Menge an fehlerhafter Anfragen dokumentieren, die offensichtlich nicht durch die Software auf Seite des Herstellers hervorgerufen wurde. Als Alternative ist es möglich die bestehende Kommunikation zu untersuchen und auf Basis der observierten Kommunikation vom Endgerät, leicht abgewandelte Versionen zu erzeugen. Hierbei hilft die konzipierte Software, als Alternative zu bestehenden Lösungen wie Wireshark, ein Tool zum untersuchen von verschiedensten Netzwerkprotokollen %\cite{https://www.wireshark.org/}
+        ,  diese Kommunikation zu überwachen und Informationen über die Kommunikation zu erfassen.
+        \item \glqq Threat Modeling\grqq{}
+        Nachdem Informationen über den Dienst gesammelt wurden, ist der Tester nun in der Lage ein Modell zu entwickeln, indem mögliche Vertrauensstellung nicht ausreichend geschützt oder Input und Output nicht korrekt auf Sonderzeichen oder auch nur Plausibilität geprüft werden könnten. 
+        \item \glqq Vulnerability Analysis\grqq{}
+        \item \glqq Exploitation\grqq{}
+        \item \glqq Post Exploitation\grqq{}
+        \item \glqq Reporting\grqq{}
+    \end{enumerate}
+    Die in dieser Arbeit zu konzipierende Software soll den Tester in Schritt 2 und 5 unterstützen.
+    
+    %wie: Wie hilft die Software dabei das Ziel zu erreichen
+    %was gibt es bereits (Wireshark) was kann die Software besser/kann nur die Software
+    % was brauchen sie dafür, wie sind die Arbeitsabläufe in der eigenen Software abgebildet
+    
+    %wer? Nutzerrolle: Admin(monitoring)
+    % Motivation
+    % Ziel
+    %Was für Arbeitsabläufe
+    %wie: Wie hilft die Software dabei das Ziel zu erreichen
+    %was gibt es bereits (Wireshark) was kann die Software besser/kann nur die Software
+    % was brauchen sie dafür, wie sind die Arbeitsabläufe in der eigenen Software abgebildet
+
+
+
+    %use-case
+    1: Kommunikation analysieren
+    	Msg anzeigen
+    	Die Anzahl der Msg (gefiltert) anzeigen
+    	ClientManager intercept (toggle)
+    2: Kommunikation manipulieren
+    	Payload ändern
+    	Msg senden
+    	Msg kopieren
+    	Msg ändern/speichern
+    	Msg drop
+    	Msg Status anpassen
+
+    %interaktionen
+    %komponenten
 
 \section{Im Detail}
+    
 
-    Um dieses Ziel zu erreichen, lassen sich folgende Hauptaufgaben ausmachen.
-    \begin{enumerate}
-        \item Test Client implementieren
-        \item Test Broker implementieren
-        \item Implementieren des Proxy-Brokers (normale Broker Funktionalität)
-        \item Nachrichten des IoT-Clients auf eigenen Broker umleiten
-            ARP
-            DNS
-            ICMP
-            FW
-        \item Implementieren des Proxy-Brokers (weiterleiten an Broker)
-        \item Implementieren des Proxy-Brokers (empfangen vom Broker)
-        \item Implementieren der Oberfläche zum Steuern
-    \end{enumerate}

@@ -6,24 +6,51 @@
 Um bewerten zu können, ob das entwickelte Programm den im Kapitel 4 genannten Anforderungen entspricht, wird in diesem Kapitel zur Validierung ein virtuelles Labor aufgebaut, dass \ac{IoT}-Client, einen Broker und natürlich den Proxy bereitstellt.
 
 %Szenario, was mit dem Labor versucht wird zu erreichen.
-Das Labor bildet die Kommunikation zwischen einem Temperatursensor, welcher sich an der Heizung im Wohnzimmer des Nutzer angeschlossen ist, und dem Broker des Herstellers. Der Sensor, im weiteren Client genannt, stellt dem Broker jede Sekunde die aktuelle Temperatur zur Verfügung. Der Broker auf der anderen Seite erwartet die Temperatur eines Clients und gleicht diese mit der, vom Nutzer hinterlegten, Wunschtemperatur ab. Erhält der Broker ein zu niedrigen Wert sendet er einen Befehl womit die Heizung die Leistung erhöht. Für den Fall, dass die aktuelle Temperatur höher als die eingestellte Temperatur ist, wird ein Befehl gesendet, wodurch die Heizung die Leistung reduziert.
-\includepdf[pages=1]{tex/bilder/6_validierung/Szenario.pdf}
+Das Labor bildet die Kommunikation zwischen einem Temperatursensor, welcher sich an der Heizung im Wohnzimmer des Nutzer angeschlossen ist, und dem Broker des Herstellers. Der Sensor, im weiteren Client genannt, stellt dem Broker jede Sekunde die aktuelle Temperatur zur Verfügung. Der Broker auf der anderen Seite erwartet die Temperatur eines Clients und gleicht diese mit der, vom Nutzer hinterlegten, Wunschtemperatur von 20 Grad Celsius ab. Erhält der Broker ein zu niedrigen Wert sendet er einen Befehl womit die Heizung die Leistung erhöht. Für den Fall, dass die aktuelle Temperatur höher als die eingestellte Temperatur ist, wird ein Befehl gesendet, wodurch die Heizung die Leistung reduziert.
+
+\begin{figure}[h]%h=direkt danach t=top b=bottom
+    \centering
+    \includegraphics[width=14cm]{tex/bilder/6_validierung/Szenario1.pdf}
+    \captionof{figure}{Darstellung des Szenarios}
+    \label{fig:darstellung-szenario}
+\end{figure}
 
 \section{Laboraufbau}
     %Warum Virtualisierung/ Virtualisierte Umgebung
-    Das Labor wird mithilfe einer Virtualisierungslösung von VMware %
-    umgesetzt.  
+    Das Labor wird mithilfe der Virtualisierungslösung ESXi %\cite{https://www.vmware.com/de/products/esxi-and-esx.html}
+    von VMware umgesetzt. Dadurch, dass alle Systeme und Applikationen in sogenannten Virtuellen Maschinen laufen sind sie, obwohl sie auf dem gleichen Gerät (Server) laufen können, voneinander unabhängig. Das bedeutet, dass ganze Systeme abgeschottet und auf \ac{VMDK}s gespeichert und somit auch sehr einfach gesichert oder untereinander ausgetauscht werden können. Durch die dynamische Verteilung von zum Beispiel CPU oder RAM ist ebenfalls eine effektivere Nutzung der Ressourcen möglich. Damit wird nur ein Server oder leistungsfähiger Computer benötigt um ganze Systemlandschaften und Netzwerke abzubilden. Des Weiteren ermöglicht es auch die hier durchgeführten Tests und somit Ergebnisse in der gleichen Umgebung durch die Bereitstellung der Dateien nachvollziehen zu können ohne selbst Arbeit und Zeit investieren zu müssen.
     %Warum mit ESXI
+    ESXi wurde als Lösung gewählt, da bereits Wissen und Erfahrung im Umgang mit der Lösung vorhanden war. Zusätzlich stand ein Server mit benötigter Leistung bereits zur Verfügung was wodurch das Aufsetzen und Konfigurieren eines solchen oder ähnlichen Produkts nicht mehr nötig machte.
     
-    Die darin enthaltenen System sind die folgenden.
+    Die in diesem Szenario enthaltenen System sind die folgenden.
     
     \subsection{Virtualisierung der Geräte}
         \begin{enumerate}
-            \item Client: Debian 9, Ressourcen ?, Python 2.X, pip Pakete ?
-            \item Broker: Debian 9, Ressourcen ?, Python 3.X, pip Pakete ?
-            \item Proxy: 
-            Microsoft Windows 10 Pro, Version, 10.0.17763 Build 17763
+            \item Der Client (die Heizung) ist wie folgt konfiguriert:
             \begin{itemize}
+                \item Debian 9
+                \item Ressourcen ?, 
+            \end{itemize}
+            Programme und Pakete
+            \begin{itemize}
+                \item Python 2.X
+                \item pip Pakete ?
+            \end{itemize}
+            
+            \item Der Broker (vom Hersteller) ist wie folgt konfiguriert:
+            \begin{itemize}
+                \item Debian 9
+                \item Ressourcen ?, 
+            \end{itemize}
+            Programme und Pakete
+            \begin{itemize}
+                \item Python 2.X
+                \item pip Pakete ?
+            \end{itemize}
+            
+            \item Der Proxy, welcher die Kommunikation überwacht: 
+            \begin{itemize}
+                \item Microsoft Windows 10 Pro, Version, 10.0.17763 Build 17763
                 \item Die CPU besteht aus vier virtuellen CPU Kernen.
                 \item Es wurde der Maschine 8 GB \ac{RAM} zur Verfügung gestellt.
                 \item 50 GB virtuelle Festplatte nach der \ac{VMDK} Format-Spezifikation für \ac{VM}s.
