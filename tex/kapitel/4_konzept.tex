@@ -3,47 +3,90 @@
     %Ist es möglich, mithilfe eines Programms, die übertragenen Daten der intelligenten Geräte, Hersteller übergreifend überwachen und manipulieren zu können.
     Um die Frage beantworten zu können, ob es möglich ist die übertragenen Daten der intelligenten Geräte, herstellerübergreifend überwachen zu können, ist es nötig Zugriff auf die eingehenden, sowie ausgehenden Daten der Geräte zu erhalten. In diesen Daten, welche vom \ac{IoT}-Gerät zum Broker und anders herum, geschickt werden befinden sich möglicherweise personenbezogene Daten sowie Hinweise auf mögliche Schwachstellen.
     Die nächste Herausforderung ist die gesammelten Daten auch einem Nutzer in einer aufbereiteten Ansicht zugänglich zu machen und die direkte Interaktion mit den Daten zu ermöglichen.
-    
-%wer? Nutzerrolle: Security Auditor
+
     Aus diesem Szenario heraus ergeben sich zwei wichtige Nutzerrollen.
     
-    % Motivation
-    Auf der einen Seite existiert der Security Auditor oder auch Penetration Tester, welcher versucht Schwachstellen in der Kommunikation oder dem Gerät oder dem Endpunkt zu identifizieren.
+%=====================================================================%    
+%wer? Nutzerrolle: Admin (monitoring)
+%=====================================================================%    
+    Auf der einen Seite existiert der System- , Netwerkadministrator, welcher versucht Probleme in der Kommunikation zu finden und zu lösen oder eventuelle Anomalien zu erkennen.
+% Motivation
+    Die Aufgabe der Administratoren in einem Unternehmen besteht unter anderem darin, Systeme für das eigene Unternehmen oder für Kunden bereitzustellen und bei Problemen zu helfen. Um bei Problemen herausfinden zu können, wo das Problem entstanden ist und wie es schnell behoben werden kann, ist es hilfreich die Kommunikation im Netzwerk zu beobachten.
+    Schutz der Daten: schauen was übertragen wird und gegebenenfalls mithilfe von Regeln oder aber notfalls manuell Pakete zu verwerfen oder blockieren.
+% Ziel
+    High availablility, Kunden Zufriedenstellen wenn Dienste für Kunden zur Verfügung gestellt werden.
+%Was für Arbeitsabläufe
+    
+%wie: Wie hilft die Software dabei das Ziel zu erreichen
+    
+%was gibt es bereits (Wireshark) was kann die Software besser/kann nur die Software
+    Wie bereits erwähnt, gibt es für die einzelnen Phasen verschiedene Tools die sich in der Praxis bereits etabliert haben.
+    Wireshark \cite{SandersChris2017Ppa} %https://proquestcombo.safaribooksonline.com/9781492020356
+    , ein Tool zum Überwachen und Aufzeichnen des Netzwerkverkehrs, beinhaltet die gleiche Funktionalität wie ein Teil der Proxy Komponente. Der unterschied besteht jedoch darin, das die Komponente zusätzlich direkt in die Kommunikation eingreifen können soll. Das bedeutet, dass Nachrichten verändert, fallengelassen oder erneut gesendet werden soll, was durch ein dediziertes Monitoring-Tool nicht möglich ist.
+    
+% was brauchen sie dafür, wie sind die Arbeitsabläufe in der eigenen Software abgebildet
+    %Log Messages
+    Der Nutzer möchte nun, wenn er mit diesem Programm arbeitet, den Proxy in den Modus \glqq intercept\grqq{} oder \glqq none intercept\grqq{} stellen können um Inhalte spezieller Clients einzeln und gezielt prüfen zu können ohne zu viele Daten anderer Geräte im Netzwerk zu erhalten.
+    %View Messages
+    Des Weiteren möchte der Nutzer die Nachrichten, welche durch den \glqq intercept\grqq{} Modus abgefangen wurden, aufgelistet und angezeigt werden.
+    %View ClientInfos
+    Für denn Fall, dass etwas nicht ordnungsgemäß funktioniert oder fehlerhaft Konfiguriert wurde, ist es ebenfalls relevant die Verbindungsdaten der einzelnen Proxy Clients mit einer Verknüpfung mit dem zu untersuchenden \ac{IoT}-Gerät einsehen zu können.
+    
+%=====================================================================%    
+%wer? Nutzerrolle: Security Auditor
+%=====================================================================%    
+% Motivation
+    Auf der anderen Seite existiert der Security Auditor oder auch Penetration Tester, welcher versucht Schwachstellen in der Kommunikation oder dem Gerät oder dem Endpunkt zu identifizieren.
 % Ziel
     Dies ermöglicht auf der einen Seite den Hersteller, von dem der Tester beauftragt wird, die Produkte im Rahmen der Qualitätssicherung vor Veröffentlichung zu testen um Probleme zu vermeiden. Dies ist nicht für Vertrauen innerhalb der Branche wichtig, sondern auch in bestimmten Bereichen z.B. kritischen Infrastrukturen im Gesetz verankert.
     Auf der anderen Seite bestätigt es ebenfalls, dass der Dienst eines Unternehmens gute und effiziente Sicherheitsmechanismen korrekt implementiert hat um die Kundendaten vor Gefährdungen der Vertraulichkeit, Integrität oder Verfügbarkeit zu schützen.
     
 %Was für Arbeitsabläufe
-    Um den Arbeitsablauf eines Penetration Tester aufzuzeigen, werden die 7 Schritte des \ac{PTES}
-    %\cite{https://www.owasp.org/index.php/Penetration_testing_methodologies}
-    zitiert.
+    Um den Arbeitsablauf eines Penetration Tester aufzuzeigen, werden die 7 Schritte des \ac{PTES} \cite{hsiangchih_2019}
+    beschrieben.
     \begin{enumerate}
         \item \glqq Pre-engagement Interactions\grqq{}
+        
         Es werden alle Vorbereitungen und Absprachen zum Umfang, wie Zeit und IP Adressen, und Art des Tests, Netzwerk- Web Penetration-Test, besprochen.
         \item \glqq Intelligence Gathering\grqq{}
-        Hier werden so viele Informationen über das Ziel herausgefunden wie nur möglich. Dies ist notwendig um ein bestmögliches Bild über das Ziel zu bekommen und sich somit viele Angriffsvektoren einfallen lassen kann. Des Weiteren ist es auch essentiell, um nicht direkt aufzufallen da Sicherheitsmaßnahmen im Vorhinein identifiziert und möglicherweise umgangen werden können. Das reduziert die Aktionen, welche in Logdateien gespeichert werden und macht die Anwesenheit nicht so leicht identifizierbar. Als Beispiel ist es möglich eine Aktion mit zufällig generierten Werten aufzurufen. Dies würde allerdings eine Menge an fehlerhafter Anfragen dokumentieren, die offensichtlich nicht durch die Software auf Seite des Herstellers hervorgerufen wurde. Als Alternative ist es möglich die bestehende Kommunikation zu untersuchen und auf Basis der observierten Kommunikation vom Endgerät, leicht abgewandelte Versionen zu erzeugen. Hierbei hilft die konzipierte Software, als Alternative zu bestehenden Lösungen wie Wireshark, ein Tool zum untersuchen von verschiedensten Netzwerkprotokollen %\cite{https://www.wireshark.org/}
-        ,  diese Kommunikation zu überwachen und Informationen über die Kommunikation zu erfassen.
+        
+        Hier werden so viele Informationen über das Ziel herausgefunden wie nur möglich. Dies ist notwendig um ein bestmögliches Bild über das Ziel zu bekommen und sich somit viele Angriffsvektoren einfallen lassen kann. Des Weiteren ist es auch essentiell, um nicht direkt aufzufallen da Sicherheitsmaßnahmen im Vorhinein identifiziert und möglicherweise umgangen werden können. Das reduziert die Aktionen, welche in Logdateien gespeichert werden und macht die Anwesenheit nicht so leicht identifizierbar. Als Beispiel ist es möglich eine Aktion mit zufällig generierten Werten aufzurufen. Dies würde allerdings eine Menge an fehlerhafter Anfragen dokumentieren, die offensichtlich nicht durch die Software auf Seite des Herstellers hervorgerufen wurde. Als Alternative ist es möglich die bestehende Kommunikation zu untersuchen und auf Basis der observierten Kommunikation vom Endgerät, leicht abgewandelte Versionen zu erzeugen. Hierbei hilft die konzipierte Software, als Alternative zu bestehenden Lösungen wie Wireshark um diese Kommunikation zu überwachen und Informationen über die Kommunikation zu erfassen.
         \item \glqq Threat Modeling\grqq{}
-        Nachdem Informationen über den Dienst gesammelt wurden, ist der Tester nun in der Lage ein Modell zu entwickeln, indem mögliche Vertrauensstellung nicht ausreichend geschützt oder Input und Output nicht korrekt auf Sonderzeichen oder auch nur Plausibilität geprüft werden könnten. 
+        
+        Nachdem Informationen über den Dienst gesammelt wurden, ist der Tester nun in der Lage ein Modell zu entwickeln, indem mögliche Vertrauensstellung nicht ausreichend geschützt oder Input und Output nicht korrekt auf Sonderzeichen oder auch nicht auf Plausibilität geprüft werden könnte. 
         \item \glqq Vulnerability Analysis\grqq{}
+        
+        In diesem Schritt wird die Applikation auf Schwachstellen untersucht. 
+        Dieser Schritt ist in zwei Teile, der Identifikation und der Prüfung, geteilt.
+        Die Identifikation wird mithilfe von aktiven und passiven Methoden durchgeführt.
+        Auf der einen Seite stehen Tools für aktive Tests wie zum Beispiel 
+        SQLMap \cite{damele_stampar_2014}, 
+        Burp Suite \cite{LozanoCarlosA.author2019Hapt}, %https://proquestcombo.safaribooksonline.com/book/web-development/9781788994064
+        Nessus \cite{BealeJay2008Nna}, %https://proquestcombo.safaribooksonline.com/9781597492089
+        \ac{ZAP} \cite{bennetts2013owasp}. %https://www.owasp.org/images/9/96/OWASP_2014_OWASP_ROMANIA.pdf
+        Nachdem die Tools eingestellt sind, scannen und interagieren mit den Funktionalitäten der Seite oder Applikation ohne weitere Aktionen vom Nutzer.
+        Auf der anderen Seite stehen die passiven Tools wie Wireshark oder TCPdump \cite{tcpdump_2010}, welche außenstehend sind und nur am Aufzeichnen von Aktionen anderer sind. 
+        Diesen gemeldeten/ gefundenen Schwachstellen werden anschließend verifiziert, also auf die Korrektheit geprüft und zum Schluss anhand der Risiken aus aus Sicht der Applikation bewertet \cite{hayes_2012}.
         \item \glqq Exploitation\grqq{}
+        
+        In diesem Schritt wird versucht, unter Umgehen weitere Sicherheitsmechanismen, die bestätigte Schwachstelle so zu verwenden, dass entweder eine Steigerung der Berechtigungen oder das weiter Infiltrieren erreicht wird.
         \item \glqq Post Exploitation\grqq{}
+        
+        Im vorletzten Schritt wird versucht den erlangten Zugriff zu festigen und eventuelle benötigte Daten herunterzuladen. Das heißt, dass selbst nach dem Neustart des Systems die Kontrolle über das System bestehen bleibt ohne erneut den Exploit zu verwenden. Üblicherweise wird dies mithilfe von Tools wie einer \ac{RAT} gemacht, welche in den Autostart, die Registry geschrieben oder mithilfe von/ in Windows Komponenten integriert werden.
+        Diese Programme ermöglichen die Steuerung des Computers ohne anwesend (vor dem Gerät) zu sein. Des Weiteren sind die Programme, sehr gut versteckt um nicht aufzufallen. Die Namen ähneln meist Dienst- oder Programmbezeichnungen um legitim auszusehen. Es gibt ebenfalls die Möglichkeit, das Programm so zu schützen, dass beim Versuch das Programm zu beenden das System selbst herunterfährt.
         \item \glqq Reporting\grqq{}
+        
+        Dies ist der letzte und einer der wichtigsten Schritte. Da Security Tests durchgeführt werden um die Sicherheit zu erhöhen, ist es auch zwingend notwendig die Schwachstellen und Exploits so zu dokumentieren, dass der Hersteller sich entscheiden kann, ob die existierenden Probleme behoben werden oder das Risiko getragen wird. Abhängig von dem Einfluss auf das Geschäft (Business Impact) kann es aus wirtschaftlicher Sicht gerechtfertigt sein eine Schwachstelle nicht zu schließen und die daraus resultierenden Folgen wie Strafen zu bezahlen.
     \end{enumerate}
-    Die in dieser Arbeit zu konzipierende Software soll den Tester in Schritt 2 und 5 unterstützen.
-    
     %wie: Wie hilft die Software dabei das Ziel zu erreichen
+    Die in dieser Arbeit zu konzipierende Software soll den Tester mithilfe von passivem Scannen und abfangen der Kommunikation in Schritt 2 und durch manipulieren sowie erneut senden der Nachrichten Schritt 5 unterstützen.
+    
     %was gibt es bereits (Wireshark) was kann die Software besser/kann nur die Software
+    
+    Burp Suite von PortSwigger bietet im Gegensatz zu Wireshark ebenfalls eine Proxy Komponente und kann somit wie in diesem Tool geplant die Nachrichten protokollieren/ überwachen sondern auch in die Kommunikation eingreifen. Der große Unterschied besteht darin, dass Burp Suite ausschließlich für HTTP/s und (Sec)Websocket Kommunikation zu verwenden ist und keinerlei Unterstützung für das \ac{MQTT}-Protokoll bietet. Man könnte das Konzept jedoch am einfachsten mit dieser Lösung vergleichen, da auch die Bedienung ähnlich zu dieser Applikation ist.
+    
     % was brauchen sie dafür, wie sind die Arbeitsabläufe in der eigenen Software abgebildet
     
-    %wer? Nutzerrolle: Admin(monitoring)
-    % Motivation
-    % Ziel
-    %Was für Arbeitsabläufe
-    %wie: Wie hilft die Software dabei das Ziel zu erreichen
-    %was gibt es bereits (Wireshark) was kann die Software besser/kann nur die Software
-    % was brauchen sie dafür, wie sind die Arbeitsabläufe in der eigenen Software abgebildet
-
 
 
     %use-case

@@ -16,11 +16,12 @@
     **Warum die, was für Konsequenzen würden die haben?
 
 \section{Umgebung und Konfiguration} %Projektierung TODO stimmt das?
-    %IDE
-    Als Entwicklungsumgebung für das Backend wurde \ac{VS} 2016 %\cite{https://visualstudio.microsoft.com/de/vs/}
-    von Microsoft verwendet. Dadurch sind auch die Projektdateien, in dem Repository \glqq MQTT-Proxy\grqq{} %\cite{https://github.com/Patrick-DE/MQTT-Proxy}
+    %IDE https://proquestcombo.safaribooksonline.com/9781119404583
+    Als Entwicklungsumgebung für das Backend wurde \ac{VS} 2016 \cite{JohnsonBruce2018Pvs2}
+    von Microsoft verwendet. Dadurch sind auch die Projektdateien, in dem Repository \glqq MQTT-Proxy\grqq{} \cite{eisenschmidt_2019}
     gefunden werden können, in einem Visual Studio Projektfile (.sln) definiert.
-    %Warum VS 16
+    %Warum VisualStudio
+    %\cite{johnson2012professional}
     
     %Konfiguration
     Das Projekt ist im Standard auf x86 Prozessoren ausgerichtet, kann allerdings bei Bedarf auch auf x64 Prozessoren durch Änderung der entsprechenden Einstellung in \ac{VS} geändert werden.
@@ -29,14 +30,14 @@
     Es werden Port 1883 für die Kommunikation mit dem \ac{MQTT}-Protokoll und Port 80 für die \ac{REST} Schnittstelle, welche auch die Weboberfläche bereitstellt, benötigt.
     Der Proxy ist ausschließlich über die Adresse \glqq 127.0.0.1\grqq{} oder \glqq localhost\grqq{} erreichbar, da keine Benutzerauthentifizierung implementiert wurde. Da eine unberechtigte Verwendung im lokalen Netz oder bei Bereitstellung über eine öffentlich erreichbare Adresse nicht ausgeschlossen werden kann, wird die Änderung auch nicht empfohlen. Sofern jedoch Bedarf sein sollte, ist es möglich die Adresse im Quellcode, durch die lokale IP-Adresse des Gerätes auf dem der Proxy läuft, auszutauschen um eine parallele oder externe Verwendung zu ermöglichen.
     
-    
-    Für das Frontend, also die Weboberfläche mit der der Nutzer interagiert und die Applikation steuern kann, wurde Visual Studio Code ebenfalls von Microsoft verwendet.
+    %https://proquestcombo.safaribooksonline.com/9781484242247
+    Für das Frontend, also die Weboberfläche mit der der Nutzer interagiert und die Applikation steuern kann, wurde Visual Studio Code \cite{sole_2019} ebenfalls von Microsoft verwendet.
     %Warum VC 
-    Des Weiteren ist wurde durch die Verwendung von Vue.js %\cite{https://vuejs.org}
-    auf Basis von Node.js %\cite{https://nodejs.org/de/}
-    entschieden.
+    
+    %Node.js https://ieeexplore.ieee.org/abstract/document/5617064
+    Des Weiteren ist wurde durch die Verwendung von Vue.js \cite{you2018vue} auf Basis von Node.js \cite{tilkov2010node} entschieden.
 
-    Nuget %\cite{https://www.nuget.org}
+    Nuget \cite{balliauw2012pro} %https://link.springer.com/book/10.1007%2F978-1-4302-4192-8
     
     Github Quellcodeverwaltung %\cite{https://github.com}
 

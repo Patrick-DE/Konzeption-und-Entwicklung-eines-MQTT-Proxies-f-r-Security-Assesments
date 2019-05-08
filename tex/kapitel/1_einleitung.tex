@@ -1,30 +1,19 @@
 \chapter{Einleitung}
 
 \section{Motivation}
-Wie eine Statistik von \cite{nier_2017} zeigt, wie die Akzeptanz von intelligenten Geräten zwischen 2015 und 2017 angestiegen ist. Auch %cite{https://de.statista.com/statistik/studie/id/6638/dokument/heimvernetzung-statista-dossier/}
-prognostiziert bis 2020 einen weiteren Anstieg an vernetzen Geräten in Deutschland.
-Zusammen mit der steigenden Akzeptanz sind allerdings in den letzten Jahren ebenfalls die Angriffe von Kriminellen gegen zum Beispiel die sogenannten \ac{IoT}, oder auch intelligente Geräte genannt, gestiegen
-%cite{https://de.statista.com/statistik/daten/studie/295265/umfrage/polizeilich-erfasste-faelle-von-cyberkriminalitaet-im-engeren-sinne-in-deutschland/}
-.
+Wie eine Statistik von Nier zeigt, wie die Akzeptanz von intelligenten Geräten zwischen 2015 und 2017 angestiegen ist \cite{nier_2017}. Auch \cite{weitemeyer_2018} prognostiziert bis 2020 einen weiteren Anstieg an vernetzen Geräten in Deutschland.
+Zusammen mit der steigenden Akzeptanz sind allerdings in den letzten Jahren ebenfalls die Angriffe von Kriminellen gegen zum Beispiel die sogenannten \ac{IoT}, oder auch intelligente Geräte genannt, gestiegen \cite{statista_2019}.
+
 %Warum (Fallbeispiele) 
-Auch finden sich solche Fälle von Angriffen oder Verstöße gegen die Privatsphäre immer häufiger in den Medien %cite{https://www.heise.de/newsticker/meldung/US-Geheimdienstdirektor-Das-Internet-der-Dinge-als-Spionage-Hilfe-3098460.html} cite{https://www.it-daily.net/it-sicherheit/cyber-defence/20136-iot-geraete-zu-weihnachten-spiel-spass-spionage}
-. Aus diesem Grund beschäftigen sich auch immer häufiger Firmen im Sicherheitssektor mit diesen Themen und untersuchen verschiedene Produkte auf die Anfälligkeit solcher Attacken bzw. Existenz von Schwachstellen.
-%cite{https://blog.avira.com/de/achtung-ihr-saugroboter-spioniert-sie-aus/}
-%cite{https://www.kaspersky.de/resource-center/threats/is-your-smart-tv-spying-on-you}
+Auch finden sich solche Fälle von Angriffen oder Verstöße gegen die Privatsphäre immer häufiger in den Medien \cite{holland_2016} \cite{it_verlag_informationstechnik_gmbh_2018}. Aus diesem Grund beschäftigen sich auch immer häufiger Firmen im Sicherheitssektor mit diesen Themen und untersuchen verschiedene Produkte auf die Anfälligkeit solcher Attacken bzw. Existenz von Schwachstellen \cite{lorenz_2018} \cite{ao_kaspersky_lab_2018}.
 
-Als Beispiel untersuchte die Firma Positive Technologies einen intelligenten Saugroboter.
-%cite{https://blog.avast.com/news/de-de/spioniert-ihnen-die-mikrowelle-hinterher}
-Dieser enthielt zwei kritische Schwachstellen mithilfe derer ein Angreifer nicht nur Informationen von dem Roboter bekommen konnte sondern ihm Befehle ausführen lassen und somit die vorhandene Kamera mit einer Nachtsichtfunktion ansteuern konnte. Die Konsequenz war, dass der Angreifer ein aktuelles Bild von innerhalb der Wohnung sowie Zugriff auf das Netzwerk hatte. Die Tatsache, dass die Schwachstelle hinter einem Login lag, störte in der Regel nicht, da die Standard Passwörter der Produkte nicht immer geändert werden.
-%cite{https://www.ptsecurity.com/ww-en/about/news/dangerous-vulnerabilities-in-robotic-vacuum-cleaners/}
-Dies zeigt auch zwei Berichte von Trustwave aus 2014 und 2018.
-Damals in 2014 schrieb Trustwave: "Thirty percent of the time, an attacker gains access because of a weak password."
-%cite{Dokument siehe Folder 2014}
+Als Beispiel untersuchte die Firma Positive Technologies einen intelligenten Saugroboter \cite{salmi_2017}.
+Dieser enthielt zwei kritische Schwachstellen mithilfe derer ein Angreifer nicht nur Informationen von dem Roboter bekommen konnte sondern ihm Befehle ausführen lassen und somit die vorhandene Kamera mit einer Nachtsichtfunktion ansteuern konnte. Die Konsequenz war, dass der Angreifer ein aktuelles Bild von innerhalb der Wohnung sowie Zugriff auf das Netzwerk hatte. Die Tatsache, dass die Schwachstelle hinter einem Login lag, störte in der Regel nicht, da die Standard Passwörter der Produkte nicht immer geändert werden \cite{positive_technologies_2018}.
+Dies zeigt auch zwei Berichte von Trustwave aus 2014 und 2018 \cite{trustwave_holdings_inc_2014} \cite{trustwave_holdings_inc_2018}.
+Damals in 2014 schrieb Trustwave \cite{trustwave_holdings_inc_2014}: \glqq Thirty percent of the time, an attacker gains access because of a weak password.\grqq{}
 was bedeutet, das ungefähr 1/3 der Angriffe nur durch schwache oder Standard-Passwörter möglich wurden. Wenn man das mit dem aktuellsten Global Security Report 2018 vergleicht sieht man zwar das die Prozentzahl, also Gesamtzahl der Fälle, abgenommen hat, allerdings immer noch die zweit höchste Schwachstelle mit einem hohen Risiko darstellt.
-%cite{Dokument siehe Folder 2018}
-Diese Behauptung deckt sich ebenfalls mit den Top 10 Risiken 2018 bei der die größte Schwachstelle und somit Nummer eins folgende Kategorie ist: "I1 Weak Guessable, or Hardcoded Passwords" %cite{https://www.owasp.org/index.php/OWASP_Internet_of_Things_Project#tab=IoT_Top_10}.
 
-%mögliche weitere quellen%
-%https://www.elektronikpraxis.vogel.de/iot-unsicher-massive-sicherheitsluecken-in-den-verbreiteten-protokollen-mqtt-und-coap-a-782326/
+Diese Behauptung deckt sich nicht nur mit den Top 10 Risiken 2018 des \ac{OWASP} \cite{guzman_2019}, bei der die größte Schwachstelle und somit Nummer eins folgende Kategorie ist: \glqq I1 Weak Guessable, or Hardcoded Passwords\grqq{}, sondern auch mit weiteren Artikeln \cite{eckstein_2018}.
 
 \section{Zweck und Struktur}
 %Zweck
@@ -53,4 +42,4 @@ Diese Behauptung deckt sich ebenfalls mit den Top 10 Risiken 2018 bei der die gr
 Zu Beginn dieser Arbeit wird das Wissen über die benötigten grundlegenden Protokolle vermittelt.
 Anschließend werden die darauf aufbauenden Konzepte erläutert und in Kontext zu der Forschungsfrage gestellt.
 Nachdem die Grundlagen vermittelt wurden, bekommt der Leser eine Übersicht über bereits vorhandene Konzepte und Herangehensweisen zur Absicherung von \ac{IoT} oder im deutschen Internet der Dinge. Dies soll den Leser in die Lage versetzen die darauf folgenden existierenden Produkte sowie im Laufe der Arbeit, die eigene Konzeption und Implementierung in den korrekten Kontext einordnen zu können.
-Direkt im Anschluss wird dann das Konzept der eigenen Software erläuter und auf Schwierigkeiten sowie die daraus resultierenden Lösungen eingegangen. Das darauf folgende Kapitel "Implementierung" beschreibt die Umsetzung des zuvor erläuterten Konzepts und setzt die Rahmenbedingungen und verwendeten Technologien fest. Um den Wert des Ergebnis der Arbeit bewerten zu können wird im Anschluss eine Validierung anhand von Testversuchen durchgeführt und die Ergebnisse sowie das Resultat der der Forschungsfrage festgehalten. Zuletzt wird geschaut, was die Zukunft bringen könnte und was für weitere Arbeiten zu diesem Thema vorhanden sind.
+Direkt im Anschluss wird dann das Konzept der eigenen Software erläuter und auf Schwierigkeiten sowie die daraus resultierenden Lösungen eingegangen. Das darauf folgende Kapitel \glqq Implementierung\grqq{} beschreibt die Umsetzung des zuvor erläuterten Konzepts und setzt die Rahmenbedingungen und verwendeten Technologien fest. Um den Wert des Ergebnis der Arbeit bewerten zu können wird im Anschluss eine Validierung anhand von Testversuchen durchgeführt und die Ergebnisse sowie das Resultat der der Forschungsfrage festgehalten. Zuletzt wird geschaut, was die Zukunft bringen könnte und was für weitere Arbeiten zu diesem Thema vorhanden sind.
