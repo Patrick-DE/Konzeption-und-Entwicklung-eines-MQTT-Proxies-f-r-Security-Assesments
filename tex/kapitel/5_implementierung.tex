@@ -1,69 +1,46 @@
 \chapter{Implementierung}
+
+Um dieses Ziel zu erreichen, lassen sich folgende Hauptaufgaben ausmachen. Im Folgenden werde ich auf Informationen oder Probleme innerhalb der einzelnen Schritte eingehen und diese erläutern.
+
+Es wurden viele Open-Source Bibliotheken verwendet um den Fokus der Arbeit auf die Neuentwicklung und Lösung der Fragestellung zu legen.
+
+%Github im Verlauf der Arbeit verwendet um Probleme überwachen zu können und Problemlösungen nachvollziehbar zu dokumentieren. Die Versionierung wurde ebenfalls durchgeführt um bei etwaigen Problem alte Versionsstände verfügbar zu haben. 
+Github wurde im Verlauf der Arbeit verwendet, da das Unternehmen wie Chacon et al. in dem Buch Pro Git \cite{Chacon2014} beschreiben, der größte Dienstleister für die Bereitstellung von Git Repositories ist. Neben der Speicherung von Quellcode ist Github ebenfalls eine zentrale Plattform für den Austausch und die Zusammenarbeit von Millionen von Entwicklern. Nicht nur open-source sondern auch closed-source Projekte werden dort gespeichert und mithilfe von Problemverfolgung und Codereviews weiterentwickelt. Für die Verwaltung der Informationen verwendet Github das Versionsverwaltungstool Git und baut somit seine Funktionalität um diese Technologie herum.
+    
 \section{Rahmenbedingungen}
-    Welche Voraussetzungen sind für das Programm notwendig?
+    Die folgenden Voraussetzungen sind notwendig um das Programm ausführen zu können.
     \begin{itemize}
         \item Betriebssystem: ab Windows 7, Linux (mit Mono*)
-        \item Abhängigkeiten: .NetFramework XYZ**
-        \item Speicher: 
-        \item RAM: 
-        \item Prozessor: 
+        \item Abhängigkeiten: .NET Framework v4.6.1**
+        \item Speicher: 50 MB frei
+        \item RAM: 100 MB frei
+        \item Prozessor: 2 virtuelle Kerne  mit 2,0 Ghz
     \end{itemize}
     %Auch nochmal was für Einschränkungen bezüglich der Sicherheitsmechanismen oder nur in Konzept oder nur hier????
     
     %Was ist Mono?
-    *Mono ist ein Programm...
+    *Wie der offiziellen Webseite \cite{mono_project_2018} zu entnehmen ist, ist Mono eine Entwicklungsplattform auf Basis des .NET Frameworks von Microsoft und stellt dessen Funktionalität auf verschiedenen Plattformen zur Verfügung. Um die Funktionalität abbilden zu können, besteht Mono aus verschiedenen Komponenten.
     
-    **Warum die, was für Konsequenzen würden die haben?
+    Der C\# Kompiler beinhaltet alle genormten Funktionen der C\# Versionen 1.0 - 6.0.
+    
+    Die Laufzeitumgebung beinhaltet neben zwei Kompilern auch eine Möglichkeit zum Laden von Bibliotheken, einem Garbage Collector und der parallelen Ausführen von Anwendungen.
 
-\section{Umgebung und Konfiguration} %Projektierung TODO stimmt das?
-    %IDE https://proquestcombo.safaribooksonline.com/9781119404583
-    Als Entwicklungsumgebung für das Backend wurde \ac{VS} 2016 \cite{JohnsonBruce2018Pvs2}
-    von Microsoft verwendet. Dadurch sind auch die Projektdateien, in dem Repository \glqq MQTT-Proxy\grqq{} \cite{eisenschmidt_2019}
-    gefunden werden können, in einem Visual Studio Projektfile (.sln) definiert.
-    %Warum VisualStudio
-    %\cite{johnson2012professional}
-    
-    %Konfiguration
-    Das Projekt ist im Standard auf x86 Prozessoren ausgerichtet, kann allerdings bei Bedarf auch auf x64 Prozessoren durch Änderung der entsprechenden Einstellung in \ac{VS} geändert werden.
-    Eine Unterstützung für weitere Architekturen ist nicht gegeben.
-    Zusätzlich ist bei Ausführung der Anwendung ein privilegierter Account erforderlich um die Berichtigung für Zugriff auf die erforderlichen Port zu erhalten.
-    Es werden Port 1883 für die Kommunikation mit dem \ac{MQTT}-Protokoll und Port 80 für die \ac{REST} Schnittstelle, welche auch die Weboberfläche bereitstellt, benötigt.
-    Der Proxy ist ausschließlich über die Adresse \glqq 127.0.0.1\grqq{} oder \glqq localhost\grqq{} erreichbar, da keine Benutzerauthentifizierung implementiert wurde. Da eine unberechtigte Verwendung im lokalen Netz oder bei Bereitstellung über eine öffentlich erreichbare Adresse nicht ausgeschlossen werden kann, wird die Änderung auch nicht empfohlen. Sofern jedoch Bedarf sein sollte, ist es möglich die Adresse im Quellcode, durch die lokale IP-Adresse des Gerätes auf dem der Proxy läuft, auszutauschen um eine parallele oder externe Verwendung zu ermöglichen.
-    
-    %https://proquestcombo.safaribooksonline.com/9781484242247
-    Für das Frontend, also die Weboberfläche mit der der Nutzer interagiert und die Applikation steuern kann, wurde Visual Studio Code \cite{sole_2019} ebenfalls von Microsoft verwendet.
-    %Warum VC 
-    
-    %Node.js https://ieeexplore.ieee.org/abstract/document/5617064
-    Des Weiteren ist wurde durch die Verwendung von Vue.js \cite{you2018vue} auf Basis von Node.js \cite{tilkov2010node} entschieden.
+    Die .NET Framework Klassen Bibliothek beinhaltet viele benötigte Funktionalitäten und Informationen die zum programmieren benötigt werden können und mit der Implementierung von Microsoft, für cross-platform Fähigkeit, kompatibel sind.
 
-    Nuget \cite{balliauw2012pro} %https://link.springer.com/book/10.1007%2F978-1-4302-4192-8
+    Die Mono Klassen Bibliothek stellt auch darüber hinaus noch weiter Zusatzfunktionalitäten zur Verfügung die entweder plattformabhängig sind oder nur nützliche Zusätze wie verarbeiten von Zip Archiven oder Anbindung an LDAP Systemen sind.
     
-    Github Quellcodeverwaltung %\cite{https://github.com}
+    **Dadurch, dass das .NET Framework Bibliotheken, Kompiler und Laufzeitumgebungen bereitstellt, ist es notwendig diese in der oben genannten Version zu installieren um in diesem Projekt verwendete Funktionen nutzen zu können und das Programm zu kompilieren.
 
-\section{Sprachen}
-    Gewählte Sprache für ProxyBroker
-    Backend
-        Anforderungen an die Programmiersprache
-        Welche Sprachen wären basierend darauf möglich/naheliegend gewesen
-            Warum sind die Entwickelt worden? / Vorteile Background
-            Was macht die Programmiersprachen aus? / Schwerpunkt
-        Warum C\#
-            Vorteile der Sprache
-            Nachteile der Sprache 
-            Probleme resultierend aus der Entscheidung
-            Vorteile aus der Entscheidung
-    Frontend
-        Anforderungen an die Programmiersprache
-        Welche Sprachen wären basierend darauf möglich/naheliegend gewesen
-            Warum sind die Entwickelt worden? / Vorteile
-            Was macht die Programmiersprachen aus? / Schwerpunkt
-        Warum Node.js
-            Node.js ist eine JavaScript-Laufzeitumgebung, die auf der JavaScript-Engine V8 des Chrome-Projekts basiert[12]. Die Umgebung sieht asynchrone und ereignisbasierte Programmierung vor: während auf Antwort von langsamen Systemen (bei z.B. Dateioperationen oder Webanfragen) gewartet wird, kann weiterer Code ausgeführt werden [13]. Der zugehörige Paketmanager, npm (Node.js Package Manager), ermöglicht die einfache Installation von einer Vielzahl an frei verfügbaren Open-Source-Bibliotheken. 
-        Warum Vue.js
-            Vue.js ist eine neben Angular und React sehr populäre Frontendtechnologie, die das MVVM-Architekturmuster (model-view-viewmodel) und Wiederverwendung von Code durch Nutzung von Komponenten einsetzt[14]. In Kombination mit Node.js können Prototypen für Frontends in kurzen Entwicklungszyklen erstellt, erprobt und vorgeführt werden.
-            %Eiskalt von moritz geklaut :D
-    Gewählte Sprache für Client und Broker
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Test Client/Broker implementieren
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Client/Broker implementieren}
+
+    %Gewählte Sprache für Client und Broker
+    Auch der Client und Broker, also das \ac{IoT}-Gerät und das Ziel des Geräts zum Beispiel der Server des Herstellers, hat Anforderungen die sich auf die verwendete Programmiersprache auswirken können.
+    \begin{itemize}
+        \item 
+    \end{itemize}
         Anforderungen an die Programmiersprache
         Welche Sprachen wären basierend darauf möglich/naheliegend gewesen
             Warum sind die Entwickelt worden? 
@@ -73,52 +50,128 @@
             Nachteile der Sprache 
             Probleme resultierend aus der Entscheidung
             Vorteile aus der Entscheidung
-     
-\section{Bibliotheken}
-    Wurden viele Open-Source Bibliotheken verwendet um den Fokus der Arbeit auf die Neuentwicklung und Lösung der Fragestellung zu haben.
-    Backend
-        NewsoftJSON
-            Was ist das
-            Vorteile
-            Probleme
-            Alternativen
-        MQTTNet
-            Was ist das
-            Vorteile
-            Probleme
-            Alternativen
-        SharpRest
-            Was ist das
-            Vorteile
-            Probleme
-            Alternativen
-    Frontend
-        Bootstrap-vue
-            Was ist das
-            Vorteile
-            Probleme
-            Alternativen
+    
+    %Open-Source Bibliotheken Client/Broker
+    paho
+        Was ist das
+        Vorteile
+        Probleme
+    hbmqtt
+        Was ist das
+        Vorteile
+        Probleme
             
-    Open-Source Bibliotheken Client/Broker
-        paho
-            Was ist das
-            Vorteile
-            Probleme
-            Alternativen
-        hbmqtt
-            Was ist das
-            Vorteile
-            Probleme
-            Alternativen
+    %Herausforderungen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Implementieren des Proxys (Backend)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proxy Backend implementieren}
+
+    Es wurden verschiedene Programmiersprachen für den Proxy verwendet. Diese wurde entsprechend der Anforderungen und dem Einsatzgebiet abhängig gewählt.
+    Die wichtigste Unterscheidung liegt an der Trennung von Backend (Server und Logik Komponenten) und Frontend (Webseite oder User Interface).
+    Zuerst wird auf die Sprache für das Backend eingegangen.
+    
+%%%%%%%%%%%
+%Visual Studio
+%%%%%%%%%%%
+    Als Entwicklungsumgebung für das Backend wurde \ac{VS} 2016 \cite{microsoft_2019} von Microsoft verwendet. Dadurch sind auch die Projektdateien, in dem Repository \glqq MQTT-Proxy\grqq{} \cite{eisenschmidt_2019} gefunden werden können, in einem Visual Studio Projektfile (.sln) definiert.
+    
+%%%%%%%%%%%
+%Anforderungen an die Programmiersprache
+%%%%%%%%%%%
+    \begin{itemize}
+        \item Die Sprache muss verschiedene Bibliotheken mitbringen die Funktionalitäten wie REST-Interface und \ac{MQTT}-Protokoll bereitstellen. Dies ist aufgrund der kurzen Zeit die für diese Arbeit veranschlagt wurde notwendig um alle Features implementiert zu bekommen.
+        \item Das Programm muss auf mindestens zwei Plattformen verwendbar sein um den praktischen Nutzen zu steigern.
+        \item Es soll eine bekannte Sprache sein, um eine Weiterentwicklung von Dritten zu ermöglichen.
+        \item Die Programmiersprache muss dem Autor bereits bekannt sein, um die Einarbeitungszeit minimal zu halten und auch eine entsprechende Qualität zur Verfügung stellen zu können.
+    \end{itemize}
+%%%%%%%%%%%
+%Sprache
+%%%%%%%%%%%
+    %Welche Sprachen wären basierend darauf möglich/naheliegend gewesen
+    Basieren auf diesen Anforderungen stehen Java, C\# und JavaScript zur Auswahl.
+    Der Autor hat sich anschließend aus folgenden Gründen für C\# entschieden.
+    %Warum sind die Entwickelt worden? / Vorteile Background
+    %Was macht die Programmiersprachen aus? / Schwerpunkt
+    \begin{itemize}
+        \item Assemnly System, nicht linking nötigt, pluginsystem einfacher zu implementieren
+        \item Nuget für einfache Dependency Management
+        \item Da in Visual Studio gecoded wird
+    \end{itemize}
+    
+    
+%%%%%%%%%%%
+%Nuget %https://link.springer.com/book/10.1007%2F978-1-4302-4192-8
+%%%%%%%%%%%
+    NuGet wurde aus den folgenden Vorteilen ausgewählt, welche ebenfalls von Balliauw et al. in seinem Buch Pro NuGet \cite{balliauw2012pro} beschrieben werden.
+    Der sogenannte Paket-Manager unterstützt bei der Verwaltung von Abhängigkeiten, wie zum Beispiel Bibliotheken, mit dem Auflösen von Abhängigkeiten und Versionsproblemen. Versionsprobleme treten dann auf, wenn Bibliotheken Abhängigkeiten mit einer Version < X und eine weitere Bibliothek Version > X benötigen. Ein weitere oft auftretender Fall ist, dass beim Aktualisieren einer Bibliothek die benötigte Version für die Abhängigkeiten erhöht aber nicht ebenfalls aktualisiert wird. Die Folge ist eine defekte Abhängigkeit für die Bibliothek und also ein nicht kompilierbarer Zustand  und somit nicht ausführbares Programm. Zusätzlich übernimmt es auch die Installation durch suchen, installieren und aktualisieren oder entfernen von gewünschten Paketen. Ein Weiterer Vorteil ist, dass der Quellcode öffentlich verfügbar ist und das Tool somit weiter angepasst oder verändert werden kann.
+    
+%%%%%%%%%%%
+%Bibliothek
+%%%%%%%%%%%
+    NewsoftJSON
+        Was ist das
+        Vorteile
+        Probleme
+    MQTTNet
+        Was ist das
+        Vorteile
+        Probleme
+    SharpRest
+        Was ist das
+        Vorteile
+        Probleme
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Kommunikation mit Firewall
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Kommunikation steuern}
+
+    %MITM (APR Spoof, DNS, ICMP, FW)
         
-Um dieses Ziel zu erreichen, lassen sich folgende Hauptaufgaben ausmachen.
-\begin{enumerate}
-    \item Test Client implementieren
-    \item Test Broker implementieren
-    \item Implementieren des Proxy-Brokers (normale Broker Funktionalität)
-    \item Nachrichten des IoT-Clients auf eigenen Broker umleiten
-        MITM (APR Spoof, DNS, ICMP, FW)
-    \item Implementieren des Proxy-Brokers (weiterleiten an Broker)
-    \item Implementieren des Proxy-Brokers (empfangen vom Broker)
-    \item Implementieren der Oberfläche zum Steuern
-\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Implementieren des Proxys (Frontend)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proxy Frontend implementieren}
+    
+    Nun wird auf die Programmiersprache für das Frontend, also die Oberfläche eingegangen.
+    
+%%%%%%%%%%%
+%Visual Studio Code
+%%%%%%%%%%%
+    %https://proquestcombo.safaribooksonline.com/9781484242247
+    Zum entwickeln vom Frontend, also die Weboberfläche mit der der Nutzer interagiert und die Applikation steuern kann, wurde Visual Studio Code \cite{microsoft_2016} ebenfalls von Microsoft verwendet.
+    
+%%%%%%%%%%%
+%Anforderungen an die Programmiersprache
+%%%%%%%%%%%
+    \begin{itemize}
+        \item Es muss möglich sein, einzelne Inhalte auf der Webseite dynamisch, also ohne Aktualisierung der Webseite, austauschen zu können.
+        \item Wenn neu abgefangenen Nachrichten im Proxy verfügbar sind, sollen sie automatisch an das Frontend weitergegeben werden und das Datenmodel der Oberfläche automatisch aktualisieren.
+        \item Die Oberfläche soll aus Komponenten bestehen und mithilfe dieser einen Modularen und strukturierten Aufbau ermöglichen.
+        \item Die Eigenschaften des Attributs für das Aussehen der Komponenten darf nicht im gleichen Bereich anderer Komponenten liegen, da sie sich sonnst gegenseitig überschreiben können.
+        \item Die Programmiersprache muss dem Autor bereits bekannt sein, um die Einarbeitungszeit minimal zu halten und auch eine entsprechende Qualität zur Verfügung stellen zu können.
+    \end{itemize}
+    
+%%%%%%%%%%%
+%Welche Sprachen wären basierend darauf möglich/naheliegend gewesen
+%%%%%%%%%%%
+    Durch die existierenden Anforderungen hat sich JavaScript als passend herausgestellt. Dadurch, dass verschiedene Frameworks und Erweiterungen auf Basis von JavaScript existieren, werden im Folgenden noch die konkreten Frameworks auf die Anforderungen untersucht.
+    %Warum sind die Entwickelt worden? / Vorteile
+    %Was macht die Programmiersprache aus? / Schwerpunkt
+    
+%%%%%%%%%%%
+%Warum Vue.js
+%%%%%%%%%%%
+    Vue.js \cite{you2018vue} wurde ursprünglich für schnelles Prototyping von Webseiten entwickelt, hat sich aber mit der Zeit in die Liste der beliebtesten Webtechnologien eingereiht. Neben Angular und React, stellt es eine Alternative zum schnellen und leichtgewichtigen Entwickeln mit \ac{MVVM}-Architekturmuster dar. Dies ermöglicht die Wiederverwendung von Code durch Nutzung von Komponenten. Durch die bidirektionale Databindung ist es möglich Änderungen im Clientmodel direkt, ohne Aktualisierung, anzeigen zu lassen. In der gegengesetzten Richtung, werden die Informationen, welche zum Beispiel in Inputfeldern bearbeitet werden können, direkt im Clientmodel abgespeichert. Ein weiterer Vorteil ist die direkte Abbildung vom Datenmodel also Datenstruktur zum ViewModel. Dies ermöglicht auch eine Trennung von UI-Designern und Entwicklern da getrennt entwickelt werden kann ohne Informationen in Bereichen der anderen abändern zu müssen.
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Danke an Moritz für die Infos \.A./ %
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+%%%%%%%%%%%
+%Bibliothek
+%%%%%%%%%%%
+    Bootstrap-vue
+        Was ist das
+        Vorteile
+        Probleme

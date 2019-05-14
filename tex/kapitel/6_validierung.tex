@@ -66,6 +66,15 @@ Das Labor bildet die Kommunikation zwischen einem Temperatursensor, welcher sich
     \subsection{Netwerk}
     Netzwerk-Setup
     
+    \subsection{Konfiguration der Software}
+    %Konfiguration
+    Das Projekt ist im Standard auf x86 Prozessoren ausgerichtet, kann allerdings bei Bedarf auch auf x64 Prozessoren durch Änderung der entsprechenden Einstellung in \ac{VS} geändert werden.
+    Eine Unterstützung für weitere Architekturen ist nicht gegeben.
+    Zusätzlich ist bei Ausführung der Anwendung ein privilegierter Account erforderlich um die Berichtigung für Zugriff auf die erforderlichen Port zu erhalten.
+    Es werden Port 1883 für die Kommunikation mit dem \ac{MQTT}-Protokoll und Port 80 für die \ac{REST} Schnittstelle, welche auch die Weboberfläche bereitstellt, benötigt.
+    Der Proxy ist ausschließlich über die Adresse \glqq 127.0.0.1\grqq{} oder \glqq localhost\grqq{} erreichbar, da keine Benutzerauthentifizierung implementiert wurde. Da eine unberechtigte Verwendung im lokalen Netz oder bei Bereitstellung über eine öffentlich erreichbare Adresse nicht ausgeschlossen werden kann, wird die Änderung auch nicht empfohlen. Sofern jedoch die Notwendigkeit bestehen sollte, ist es möglich die Adresse im Quellcode, durch die lokale IP-Adresse des Gerätes auf dem der Proxy läuft, auszutauschen um eine parallele oder externe Verwendung zu ermöglichen.
+    
+    
 \section{Ausführung und Bewertung}
 Was wird ausgeführt, welche Tests
 Als erstes mit einem Client
