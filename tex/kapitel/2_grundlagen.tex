@@ -4,22 +4,69 @@ High level Ziel ist ein Proxy zu implementieren, deswegen die Grundlagen
 \section{Definitionen}
     \subsection{Smart Devices}
     \subsection{IoT}
+    \subsection{Zertifikate} %Für Kapitel Implementierung Section Einschränkung 
+    %Zertifikate
+    %Zertifizierungspfad
+    %HPKP / Cert pinning
 
 \section{Protokolle}
     \subsection{Ethernet}
     \subsection{IP}
     \subsection{MQTT}
 
+\section{.NET Framework und Mono}
+    Dadurch, dass das .NET Framework Bibliotheken, Kompiler und Laufzeitumgebungen bereitstellt, ist es notwendig diese in der oben genannten Version zu installieren um in diesem Projekt verwendete Funktionen nutzen zu können und das Programm zu kompilieren.
+    
+%Was ist Mono?
+    *Wie der offiziellen Webseite \cite{mono_project_2018} zu entnehmen ist, ist Mono eine Entwicklungsplattform auf Basis des .NET Frameworks von Microsoft und stellt dessen Funktionalität auf verschiedenen Plattformen zur Verfügung. Um die Funktionalität abbilden zu können, besteht Mono aus verschiedenen Komponenten.
+    
+    Der C\# Kompiler beinhaltet alle genormten Funktionen der C\# Versionen 1.0 - 6.0.
+    
+    Die Laufzeitumgebung beinhaltet neben zwei Kompilern auch eine Möglichkeit zum Laden von Bibliotheken, einem Garbage Collector und der parallelen Ausführen von Anwendungen.
+
+    Die .NET Framework Klassen Bibliothek beinhaltet viele benötigte Funktionalitäten und Informationen die zum programmieren verwendet werden können und mit der Implementierung von Microsoft, für cross-platform Fähigkeit, kompatibel sind.
+
+    Die Mono Klassen Bibliothek stellt auch darüber hinaus noch weiter Zusatzfunktionalitäten zur Verfügung die entweder plattformabhängig sind oder nur nützliche Zusätze wie verarbeiten von Zip Archiven oder Anbindung an LDAP Systemen sind.
+
 \section{Konzepte}
+    \subsection{Proxy}
+        Funktionalität
     \subsection{Man In The Middle}
     ARP
     ICMP
     FW
-    \subsection{Proxy}
-        Funktionalität
     \subsection{Security Assessment}
         (OWASP IoT Guide) 
         Wie prüft man Software, Auf was muss man achten Methodology %https://www.owasp.org/index.php/Penetration_testing_methodologies
         Ziel einer Überprüfung?
         Mehrwert für den Hersteller
         Schaden wenn man es nicht macht?
+        
+        Um den Arbeitsablauf eines Penetration Tester aufzuzeigen, werden die 7 Schritte des \ac{PTES} \cite{hsiangchih_2019}
+    beschrieben.
+    \subsubsection{\glqq Pre-engagement Interactions\grqq{}}
+        Es werden alle Vorbereitungen und Absprachen zum Umfang, wie Zeit und IP Adressen, und Art des Tests, Netzwerk- Web Penetration-Test, besprochen.
+        
+    \subsubsection{\glqq Intelligence Gathering\grqq{}}
+        Hier werden so viele Informationen über das Ziel herausgefunden wie nur möglich. Dies ist notwendig um ein bestmögliches Bild über das Ziel zu bekommen und sich somit viele Angriffsvektoren einfallen lassen kann. Des Weiteren ist es auch essentiell, um nicht direkt aufzufallen da Sicherheitsmaßnahmen im Vorhinein identifiziert und möglicherweise umgangen werden können. Das reduziert die Aktionen, welche in Logdateien gespeichert werden und macht die Anwesenheit nicht so leicht identifizierbar. Als Beispiel ist es möglich eine Aktion mit zufällig generierten Werten aufzurufen. Dies würde allerdings eine Menge an fehlerhafter Anfragen dokumentieren, die offensichtlich nicht durch die Software auf Seite des Herstellers hervorgerufen wurde. Als Alternative ist es möglich die bestehende Kommunikation zu untersuchen und auf Basis der observierten Kommunikation vom Endgerät, leicht abgewandelte Versionen zu erzeugen. Hierbei hilft die konzipierte Software, als Alternative zu bestehenden Lösungen wie Wireshark um diese Kommunikation zu überwachen und Informationen über die Kommunikation zu erfassen.
+    \subsubsection{\glqq Threat Modeling\grqq{}}
+        Nachdem Informationen über den Dienst gesammelt wurden, ist der Tester nun in der Lage ein Modell zu entwickeln, indem mögliche Vertrauensstellung nicht ausreichend geschützt oder Input und Output nicht korrekt auf Sonderzeichen oder auch nicht auf Plausibilität geprüft werden könnte. 
+    \subsubsection{\glqq Vulnerability Analysis\grqq{}}
+        In diesem Schritt wird die Applikation auf Schwachstellen untersucht. 
+        Dieser Schritt ist in zwei Teile, der Identifikation und der Prüfung, geteilt.
+        Die Identifikation wird mithilfe von aktiven und passiven Methoden durchgeführt.
+        Auf der einen Seite stehen Tools für aktive Tests wie zum Beispiel 
+        SQLMap \cite{damele_stampar_2014}, 
+        Burp Suite \cite{LozanoCarlosA.author2019Hapt}, %https://proquestcombo.safaribooksonline.com/book/web-development/9781788994064
+        Nessus \cite{BealeJay2008Nna}, %https://proquestcombo.safaribooksonline.com/9781597492089
+        \ac{ZAP} \cite{bennetts2013owasp}. %https://www.owasp.org/images/9/96/OWASP_2014_OWASP_ROMANIA.pdf
+        Nachdem die Tools eingestellt sind, scannen und interagieren mit den Funktionalitäten der Seite oder Applikation ohne weitere Aktionen vom Nutzer.
+        Auf der anderen Seite stehen die passiven Tools wie Wireshark oder TCPdump \cite{tcpdump_2010}, welche außenstehend sind und nur am Aufzeichnen von Aktionen anderer sind. 
+        Diesen gemeldeten/ gefundenen Schwachstellen werden anschließend verifiziert, also auf die Korrektheit geprüft und zum Schluss anhand der Risiken aus aus Sicht der Applikation bewertet \cite{hayes_2012}.
+    \subsubsection{\glqq Exploitation\grqq{}}
+        In diesem Schritt wird versucht, unter Umgehen weitere Sicherheitsmechanismen, die bestätigte Schwachstelle so zu verwenden, dass entweder eine Steigerung der Berechtigungen oder das weiter Infiltrieren erreicht wird.
+        \subsubsection{\glqq Post Exploitation\grqq{}}
+        Im vorletzten Schritt wird versucht den erlangten Zugriff zu festigen und eventuelle benötigte Daten herunterzuladen. Das heißt, dass selbst nach dem Neustart des Systems die Kontrolle über das System bestehen bleibt ohne erneut den Exploit zu verwenden. Üblicherweise wird dies mithilfe von Tools wie einer \ac{RAT} gemacht, welche in den Autostart, die Registry geschrieben oder mithilfe von/ in Windows Komponenten integriert werden.
+        Diese Programme ermöglichen die Steuerung des Computers ohne anwesend (vor dem Gerät) zu sein. Des Weiteren sind die Programme, sehr gut versteckt um nicht aufzufallen. Die Namen ähneln meist Dienst- oder Programmbezeichnungen um legitim auszusehen. Es gibt ebenfalls die Möglichkeit, das Programm so zu schützen, dass beim Versuch das Programm zu beenden das System selbst herunterfährt.
+    \subsubsection{\glqq Reporting\grqq{}}
+        Dies ist der letzte und einer der wichtigsten Schritte. Da Security Tests durchgeführt werden um die Sicherheit zu erhöhen, ist es auch zwingend notwendig die Schwachstellen und Exploits so zu dokumentieren, dass der Hersteller sich entscheiden kann, ob die existierenden Probleme behoben werden oder das Risiko getragen wird. Abhängig von dem Einfluss auf das Geschäft (Business Impact) kann es aus wirtschaftlicher Sicht gerechtfertigt sein eine Schwachstelle nicht zu schließen und die daraus resultierenden Folgen wie Strafen zu bezahlen.

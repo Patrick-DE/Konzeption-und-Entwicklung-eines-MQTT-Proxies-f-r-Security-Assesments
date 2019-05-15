@@ -6,7 +6,8 @@
 Um bewerten zu können, ob das entwickelte Programm den im Kapitel 4 genannten Anforderungen entspricht, wird in diesem Kapitel zur Validierung ein virtuelles Labor aufgebaut, dass \ac{IoT}-Client, einen Broker und natürlich den Proxy bereitstellt.
 
 %Szenario, was mit dem Labor versucht wird zu erreichen.
-Das Labor bildet die Kommunikation zwischen einem Temperatursensor, welcher sich an der Heizung im Wohnzimmer des Nutzer angeschlossen ist, und dem Broker des Herstellers. Der Sensor, im weiteren Client genannt, stellt dem Broker jede Sekunde die aktuelle Temperatur zur Verfügung. Der Broker auf der anderen Seite erwartet die Temperatur eines Clients und gleicht diese mit der, vom Nutzer hinterlegten, Wunschtemperatur von 20 Grad Celsius ab. Erhält der Broker ein zu niedrigen Wert sendet er einen Befehl womit die Heizung die Leistung erhöht. Für den Fall, dass die aktuelle Temperatur höher als die eingestellte Temperatur ist, wird ein Befehl gesendet, wodurch die Heizung die Leistung reduziert.
+Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in der Glühbirne im Wohnzimmer des Nutzer befindet, und dem Broker des Herstellers. Der Sensor, im weiteren Client genannt, stellt dem Broker jede Sekunde den aktuelle Status zur Verfügung. Der Broker auf der anderen Seite erwartet den Status eines Clients und gleicht diese mit dem, vom Nutzer hinterlegten, Wunschwert ab. Anschließend sendet er bei einer Differenz zum Wunsch den neuen Wert los und bei einer Übereinstimmung einfach den gleichen Wert zurück.
+%Erhält der Broker ein zu niedrigen Wert sendet er einen Befehl womit die Heizung die Leistung erhöht. Für den Fall, dass die aktuelle Temperatur höher als die eingestellte Temperatur ist, wird ein Befehl gesendet, wodurch die Heizung die Leistung reduziert.
 
 \begin{figure}[h]%h=direkt danach t=top b=bottom
     \centering
@@ -21,6 +22,15 @@ Das Labor bildet die Kommunikation zwischen einem Temperatursensor, welcher sich
     von VMware umgesetzt. Dadurch, dass alle Systeme und Applikationen in sogenannten Virtuellen Maschinen laufen sind sie, obwohl sie auf dem gleichen Gerät (Server) laufen können, voneinander unabhängig. Das bedeutet, dass ganze Systeme abgeschottet und auf \ac{VMDK}s gespeichert und somit auch sehr einfach gesichert oder untereinander ausgetauscht werden können. Durch die dynamische Verteilung von zum Beispiel CPU oder RAM ist ebenfalls eine effektivere Nutzung der Ressourcen möglich. Damit wird nur ein Server oder leistungsfähiger Computer benötigt um ganze Systemlandschaften und Netzwerke abzubilden. Des Weiteren ermöglicht es auch die hier durchgeführten Tests und somit Ergebnisse in der gleichen Umgebung durch die Bereitstellung der Dateien nachvollziehen zu können ohne selbst Arbeit und Zeit investieren zu müssen.
     %Warum mit ESXI
     ESXi wurde als Lösung gewählt, da bereits Wissen und Erfahrung im Umgang mit der Lösung vorhanden war. Zusätzlich stand ein Server mit benötigter Leistung bereits zur Verfügung was wodurch das Aufsetzen und Konfigurieren eines solchen oder ähnlichen Produkts nicht mehr nötig machte.
+    
+    Die folgenden Voraussetzungen sind notwendig um das Programm ausführen zu können.
+    \begin{itemize}
+        \item Betriebssystem: ab Windows 7, Linux mit Mono
+        \item Abhängigkeiten: .NET Framework v4.6.1
+        \item Speicher: 50 MB frei
+        \item RAM: 100 MB frei
+        \item Prozessor: 2 virtuelle Kerne  mit 2,0 Ghz
+    \end{itemize}
     
     Die in diesem Szenario enthaltenen System sind die folgenden.
     

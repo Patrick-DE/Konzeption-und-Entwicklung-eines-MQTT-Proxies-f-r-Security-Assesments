@@ -1,35 +1,22 @@
 \chapter{Implementierung}
 
-Um dieses Ziel zu erreichen, lassen sich folgende Hauptaufgaben ausmachen. Im Folgenden werde ich auf Informationen oder Probleme innerhalb der einzelnen Schritte eingehen und diese erläutern.
+Um das im vorigen Kapitel dargestellte Konzept zu realisieren, lassen sich folgende Hauptaufgaben ausmachen. Im Folgenden wird auf Informationen oder Probleme innerhalb der einzelnen Schritte eingegangen und diese erläutern.
 
-Es wurden viele Open-Source Bibliotheken verwendet um den Fokus der Arbeit auf die Neuentwicklung und Lösung der Fragestellung zu legen.
+\section{Einschränkungen}
+Die Software kann nur funktionieren, wenn garantiert werden kann, dass keine effektiven Sicherheitsmaßnahmen verwendet werden. Folgende Maßnahmen würden das mitlesen der Kommunikation verhindern.
+\begin{enumerate}
+    \item Nur ohne \ac{HPKP} %\cite{https://tools.ietf.org/html/rfc7469}
+    
+    Auf dem Server wird ein für den Client ausgestelltes Zertifikat hinterlegt. Der öffentlichen Schlüssel oder der \glqq subjectPublicKeyInfo\grqq{}, ein weiterer Schlüssel mit Zusatzinformationen über die Verschlüsselung, dieses Zertifikats wird auf dem Client abgespeichert. Anschließend wird dieser gespeicherte Schlüssel mit jeder Anfrage an den Server mitgeschickt. Anschließend kann der Server die eingehenden Nachrichten mithilfe der Informationen aus dem Zertifikat verifizieren und sicherstellen das sie vom tatsächlichen Ziel kommt.
+    \item Nur wenn der Zertifizierungspfad beim SSL Zertifikat (\emph{trust chain}) nicht geprüft wird.
+    
+    Bei Verwendung von TLS ist es möglich, den Client prüfen zu lassen, ob der Server das entsprechende Hersteller Zertifikat besitzt. Jedes gültige Zertifikat muss von einer \ac{CA} ausgestellt werden, welche das Vertrauen und eventuell die Identität des Besitzers verifiziert. Jedoch gibt es auch Implementierungen die vom Zertifikat nur die formalen Details und nicht die Herkunft (CA) prüfen.
+    Dies ermöglicht, dass die Kommunikation trotz eines manuell (unverifizierbaren) Zertifikats mit den gleichen Details hergestellt werden kann.
+\end{enumerate}
 
-%Github im Verlauf der Arbeit verwendet um Probleme überwachen zu können und Problemlösungen nachvollziehbar zu dokumentieren. Die Versionierung wurde ebenfalls durchgeführt um bei etwaigen Problem alte Versionsstände verfügbar zu haben. 
-Github wurde im Verlauf der Arbeit verwendet, da das Unternehmen wie Chacon et al. in dem Buch Pro Git \cite{Chacon2014} beschreiben, der größte Dienstleister für die Bereitstellung von Git Repositories ist. Neben der Speicherung von Quellcode ist Github ebenfalls eine zentrale Plattform für den Austausch und die Zusammenarbeit von Millionen von Entwicklern. Nicht nur open-source sondern auch closed-source Projekte werden dort gespeichert und mithilfe von Problemverfolgung und Codereviews weiterentwickelt. Für die Verwaltung der Informationen verwendet Github das Versionsverwaltungstool Git und baut somit seine Funktionalität um diese Technologie herum.
-    
-\section{Rahmenbedingungen}
-    Die folgenden Voraussetzungen sind notwendig um das Programm ausführen zu können.
-    \begin{itemize}
-        \item Betriebssystem: ab Windows 7, Linux (mit Mono*)
-        \item Abhängigkeiten: .NET Framework v4.6.1**
-        \item Speicher: 50 MB frei
-        \item RAM: 100 MB frei
-        \item Prozessor: 2 virtuelle Kerne  mit 2,0 Ghz
-    \end{itemize}
-    %Auch nochmal was für Einschränkungen bezüglich der Sicherheitsmechanismen oder nur in Konzept oder nur hier????
-    
-    %Was ist Mono?
-    *Wie der offiziellen Webseite \cite{mono_project_2018} zu entnehmen ist, ist Mono eine Entwicklungsplattform auf Basis des .NET Frameworks von Microsoft und stellt dessen Funktionalität auf verschiedenen Plattformen zur Verfügung. Um die Funktionalität abbilden zu können, besteht Mono aus verschiedenen Komponenten.
-    
-    Der C\# Kompiler beinhaltet alle genormten Funktionen der C\# Versionen 1.0 - 6.0.
-    
-    Die Laufzeitumgebung beinhaltet neben zwei Kompilern auch eine Möglichkeit zum Laden von Bibliotheken, einem Garbage Collector und der parallelen Ausführen von Anwendungen.
+Es wurden viele Open Source Bibliotheken verwendet um den Fokus der Arbeit auf die Neuentwicklung und Lösung der Fragestellung zu legen.
 
-    Die .NET Framework Klassen Bibliothek beinhaltet viele benötigte Funktionalitäten und Informationen die zum programmieren benötigt werden können und mit der Implementierung von Microsoft, für cross-platform Fähigkeit, kompatibel sind.
-
-    Die Mono Klassen Bibliothek stellt auch darüber hinaus noch weiter Zusatzfunktionalitäten zur Verfügung die entweder plattformabhängig sind oder nur nützliche Zusätze wie verarbeiten von Zip Archiven oder Anbindung an LDAP Systemen sind.
-    
-    **Dadurch, dass das .NET Framework Bibliotheken, Kompiler und Laufzeitumgebungen bereitstellt, ist es notwendig diese in der oben genannten Version zu installieren um in diesem Projekt verwendete Funktionen nutzen zu können und das Programm zu kompilieren.
+Github wurde im Verlauf der Arbeit verwendet da das Unternehmen wie Chacon et al. in dem Buch Pro Git \cite{Chacon2014} beschreiben, der größte Dienstleister für die Bereitstellung von Git Repositories ist. Neben der Speicherung von Quellcode ist Github ebenfalls eine zentrale Plattform für den Austausch und die Zusammenarbeit von Millionen von Entwicklern. Nicht nur open-source sondern auch closed-source Projekte werden dort gespeichert und mithilfe von Problemverfolgung und Codereviews weiterentwickelt. Für die Verwaltung der Informationen verwendet Github das Versionsverwaltungstool Git und baut somit seine Funktionalität um diese Technologie herum.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Test Client/Broker implementieren
@@ -37,7 +24,7 @@ Github wurde im Verlauf der Arbeit verwendet, da das Unternehmen wie Chacon et a
 \section{Client/Broker implementieren}
 
     %Gewählte Sprache für Client und Broker
-    Auch der Client und Broker, also das \ac{IoT}-Gerät und das Ziel des Geräts zum Beispiel der Server des Herstellers, hat Anforderungen die sich auf die verwendete Programmiersprache auswirken können.
+    Der Client und Broker, also das \ac{IoT}-Gerät und der Server des Herstellers, besitzt Anforderungen die sich auf die verwendete Programmiersprache auswirken können.
     \begin{itemize}
         \item 
     \end{itemize}
