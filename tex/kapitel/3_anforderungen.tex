@@ -75,19 +75,64 @@
     Burp Suite von PortSwigger bietet im Gegensatz zu Wireshark ebenfalls eine Proxy Komponente und kann somit wie in diesem Tool geplant die Nachrichten protokollieren/ überwachen sondern auch in die Kommunikation eingreifen. Der große Unterschied besteht darin, dass Burp Suite ausschließlich für HTTP/s und (Sec)Websocket Kommunikation zu verwenden ist und keinerlei Unterstützung für das \ac{MQTT}-Protokoll bietet. Man könnte die Idee jedoch am einfachsten mit dieser Lösung vergleichen, da auch eine ähnlich Bedienung von Vorteil wäre. Dadurch würden Nutzer eine geringere Einarbeitungszeit benötigen und auch die Akzeptanz steigern.
 
 \section{Abgeleitete Anforderungen}
+    Im Folgenden werden die werden Use-Cases aus den obigen Nutzerbeschreibungen extrahiert und beschrieben.
     %Aus Beschreibung ergeben sich Use-Cases
     \subsection{Use-Cases}
-    1: Kommunikation analysieren (Bild)
+    \begin{figure}[h]%h=direkt danach t=top b=bottom
+    \centering
+    \includegraphics[width=7cm]{tex/bilder/3_anforderungen/Use-Case.pdf}
+    \captionof{figure}{Use-Case Diagramm}
+    \label{fig:use-case}
+\end{figure}
+    Zum ersten Use-Case \emph{Kommunikation analysieren}:
     	Msg anzeigen
     	Die Anzahl der Msg (gefiltert) anzeigen
     	ClientManager intercept (toggle)
-    2: Kommunikation manipulieren (Bild)
+    	
+    Zu \emph{Kommunikation manipulieren}:
     	Payload ändern
     	Msg senden
     	Msg kopieren
     	Msg ändern/speichern
     	Msg drop
-    	Msg Status anpassen
-    	
-    %Tabelle mit Funktinale Anforderungen
+
+    %Tabelle mit Funktionale Anforderungen
     \subsection{Formale Anforderungen}
+    Anhand der Use-Cases lassen sich folgende formale Anforderungen ableiten.
+    \begin{table}[]
+        \centering
+        \begin{tabular}{c|c}
+            \hline
+            $Nr.$ & $Name$ \\ \hline
+            1 & Nachrichten anzeigen \\ \hline
+            2 & Nachrichten filtern \\ \hline
+            3 & Abfangen umschalten \\ \hline
+            4 & Nachricht manipulieren \\ \hline
+            5 & Nachricht senden \\ \hline
+            6 & Nachricht verwerfen \\ \hline
+        \end{tabular}
+        \caption{Funktionale Anforderungen}
+        \label{tab:functional_requirements}
+    \end{table}
+    
+        \subsubsection{1. Nachrichten anzeigen}
+        Das System ermöglicht die Anzeige von Nachrichten einer \ac{MQTT}-Kommunikation.
+        Dabei werden diese in einer chronologischen Reihenfolge dargestellt und stellen relevanten Informationen wie Topic, Payload, Quality of Service und Zeitpunkt der Übertragung zur Verfügung.
+        
+        \subsubsection{2. Nachrichten filtern}
+        Die Software muss angezeigte Nachrichten nach deren Attributen filtern können. 
+        
+        \subsubsection{3. Abfangen umschalten}
+        Dem Nutzer muss die Möglichkeit gegeben werden, das Abfangen der  Kommunikation der \ac{IoT}-Geräte zu aktivieren oder deaktivieren.
+        Dabei werden die Pakete nicht nur dupliziert, sondern dürfen auch nicht an den Kommunikationspartner weiter geleitet werden.
+        Dies muss dem Nutzer pro verbundenem Gerät zur Verfügung konfigurierbar sein.
+        
+        \subsubsection{4. Nachricht manipulieren}
+        Der Nutzer muss den Inhalt der aufgezeichneten Nachrichten verändern können.
+        Vorrangig muss der übertragene Nachrichteninhalt als Text verändert werden können.
+        
+        \subsubsection{5. Nachricht senden}
+        
+        \subsubsection{6. Nachricht verwerfen}
+        
+        
