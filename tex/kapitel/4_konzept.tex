@@ -1,102 +1,10 @@
 \chapter{Konzept}
-\section{Vorgehensweise}
-    %Ist es möglich, mithilfe eines Programms, die übertragenen Daten der intelligenten Geräte, Hersteller übergreifend überwachen und manipulieren zu können.
-    Um die Frage beantworten zu können, ob es möglich ist die übertragenen Daten der intelligenten Geräte, herstellerübergreifend überwachen zu können, ist es nötig Zugriff auf die eingehenden, sowie ausgehenden Daten der Geräte zu erhalten. In diesen Daten, welche vom \ac{IoT}-Gerät zum Broker und anders herum, geschickt werden befinden sich möglicherweise personenbezogene Daten sowie Hinweise auf mögliche Schwachstellen.
-    Die nächste Herausforderung ist die gesammelten Daten auch einem Nutzer in einer aufbereiteten Ansicht zugänglich zu machen und die direkte Interaktion mit den Daten zu ermöglichen.
+\section{Aufbau der Software}
+%Klassendiagramm
 
-    Aus diesem Szenario heraus ergeben sich zwei wichtige Nutzerrollen.
-    
-%=====================================================================%    
-%wer? Nutzerrolle: Admin (monitoring)
-%=====================================================================%    
-    Auf der einen Seite existiert der System- , Netwerkadministrator, welcher versucht Probleme in der Kommunikation zu finden und zu lösen oder eventuelle Anomalien zu erkennen.
-% Motivation
-    Die Aufgabe der Administratoren in einem Unternehmen besteht unter anderem darin, Systeme für das eigene Unternehmen oder Kunden bereitzustellen und bei Problemen zu helfen. Um bei Problemen herausfinden zu können, wo das Problem entstanden ist und wie es schnell behoben werden kann, ist es hilfreich die Kommunikation im Netzwerk zu beobachten. Zum Beispiel kann erkannt werden, ob \ac{TCP}-Pakete überhaupt an dem Gerät ankommen oder schon auf dem Übertragungsweg verloren gehen. Abhängig davon, kann das Problem weiter eingeschränkt und irgendwann lokalisiert werden.
-    
-    Für eine korrekte Konfiguration der Systeme ist es notwendig die Kommunikation nachvollziehen zu können. Dazu muss ein Verständnis der genutzten Technologien vorhanden sein. Des Weiteren sollte ebenfalls bekannt sein, welche Art von Daten mithilfe der Kommunikation übertragen werden.
-    
-    %Performance regarding bottlenect.
-    Die Aufzeichnung von Datenpaketen, deren Größe und Zeitstempel ermöglichen mithilfe von statistischer Analyse, Rückschlüsse auf die Netzwerkbelastung.
-    
-% Ziel
-    Das Ziel eines Netzwerkadministrators ist somit die Identifikation von Störquellen sowie das sicherstellen der Verfügbarkeit aller geschäftskritischen Dienste (\emph{high availability}). Dies ist eine wichtige Voraussetzung für hohe Kundenzufriedenheit.
-%Was für Arbeitsabläufe
-    Nach Burgess \cite{burgess2004principles} zählen zu den Aufgabenbereichen von Netzwerk- und Systemadministratoren zählen unter anderem:
-    \begin{itemize}
-        \item \glqq Diagnostics, fault and change management\grqq{}
-        
-        %Error logs, probleme etc.
-        
-        \item \glqq Application-level services\grqq{}
-        
-        %systeme miteinander verbinden z-.B. MQTT
-        
-        \item \glqq Network-level services\grqq{}
-        
-        %iuzgoiuzg
-        
-    \end{itemize}
-    
-%was gibt es bereits (Wireshark) was kann die Software besser/kann nur die Software
-    Wie bereits erwähnt, gibt es für die einzelnen Phasen verschiedene Tools die sich in der Praxis bereits etabliert haben und Anwender in ihrer Arbeit unterstützen.
-    
-    %https://proquestcombo.safaribooksonline.com/9781492020356
-    Wireshark \cite{SandersChris2017Ppa}, ein Tool zum Überwachen und Aufzeichnen des Netzwerkverkehrs, beinhaltet die gleiche Funktionalität wie ein Teil der Proxy Komponente. Der unterschied besteht jedoch darin, das die Komponente zusätzlich direkt in die Kommunikation eingreifen können soll. Das bedeutet, dass Nachrichten verändert, fallengelassen oder erneut gesendet werden soll, was durch ein dediziertes Monitoring-Tool nicht möglich ist.
-    
-% Was müsste die eigene Software verbessern
-    %Log Messages
-    Der Nutzer möchte nun, wenn er mit diesem Programm arbeitet, den Proxy in den Modus \glqq intercept\grqq{} oder \glqq none intercept\grqq{} stellen können um Inhalte spezieller Clients einzeln und gezielt prüfen zu können ohne zu viele Daten anderer Geräte im Netzwerk zu erhalten.
-    %View Messages
-    Des Weiteren möchte der Nutzer die Nachrichten, welche durch den \glqq intercept\grqq{} Modus abgefangen wurden, aufgelistet und angezeigt werden.
-    %View ClientInfos
-    Für denn Fall, dass etwas nicht ordnungsgemäß funktioniert oder fehlerhaft Konfiguriert wurde, ist es ebenfalls relevant die Verbindungsdaten der einzelnen Proxy Clients mit einer Verknüpfung mit dem zu untersuchenden \ac{IoT}-Gerät einsehen zu können.
-    
-%=====================================================================%
-%wer? Nutzerrolle: Security Auditor
-%=====================================================================%
-% Motivation
-    Auf der anderen Seite existiert der Security Auditor oder auch Penetration Tester, welcher versucht Schwachstellen in der Kommunikation oder dem Gerät oder dem Endpunkt zu identifizieren.
-% Ziel
-    Dies ermöglicht auf der einen Seite den Hersteller, von dem der Tester beauftragt wird, die Produkte im Rahmen der Qualitätssicherung vor Veröffentlichung zu testen um Probleme zu vermeiden. Dies ist nicht für Vertrauen innerhalb der Branche wichtig, sondern auch in bestimmten Bereichen z.B. kritischen Infrastrukturen im Gesetz verankert.
-    Auf der anderen Seite bestätigt es ebenfalls, dass der Dienst eines Unternehmens gute und effiziente Sicherheitsmechanismen korrekt implementiert hat um die Kundendaten vor Gefährdungen der Vertraulichkeit, Integrität oder Verfügbarkeit zu schützen.
-    
-    Eine weiterer wichtiger Untersuchungsgegenstand sind Personen- und Unternehmensbezogene Daten. Diese haben aufgrund von datenschutzrechtlichen Bestimmungen eine besonders hohe Priorität. Dies wird in Form von manueller oder regelbasierter Inspektion der Übertragung durchgeführt.
-    
-%Was für Arbeitsabläufe
-    
-    %wie: Wie hilft die Software dabei das Ziel zu erreichen
-    Die in dieser Arbeit zu konzipierende Software soll den Tester mithilfe von passivem Scannen und abfangen der Kommunikation in Schritt 2 (\emph{Information Gathering}) und durch manipulieren sowie erneut senden der Nachrichten Schritt 5 (\emph{Exploitation}) unterstützen.
-    
-    %was gibt es bereits (Wireshark) was kann die Software besser/kann nur die Software
-    Wie beim Netzwerkadministrator bereits geschildert, kann Wireshark zur Informationsbeschaffung verwendet werden.
-    Da bei Wireshark viele verschiedene Protokolle unterstützt und auch sehr detaillierte Informationen angezeigt werden, passiert es schnell, dass durch die große Menge wichtige Bestandteile untergehen (\emph{visual clutter}) oder nur mit Aufwand gefunden werden.
-    
-    Burp Suite von PortSwigger bietet im Gegensatz zu Wireshark ebenfalls eine Proxy Komponente und kann somit wie in diesem Tool geplant die Nachrichten protokollieren/ überwachen sondern auch in die Kommunikation eingreifen. Der große Unterschied besteht darin, dass Burp Suite ausschließlich für HTTP/s und (Sec)Websocket Kommunikation zu verwenden ist und keinerlei Unterstützung für das \ac{MQTT}-Protokoll bietet. Man könnte die Idee jedoch am einfachsten mit dieser Lösung vergleichen, da auch eine ähnlich Bedienung von Vorteil wäre. Dadurch würden Nutzer eine geringere Einarbeitungszeit benötigen und auch die Akzeptanz steigern.
-    
-    % Was müsste die eigene Software verbessern
-    
+\section{Komponenten}
+%Komponentendiagramm
 
-
-    %use-case
-    1: Kommunikation analysieren
-    	Msg anzeigen
-    	Die Anzahl der Msg (gefiltert) anzeigen
-    	ClientManager intercept (toggle)
-    2: Kommunikation manipulieren
-    	Payload ändern
-    	Msg senden
-    	Msg kopieren
-    	Msg ändern/speichern
-    	Msg drop
-    	Msg Status anpassen
-
-    %interaktionen
-    %komponenten
-
-    %Anforderungen erstellen
-
-    %Herangehensweisen zum redirecten der DATEN
-
-\section{Im Detail}
-    
-
+\section{Prozess}
+%Aktivitätsdiagramm
+%Sequenzdiagramm

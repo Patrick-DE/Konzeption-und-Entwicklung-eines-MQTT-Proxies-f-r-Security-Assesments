@@ -1,7 +1,7 @@
 \chapter{Einleitung}
 
 \section{Motivation}
-Wie eine Statistik von Nier zeigt, wie die Akzeptanz von intelligenten Geräten zwischen 2015 und 2017 angestiegen ist \cite{nier_2017}. Auch \cite{weitemeyer_2018} prognostiziert bis 2020 einen weiteren Anstieg an vernetzen Geräten in Deutschland.
+Wie eine Statistik von Nier zeigt, wie die Akzeptanz von intelligenten Geräten zwischen 2015 und 2017 angestiegen ist \cite{nier_2017}. Bei smarten Thermostaten war der geringste Anstieg zu verzeichnen doch bei Fitness-Trackern wurde die Akzeptanz mehr als verdreifacht. Auch \cite{weitemeyer_2018} prognostiziert bis 2020 einen weiteren Anstieg an vernetzen Geräten in Deutschland.
 Zusammen mit der steigenden Akzeptanz sind allerdings in den letzten Jahren ebenfalls die Angriffe von Kriminellen gegen zum Beispiel die sogenannten \ac{IoT}, oder auch intelligente Geräte genannt, gestiegen  \cite{statista_2019}.
 
 %Warum (Fallbeispiele) 
@@ -16,17 +16,29 @@ was bedeutet, das ungefähr 1/3 der Angriffe nur durch schwache oder Standard-Pa
 Diese Behauptung deckt sich nicht nur mit den Top 10 Risiken 2018 des \ac{OWASP} \cite{guzman_2019}, bei der die größte Schwachstelle und somit Nummer eins folgende Kategorie ist: \glqq I1 Weak Guessable, or Hardcoded Passwords\grqq{}, sondern auch mit weiteren Artikeln \cite{eckstein_2018}.
 
 \section{Zweck und Struktur}
+%anforderungen
+%nutzen
+%nebenbedingungen
+%abgrenzung
+%ergebnis
+%voraussetzungen
+
 %Zweck
+    Der erste Punkt ist das Identifizieren von Schwachstellen in den Geräten, Services oder der Kommunikation  um Produkte sicherer zu machen und den Verlust von Kundendaten zu verhindern.
+    Um den Client sowie den vom externen Anbieter zur Verfügung gestellten Service auf Schwachstellen untersuchen zu können, ist es notwendig das Protokoll zu untersuchen und die darüber gesendete Nachrichten zu bearbeiten und erneut zu senden oder neue Nachrichten im Namen des eigentlichen Gerätes zu verfassen.
+    
+    Der Zweite Punkt bezieht sich auf personenbezogene oder sensitive, geheime Informationen von privaten Personen.
     Wenn man im Internet von Webseite zu Webseite klickt hinterlässt man Spuren, welche abhängig von der Masse der Daten, zur eindeutigen Identifizierung einer einzelnen Person verwendet werden können. %QUELLE
     Diese Daten können jedoch durch Browser-Erweiterungen wie Disconnect oder Werbeblocker reduziert oder gesteuert werden. Vor allem weiterführende Daten wie Positionsdaten werden normalerweise nicht übertragen und Gewohnheiten können nur schwer herausgefunden werden da nur alle Aktionen im Browser überwacht werden können.
-    \ac{IoT} Geräte auf der anderen Seite befinden sich in der reellen Welt und nicht innerhalb eines abgeschlossenen Bereichs. Mithilfe von Daten wie Nutzungsverhalten in Verbindung mit Zeit und den tatsächlichen Gegebenheiten in der Welt lassen sich viel schneller und präzisere Aussagen treffen. Regularien oder Möglichkeiten diese Sammlung von Daten gestaltet sich schwierig, da man kein Zugriff zu den Geräten besitzt und somit keine Änderungen vornehmen kann.
+    \ac{IoT} Geräte auf der anderen Seite befinden sich im öffentlich erreichbaren Internet und nicht innerhalb eines abgeschlossenen Bereichs. Mithilfe von Daten wie Nutzungsverhalten in Verbindung mit Zeit und den tatsächlichen Gegebenheiten in der Welt lassen sich viel schneller und präzisere Aussagen über das Verhalten von Menschen treffen. Regularien oder Möglichkeiten diese Sammlung von Daten gestaltet sich schwierig, da man kein Zugriff zu den Geräten besitzt und somit keine Änderungen vornehmen kann.
     
-    Aus diesem Grund ist es wichtig die Kommunikation zu überwachen um somit zu erfahren, welche Daten übertragen werden und bei Bedarf diese Übertragungen zu verändern um private Informationen zu entfernen.
-    Der Zweite Punkt ist das Identifizieren von Schwachstellen in den Geräten, Services oder der Kommunikation um Produkte sicherer zu machen und den Verlust von Kundendaten zu verhindern.
+    Des Weiteren ist es notwendig um sicherzustellen, dass ausschließlich  die Daten von Unternehmen an externe Firmen gehen, welche auch im Rahmen der Verträge akzeptiert wurden. Dies soll für eine erhöhte Transparent im Bezug zu Datenschutz fördern und die Geheimhaltung sicherstellen.
+    
+    Dadurch, dass man nicht beeinflussen kann, ob und welche Daten übertragen werden ist es wichtig die Kommunikation zu überwachen um ein Abfluss von geheimen oder sensitiven Informationen zu verhindern und bei Bedarf diese Übertragungen zu verändern um diese Informationen zu entfernen.
     
     %Forschungsfrage!
     Die Frage, welche in dieser Arbeit somit behandelt wird, ist die folgende.
-    Ist es möglich, mithilfe eines Programms, die übertragenen Daten der intelligenten Geräte, herstellerübergreifend überwachen und manipulieren zu können.
+    Ist es möglich, mithilfe eines Programms, die übertragenen Daten der intelligenten Geräte, herstellerübergreifend überwachen und verändern zu können.
     
     %Was für Einschränkungen gibt es?
     Um diese Frage weiterhin zu spezifizieren wir nun auf gewisse Bedingungen eingegangen die die den Umfang der Arbeit eingeschränkt.
@@ -34,12 +46,10 @@ Diese Behauptung deckt sich nicht nur mit den Top 10 Risiken 2018 des \ac{OWASP}
     TODO: Einschränkungen
     
     %Thesen, was die Software ermöglicht, resultiert Was verspreche ich mir
-    Die Software soll die Überprüfung der Kommunikation ermöglichen. Dies ist notwendig um zu garantieren, dass ausschließlich die Daten an externe Firmen gehen, welche auch im Rahmen der Nutzungsbedingungen akzeptiert wurden. Dies soll für eine erhöhte Transparent im Bezug zu Datenschutz fördern und die Privatsphäre sicherstellen.
-    Eine weitere Voraussetzung ist das bearbeiten und Senden vorhandener Nachrichten. Dies ist notwendig um den Client sowie den vom externen Anbieter zur Verfügung gestellten Service auf Schwachstellen zu untersuchen. Die Folge hieraus wäre eine erhöhe Effizienz in Bezug auf herstellerübergreifende Sicherheitsuntersuchungen.
-
+    %TODO: Maybe delete
 
 %Struktur
-Zu Beginn dieser Arbeit wird das Wissen über die benötigten grundlegenden Protokolle vermittelt.
-Anschließend werden die darauf aufbauenden Konzepte erläutert und in Kontext zu der Forschungsfrage gestellt.
-Nachdem die Grundlagen vermittelt wurden, bekommt der Leser eine Übersicht über bereits vorhandene Konzepte und Herangehensweisen zur Absicherung von \ac{IoT} oder im deutschen Internet der Dinge. Dies soll den Leser in die Lage versetzen die darauf folgenden existierenden Produkte sowie im Laufe der Arbeit, die eigene Konzeption und Implementierung in den korrekten Kontext einordnen zu können.
-Direkt im Anschluss wird dann das Konzept der eigenen Software erläuter und auf Schwierigkeiten sowie die daraus resultierenden Lösungen eingegangen. Das darauf folgende Kapitel \glqq Implementierung\grqq{} beschreibt die Umsetzung des zuvor erläuterten Konzepts und setzt die Rahmenbedingungen und verwendeten Technologien fest. Um den Wert des Ergebnis der Arbeit bewerten zu können wird im Anschluss eine Validierung anhand von Testversuchen durchgeführt und die Ergebnisse sowie das Resultat der der Forschungsfrage festgehalten. Zuletzt wird geschaut, was die Zukunft bringen könnte und was für weitere Arbeiten zu diesem Thema vorhanden sind.
+    Zu Beginn dieser Arbeit wird das Wissen über die benötigten grundlegenden Protokolle vermittelt.
+    Anschließend werden die darauf aufbauenden Konzepte erläutert und in Kontext zu der Forschungsfrage gestellt.
+    Nachdem die Grundlagen vermittelt wurden, bekommt der Leser eine Übersicht über bereits vorhandene Konzepte und Herangehensweisen zur Absicherung von \ac{IoT} oder im deutschen Sprachgebrauch Internet der Dinge. Dies soll den Leser in die Lage versetzen die darauf folgenden existierenden Produkte sowie im Laufe der Arbeit, die eigene Konzeption und Implementierung in den korrekten Kontext einordnen zu können.
+    Direkt im Anschluss wird dann das Konzept der eigenen Software erläuter und auf Schwierigkeiten sowie die daraus resultierenden Lösungen eingegangen. Das darauf folgende Kapitel \glqq Implementierung\grqq{} beschreibt die Umsetzung des zuvor erläuterten Konzepts und setzt die Rahmenbedingungen und verwendeten Technologien fest. Um den Wert des Ergebnis der Arbeit bewerten zu können wird im Anschluss eine Validierung anhand von Testversuchen durchgeführt und die Ergebnisse sowie das Resultat der der Forschungsfrage festgehalten. Zuletzt wird geschaut, was die Zukunft bringen könnte und was für weitere Arbeiten zu diesem Thema vorhanden sind.

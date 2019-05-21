@@ -70,3 +70,171 @@ High level Ziel ist ein Proxy zu implementieren, deswegen die Grundlagen
         Diese Programme ermöglichen die Steuerung des Computers ohne anwesend (vor dem Gerät) zu sein. Des Weiteren sind die Programme, sehr gut versteckt um nicht aufzufallen. Die Namen ähneln meist Dienst- oder Programmbezeichnungen um legitim auszusehen. Es gibt ebenfalls die Möglichkeit, das Programm so zu schützen, dass beim Versuch das Programm zu beenden das System selbst herunterfährt.
     \subsubsection{\glqq Reporting\grqq{}}
         Dies ist der letzte und einer der wichtigsten Schritte. Da Security Tests durchgeführt werden um die Sicherheit zu erhöhen, ist es auch zwingend notwendig die Schwachstellen und Exploits so zu dokumentieren, dass der Hersteller sich entscheiden kann, ob die existierenden Probleme behoben werden oder das Risiko getragen wird. Abhängig von dem Einfluss auf das Geschäft (Business Impact) kann es aus wirtschaftlicher Sicht gerechtfertigt sein eine Schwachstelle nicht zu schließen und die daraus resultierenden Folgen wie Strafen zu bezahlen.
+
+\section{IoT Security}
+    \subsection{OWASP IoT Guide}
+    Die OWASP Foundation \cite{guzman_2019} beschreibt das \ac{OWASP} wie folgt.
+    "OWASP is an open community dedicated to enabling organizations to conceive, develop, acquire, operate, and maintain applications that can be trusted. All of the OWASP tools, documents, forums, and chapters are free and open to anyone interested in improving application security. We advocate approaching application security as a people, process, and technology problem because the most effective approaches to application security include improvements in all of these areas."
+    
+    Das bedeutet, dass das Projekt eine offene Gemeinschaft ist, welche freie und unentgeltliche nutzbare Software zum Testen von IT Sicherheit bereitstellt. Darüber hinaus veröffentlichen sie ebenfalls jährliche Ranglisten bezüglich der am häufigsten vorgefundenen Schwachstellen des vergangenen Jahres. Ebenfalls werden Entwickler durch Informationen, oft auftretender Schwachstellen und dessen Behebung sowie Methodiken, unterstützt die für eine sichere Entwicklung und auch Architektur entscheidend sind. Die Ziele sind vor allem Personen auf die Probleme hinzuweisen, und sie somit zum kritischeren Nachdenken bringen sowie darauf Hinweisen vorsichtiger im Umgang mit digitalen Medien zu sein.
+    
+    Aus diesem Zusammenschluss vieler Sicherheitsexperten ist ebenfalls das Manufacturer \ac{IoT} Security Guidance Dokument \cite{stahl_2017} entstanden. Es beschreibt wie Hersteller von intelligenten Geräten sichere Produkte erstellen können. Es wird den Entwicklern ein Reihe an grundlegenden Richtlinien bereitgestellt, welche mindestens berücksichtigt werden sollten, um die Sicherheit stark zu erhöhen.
+    Diese Inhalte zeigen, wieso \ac{IoT} Geräte im Jahr 2018 verwundbar sind und auf welche Angriffsvektor\footnote{Der Angriffsvektor ist die Methode, mit der ein Angriff sein Ziel erreicht \cite{HANSMAN200531}.} bei der Entwicklung berücksichtigt werden sollten. 
+    Folgende Kategorien sind in 2018 nach \ac{OWASP} die Schwachstellen, welche am häufigsten vorkommen. 
+    \begin{itemize}
+        \item I1: Unsichere Weboberflächen
+        
+        Viele der Oberflächen, welche zum Konfigurieren der Geräte verwendet werden, beinhalten verschiedene Schwachstellen.
+        Es sollten unsichere Passwörter verboten werden, ein Schutz gegen erraten von Passwörtern implementiert, und gegen bekannte weitere Schwachstellen geschützt und getestet werden.
+        
+        \item I2: Unzureichende Authentifizierung
+        
+        Grundlegend sollte es möglich sein, das vom Hersteller eingestellte Passwort durch einen Nutzer abzuändern.
+        
+        Des Weiteren werden Grundregeln für Passwörter bei der Auslieferung und Änderung empfohlen. Dies soll sicherstellen, dass nicht nur zur Inbetriebnahme sondern auch während der Verwendung des Produktes beim Endkunden der Zugriff zu privilegierten Funktionen und Bereichen unberechtigten effektiv verwehrt wird. Das Bundesamt für Informationssicherheit \cite{bundesamt_fuer_sicherheit_in_der_informationstechnik_2018} 
+        empfiehlt als Minimum die folgenden Regeln.
+        \begin{enumerate}
+            \item Mindestens 8 Zeichen
+            \item Großbuchstaben
+            \item Kleinbuchstaben
+            \item Zahlen
+            \item Sonderzeichen (,.?!=()-...)
+            \item Keine Wörter die im Wörterbuch stehen
+        \end{enumerate}
+        
+        Des Weiteren wird eine zwei Faktor Authentifizierung als notwendig angesehen, für den Fall, dass das Passwort doch ausgelesen oder abgefangen wurde. Zwei Faktor bedeutet, dass ein zweiter Weg für die Bestätigung der Identität genutzt wird wie zum Beispiel eine SMS oder Benachrichtigung in einer Applikation über das Handy.
+        
+        \item I3: Unsichere Netzwerkdienste
+        
+        Dienste die ungeschützt im Netzwerk sind, sollten nur über die notwendigen Schnittstellen ansprechbar sein.
+        Auch die dahinter liegenden Funktionen sollten auf die korrekte Prozessablauf und etwaige Fehlverhalten, zum Beispiel eine fehlerhafte Speicherbelegung, geprüft werden.
+        
+        \item I4: Fehlende Transportverschlüsselung
+        
+        Der Datenverkehr zwischen den Komponenten sowie den Geräten und dem Ziel sollte verschlüsselt sein um das Mitlesen oder Manipulieren der Nachrichten zu verhindern.
+        
+        Eine Verschlüsselungen zu verwenden hilft jedoch nicht immer beim erreichen der Sicherheitsziele Integrität, Vertraulichkeit. Nur für den Fall, dass die Verschlüsselung auch noch auf dem aktuelle Stand und noch nicht ausgehebelt wurde \cite{bsi_2019}.
+        
+        Für die sichere Übertragung steht SSL/TLS zur Verfügung welches verwendet werden sollte um ebenfalls eine Manipulation zu vermeiden. Dies ist in Bezug auf das \ac{MQTT} Protokoll ebenfalls möglich, jedoch nicht im Standard enthalten (siehe Kapitel 2.2.3).
+        
+        \item I5: Datenschutzbedenken
+        
+        Es soll sichergestellt werden, dass nur die nötigsten personenbezogenen Daten gesammelt und übertragen werden. Diese sollten dann auch anonymisiert werden um keinen Rückschluss auf die Person oder den Account schließend zu können.
+        Selbstverständlich dürfen auch nur speziell zugelassene Personen die Daten erheben und übertragen können.
+        Des Weiteren spielt auch im Bereich des Datenschutzes spielt die Verschlüsselung eine Rolle, denn die sensiblen Daten sollten zu jeder Zeit verschlüsselt sein.
+
+        \item I6: Unsichere Cloud Schnittstellen \& I7: Unsichere Mobile Schnittstellen
+        
+        Weiterhin sollten die bereits erwähnten Richtlinien und Sicherheitsmechanismen (siehe \emph{I1: Unsichere Weboberflächen}) ebenfalls für die Kommunikationspartner oder entfernte Schnittstellen,  
+        umgesetzt werden. Hinzukommt jedoch das die Übertragung zu diesem entfernten Gerät ebenfalls durch passende Sicherheitsmechanismen, wie TLS1.2 / TLS1.3, geschützt werden sollten.
+        
+        \item I8: Unzureichende Anpassungen im Bereich der Sicherheit
+        
+        Unzureichendes Loggen von Sicherheitsevents wie Angriffen oder Meldung über manipulierte oder unrealistische Nachrichten sind ebenfalls notwendig um rechtzeitig reagieren zu können. Der Nutzer sollte darüber schnellstmöglich informiert werden um entsprechende Maßnahmen einleiten zu können wie Passwörter ändern oder das Gerät vom Netz nehmen.
+        
+        Mithilfe dieser Maßnahmen wäre es ebenfalls möglich unberechtigte Aktivitäten Dritter schnellstmöglich zu unterbinden.
+        
+        \item I9: Unsichere Software/Firmware
+        
+        Es sollte ein Update-Mechanismus vorhanden sein, um bei bekannt werden von Schwachstellen das System oder die Applikationen mit einem nicht verwundbaren Programm auszutauschen. 
+        Die installierte und übertragene Software oder Firmware sollte verschlüsselt und gesichert übertragen werden um eine Veränderung dieser zu verhindern.
+        
+        \item I10: Unzureichende Physische Sicherheit
+        
+        Selbstverständlich sind alle bereits genannten Methodiken zum Schützen des Gerätes unzureichend, für den Fall, dass Angreifer an das Gerät direkt kommen und somit die Software oder Hardware ändern können. Dies sieht man oft bei Wireless Access Points\footnote{\glqq Ein Wireless Access Points (WAP), auch WLAN Access Point oder kurz Access Point (AP) genannt, ist eine Funk-Basisstation innerhalb eines lokalen Netzwerks (LAN), um Clients über WLAN an das drahtgebundene Netzwerk anzuschließen.\grqq{} \cite{elektronik_kompendium_2018}}, welche ungesichert an der Wand oder auf dem Boden liegen.
+    \end{itemize}
+    
+    Aus diesen ausgewählten Punkten ergeben sich eine Auswahl an entsprechenden Angriffsvektoren auf \ac{IoT} Geräte. Auf der anderen Seite gibt es ebenfalls Informationen für Sicherheitsprüfer oder -tester auf der Seite des \ac{OWASP} unter dem Namen \glqq IoT Testing Guides\grqq{} \cite{smith_2016}. Dieses Dokument gilt als strukturierter Leitfaden für die Suche nach Schwachstellen.
+    
+    \subsection{Internet of things (IoT) security}
+    In dem Forschungsartikel \glqq IoT Security: Ongoing Challenges and Research Opportunities\grqq{} von Z. Zhang et al. \cite{6978614} beschreiben die Autoren das durch den Anstieg in dem Feld nicht nur die Angriffsfläche steigen wird sondern auch neue Angriffsvektoren hinzukommen.
+    Sie nennen zwei Sicherheitsprobleme, welche eine entscheidende Rolle in Zukunft spielen werden.
+    \begin{enumerate}
+        \item Die Geräte
+        
+        Die Geräte verwenden eine Software, wo die Architektur nicht immer vollständig durchdacht oder mit Fokus auf Sicherheit entwickelt wurde. Dies kann zu Schwachstellen und dadurch Kompromittierungen von Daten der Geräten führen. Bereits gelöste Probleme kommen wieder zum Vorschein, da die Geräte nicht die gleichen Spezifikationen haben wie die, die wir jeden Tag verwenden um uns die Arbeit zu erleichtern. 
+    
+        Es ist laut einer Umfrage von Statista \cite{kaspersky_lab_2019}
+        heutzutage oft der Fall, dass Antivirus Software zum Schutz des Computers oder Smartphone verwendet werden. Diese Software benötigt allerdings viele Ressourcen um verwendet werden zu können.
+        Kaspersky \cite{ao_kaspersky_lab_2018_1}
+        als Beispiel, setzt 1150 MB Festplattenspeicher mit einem Intel/AMD 32/64 Bit Prozessor mit 1 GHz und 1 GB freien Arbeitsspeicher nur für die Funktionalität der Software voraus. Es ist davon auszugehen, dass bei Geräten die für einen speziellen Einsatzzweck optimiert sind, keine Hardware verbaut wird die mehr als das nötigste leisten kann um das Produkt entsprechend preiswert anbieten zu können. Dies ist notwendig, da zum Beispiel der Markt im Bereich Sprachsteuerungen laut Futuresource Consulting \cite{futuresource_consulting_ltd_2019}, mit fünf Geräten von drei verschiedenen Herstellern, hart umkämpft ist. Schaut man sich den Stromverbrauch des Amazon Echo Dot \cite{amazon_de_alle_produkte_2018} an, fällt auch recht schnell auf, dass 15 W nicht mit einem Computer mithalten kann. 
+        Der Microcontroller Raspberry Pi 2B \cite{raspberry_pi_foundation_2016}, welcher auch gerne dazu verwendet um \ac{MQTT} Projekte umzusetzen, lässt auch eine Diskrepanz in der technischen Spezifikationen in mehreren Punkten erkennen. Der Prozessor besitzt eine ARM Architektur, taktet mit 900 MHz 
+        und ist 32 Bit fähig. Der Prozessor entspricht also den Mindestanforderungen der Architektur nicht und würde weiterhin der eigentlichen Anwendung auf dem Gerät eine zu geringe Performance ermöglichen. Des Weiteren entspricht auch der Arbeitsspeicher von 1 GB nicht den Mindestanforderungen.
+        Somit kommen Sicherheitsprobleme, welche in der Vergangenheit bereits gelöst wurden, erneut zum Vorschein und bedürfen einer neuen Lösung.
+        
+        Zusätzlich zu den Sicherheitsmechanismen, welche nun nicht mehr verwendet werden können, sind \ac{IoT} Geräte nicht nur von einem Typ. Es gibt viele verschiedene Hersteller und Geräte die sich in den Funktionen, Erscheinungen und Spezifikationen unterscheiden. Diese heterogene Landschaft erhöht die Komplexität, eine Lösungen für alle Geräte zu finden oder den Aufwand für jedes Gerät einen eigenen Sicherheitsmechanismus zu implementieren.
+        
+        \item Die Kommunikation
+        Die heterogene Landschaft beeinflusst jedoch nicht nur die Komplexität auf der Seite der Geräte sondern auch in Bezug auf die Kommunikation.
+    
+        Es ist denkbar, dass der Wecker mit den Rollläden kommunizieren kann, dieser wiederum die Fenster dazu bringt sich zum Lüften zu öffnen. Automatisch wird die Kaffeemaschine und das Radio angeschaltet damit der Besitzer Kaffee während den neuesten Meldungen genießen kann.
+        Nur dieser einzelne Prozess beinhaltet bereits fünf verschiedene Geräte, welche im ersten Moment nichts miteinander zu tun haben. Doch sind alle voneinander abhängig und der Prozess kann durch das manipulieren eines einzelnen Gerätes in der Kette, entweder gestoppt werden oder auch zu einem ungewollten Ergebnis führen.
+        
+        Ein Problem innerhalb der Kommunikation ist die Identifikation der Geräte. Aktuell wird \ac{DNS} zum Auflösen der Hostnamen auf die dazugehörige IP-Adresse verwendet. Dieses System ist allerdings anfällig gegen Attacken wie DNS cache poisoning oder \ac{MITM} und somit auch nicht sicher.
+        DNS cache poisoning bedeutet, dass durch manipulierte DNS Antworten der Zwischenspeicher, welcher die Gegenüberstellung von IP und Hostnamen besitzt verändert wird. Die Folge daraus ist, dass nicht mehr die IP Adresse des legitime Ziels neben dem Namen (z.B. google.de) sondern die IP Adresse des Angreifers steht und somit auf den Angreifer weiterleitet.
+        \ac{DNSSEC} wird von der zentralen Registrierungsstelle für die deutsche Domainendung \glqq .de\grqq{} \cite{denic_eg}
+        als \ac{DNS} Zusatz beschrieben, der verwendet wird um sicherzustellen, dass der Eintrag sowie der Transportweg zwischen der legitimen Adresse und dem DNS-Server geschützt ist und sich kein dritter Akteur einmischen kann.
+        
+    \end{enumerate}
+    %Zusätzliche Quellen%
+    %A Survey on the Internet of Things Security: https://ieeexplore.ieee.org/abstract/document/6746513
+    %Blockchain for IoT security and privacy: The case study of a smart home: https://ieeexplore.ieee.org/abstract/document/7917634
+    %A Critical Analysis on the Security Concerns of Internet of Things (IoT): http://www.pcporoje.com/filedata/592496.pdf
+    %Internet of things (IoT) security: Current status, challenges and prospective measures: https://ieeexplore.ieee.org/abstract/document/7412116
+    %A Systemic Approach for IoT Security: https://ieeexplore.ieee.org/abstract/document/6569455
+    %Security analysis on consumer and industrial IoT devices: https://ieeexplore.ieee.org/abstract/document/7428064
+    %Botnets and Internet of Things Security: https://www.computer.org/csdl/magazine/co/2017/02/mco2017020076/13rRUxZRbvu
+
+\section{Bestehende Lösungen}
+    %Implementierungen auf dem Markt
+    %\subsection{Confluent MQTT Proxy} Confluent MQTT Proxy %https://www.confluent.io/confluent-mqtt-proxy/ %https://docs.confluent.io/current/kafka-mqtt/index.html %MQTT Proxy provides a scalable and lightweight interface that allows MQTT clients to produce messages to Apache Kafka® directly, in a Kafka-native way that avoids redundant replication and increased lag. %Ist wohl nur ein Addon über das mithilfe von Clients an Kafaka .. kein Ahnung was das ist Daten geschickt werden können.
+    Im Folgenden wird auf zwei Implementierungen eingegangen die das Ziel haben, Nachrichten des \ac{MQTT}-Protokolls an ein drittes Gerät weiterzuleiten.
+    Diese ist interessant, da diese Funktionalität im Standard \cite{gupta_banks_2015} nicht unterstützt wird. Durch das publish/subscribe Prinzip ist der Broker nicht in der Lage, selbst kommunizieren zu können. Er kommuniziert ausschließlich die neuen Nachrichten an die abonnierten Geräte weiter und kann nicht selbst Nachrichten schicken.
+    
+    \subsection{MQTT Bridges}
+    Dadurch haben mehrere MQTT Bibliotheken \cite{84codes_ab_2016} \cite{light_2019} erkannt, dass die Funktionalität für das Weiterleiten von Nachrichten an einen weiteres Gerät sehr hilfreich ist. Als Beispiel wird diese Funktionalität benötigt, um Geräte, welche \ac{MQTT} als Protokoll haben, mit anderen Geräten sprechen zu lassen und somit von dem Status des einen Geräts abhängige Abläufe zu ermöglichen.
+    Um dieses Problem zu lösen, haben die Bibliotheken das MQTT Bridge Feature hinzugefügt. Es besteht aus einem Client der an den Broker angeschlossen wird. Mithilfe von modifizierten Events, die aktiviert werden sobald der Broker eine Nachricht empfängt, können die Nachrichten direkt an einen zusätzlichen Client weitergeleitet werden der die sich mit dem dritten Broker verbunden hat.
+    
+    \subsection{Axway - API Management Plus}
+    Die API-Management Software von Axway vereint das Erstellen und Organisieren vieler verschiedener Schnittstellen mit direkten Anbindungsmöglichkeiten für Endgeräte. Darüber hinaus, können alle Endpunkte auf fehlerhaftes Verhalten oder Anfragen geprüft werden. Dies soll es möglich machen, auf die schnellen Änderungen auf dem Markt eingehen und viele verschiedene Geräte parallel unterstützen zu können.
+    Um auch intelligente Geräte aus dem \ac{IoT}-Bereich unterstützen zu können, wurde ein Proxy für das Protokoll \ac{MQTT} entwickelt \cite{axway_2018} Der Proxy befindet sich zwischen dem Client und dem Broker. Dadurch hat er die Möglichkeit die eingehenden Pakete abzufangen und anhand eines Regelwerks, welches per REST über den API Manager erreichbar ist, Daten zu validieren.
+    
+    Das Ziel dieser Lösung ist somit, auf Basis der Richtlinien welche auf dem Management-Server hinterlegt werden, gesendeten Nachrichten des \ac{MQTT} Protokolls zu filtern und nicht regel konforme Kommunikation zu blocken. Dies könnte bedeuten, dass nur spezielle Geräte ein Thema abonnieren können und somit dem Protokoll die Möglichkeit geben, Rechte und Berechtigungen zu verteilen.
+    
+    Die Lösung wird in verschiedenen Versionen als Docker-Container bereitgestellt. Für den Fall, dass bereits ein eigener Broker und ein Regelwerk im Einsatz ist, kann der \ac{MQTT}-Proxy als alleinstehend betrieben werden. Fall jedoch alle Systeme benötigt werden, können Broker, Regelwerk und Proxy auf einmal aufgesetzt werden, um eine direkte Testumgebung bereitzustellen.
+    
+    Jedoch besitzt diese Lösung gewisse Einschränkungen.
+    Es ist zum Beispiel nicht möglich:
+    \begin{itemize}
+        \item Mehrere Broker per Proxy Instanz zu definieren
+        \item TLS support zwischen Client und Proxy sowie Proxy und Broker zu ermöglichen
+    \end{itemize}
+    
+    Trotz den Einschränkungen ist es möglich bei einer unverschlüsselten Kommunikation Daten abzufangen, deren Inhalt auswerten zu können und anhand von Regeln Pakete zu verwerfen.
+    
+    Der Datenflow sieht wie folgt aus.
+    \begin{figure}[h]%h=direkt danach t=top b=bottom
+        \centering
+        \includegraphics[width=14cm]{tex/bilder/2_grundlagen/axway-mqtt-proxy02_short.png}
+        \captionof{figure}{Datenflow des Axway MQTT Proxies \cite{axway_2018}}
+        \label{fig:axway-proxy}
+    \end{figure}
+    \begin{itemize}
+        \item F1: Das \ac{IoT}-Gerät (Client) sendet eine Connect-Nachricht mit Benutzerdaten zum Proxy um sich damit zu verbinden
+        \item F2: Die Benutzerdaten werden zum verifizieren dem API Gateway gesendet
+        \item F3: Mit der Bestätigung vom Gateway wird die Session zum Proxy hergestellt.
+        \item F4: Das Gerät sendet eine Nachricht an den Proxy.
+        \item F5: Der Proxy verifiziert/ändert die Nachricht auf Basis der Gateway Regeln.
+        \item F6: Die Nachricht wird an den externen Broker weitergeleitet.
+        \item F7: Um nun eine Antwort zu erhalten sendet der Client eine Subscribe Nachricht an den Proxy
+        \item F8: Der Proxy verifiziert/ändert die Nachricht auf Basis der Gateway Regeln.
+        \item F9: Der Proxy leitet die Nachricht an den externen Broker weiter.
+    \end{itemize}
+    %Analyse der Lösung
+    %Dieses Implementierung besitzt bereits die Möglichkeit, Daten abzufangen und den Inhalt auswerten zu können, so wie es ebenfalls in dieser Arbeit vorgesehen ist. Die gleichen Einschränkungen, welche die Lösung von Axway hat, wird auch in dieser Arbeit als Voraussetzung definiert: Es ist nicht ohne weiteres möglich ist, die Zertifikate, welche für eine TLS geschützte Verbindung mit dem Broker benötigt werden, zu erhalten. Da bei \ac{IoT} Geräten der Hersteller die Kontrolle über den Server und somit über die Zertifikate hat.
+    %Was darüber hinaus jedoch nicht von API Management Plus angeboten wird, sind die folgenden Funktionen, welche im Rahmen eines Security Audits benötigt werden: 
+    %\begin{itemize}
+        %\item HTTP Schnittstelle zum senden selbst erzeugter Nachrichten an das gewählte Ziel.
+        %\item Erneute versenden von bereits gesendeten Nachrichten um Nebeneffekte oder zustandsabhängige Funktionen zu erkennen.
+        %\item Manuelle Manipulation der ausgehenden und ankommende Pakete.
+    %\end{itemize}

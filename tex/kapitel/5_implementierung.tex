@@ -1,4 +1,4 @@
-\chapter{Implementierung}
+\chapter{Implementierung des Prototypen}
 
 Um das im vorigen Kapitel dargestellte Konzept zu realisieren, lassen sich folgende Hauptaufgaben ausmachen. Im Folgenden wird auf Informationen oder Probleme innerhalb der einzelnen Schritte eingegangen und diese erläutern.
 
@@ -26,7 +26,10 @@ Github wurde im Verlauf der Arbeit verwendet da das Unternehmen wie Chacon et al
     %Gewählte Sprache für Client und Broker
     Der Client und Broker, also das \ac{IoT}-Gerät und der Server des Herstellers, besitzt Anforderungen die sich auf die verwendete Programmiersprache auswirken können.
     \begin{itemize}
-        \item 
+        \item Die Programmiersprache sollte schnell und mit minimalem Aufwand zu verwenden sein.
+        \item Sollte bereits über eine \ac{MQTT} Bibliothek verfügen.
+        \item Der Client sollte anpassbar sein.
+        \item Sollte auf Linux laufen um Ressourcen zu sparen.
     \end{itemize}
         Anforderungen an die Programmiersprache
         Welche Sprachen wären basierend darauf möglich/naheliegend gewesen
@@ -103,7 +106,9 @@ Github wurde im Verlauf der Arbeit verwendet da das Unternehmen wie Chacon et al
     MQTTNet
         Was ist das
         Vorteile
-        Probleme
+        %Probleme
+        Da die Bibliothek MQTTnet \cite{chkr1011_2018},
+        welche in dieser Arbeit verwendet wird, diese Funktionalität nicht besitzt ist es notwendig sie selbst zu implementieren. Um das gleiche Ergebnis wie die der Bridge zu erreichen muss an den Broker eine Client Komponente angeschlossen werden der die Kommunikation nach außen steuert und die Antworten weiter verarbeitet. 
     SharpRest
         Was ist das
         Vorteile
