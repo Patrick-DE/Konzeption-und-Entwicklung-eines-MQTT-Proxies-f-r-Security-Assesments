@@ -2,21 +2,22 @@
 
 Um das im vorigen Kapitel dargestellte Konzept zu realisieren, lassen sich folgende Hauptaufgaben ausmachen. Im Folgenden wird auf Informationen oder Probleme innerhalb der einzelnen Schritte eingegangen und diese erläutern.
 
+Es wurden viele Open Source Bibliotheken verwendet um den Fokus der Arbeit auf die Neuentwicklung und Lösung der Fragestellung zu legen.
+
+Github wurde im Verlauf der Arbeit verwendet da das Unternehmen wie Chacon et al. in dem Buch Pro Git \cite{Chacon2014} beschreiben, der größte Dienstleister für die Bereitstellung von Git Repositories ist. Neben der Speicherung von Quellcode ist Github ebenfalls eine zentrale Plattform für den Austausch und die Zusammenarbeit von Millionen von Entwicklern. Nicht nur open-source sondern auch closed-source Projekte werden dort gespeichert und mithilfe von Problemverfolgung und Codereviews weiterentwickelt. Für die Verwaltung der Informationen verwendet Github das Versionsverwaltungstool Git und baut somit seine Funktionalität um diese Technologie herum.
+
 \section{Einschränkungen}
 Die Software kann nur funktionieren, wenn garantiert werden kann, dass keine effektiven Sicherheitsmaßnahmen verwendet werden. Folgende Maßnahmen würden das mitlesen der Kommunikation verhindern.
 \begin{enumerate}
-    \item Nur ohne \ac{HPKP} %\cite{https://tools.ietf.org/html/rfc7469}
+    \item Nur ohne \ac{HPKP}
     
-    Auf dem Server wird ein für den Client ausgestelltes Zertifikat hinterlegt. Der öffentlichen Schlüssel oder der \glqq subjectPublicKeyInfo\grqq{}, ein weiterer Schlüssel mit Zusatzinformationen über die Verschlüsselung, dieses Zertifikats wird auf dem Client abgespeichert. Anschließend wird dieser gespeicherte Schlüssel mit jeder Anfrage an den Server mitgeschickt. Anschließend kann der Server die eingehenden Nachrichten mithilfe der Informationen aus dem Zertifikat verifizieren und sicherstellen das sie vom tatsächlichen Ziel kommt.
-    \item Nur wenn der Zertifizierungspfad beim SSL Zertifikat (\emph{trust chain}) nicht geprüft wird.
+    Auf dem Server wird ein für den Client ausgestelltes Zertifikat hinterlegt. Der öffentlichen Schlüssel oder der \glqq subjectPublicKeyInfo\grqq{}, ein weiterer Schlüssel mit Zusatzinformationen über die Verschlüsselung, dieses Zertifikats wird auf dem Client abgespeichert. Anschließend wird dieser gespeicherte Schlüssel mit jeder Anfrage an den Server mitgeschickt. Anschließend kann der Server die eingehenden Nachrichten mithilfe der Informationen aus dem Zertifikat verifizieren und sicherstellen das sie vom tatsächlichen Ziel kommt \cite{evans_palmer_sleevi_2015}.
+    \item Nur wenn der Zertifizierungspfad des SSL Zertifikat (\emph{trust chain}) nicht geprüft wird.
     
     Bei Verwendung von TLS ist es möglich, den Client prüfen zu lassen, ob der Server das entsprechende Hersteller Zertifikat besitzt. Jedes gültige Zertifikat muss von einer \ac{CA} ausgestellt werden, welche das Vertrauen und eventuell die Identität des Besitzers verifiziert. Jedoch gibt es auch Implementierungen die vom Zertifikat nur die formalen Details und nicht die Herkunft (CA) prüfen.
     Dies ermöglicht, dass die Kommunikation trotz eines manuell (unverifizierbaren) Zertifikats mit den gleichen Details hergestellt werden kann.
 \end{enumerate}
 
-Es wurden viele Open Source Bibliotheken verwendet um den Fokus der Arbeit auf die Neuentwicklung und Lösung der Fragestellung zu legen.
-
-Github wurde im Verlauf der Arbeit verwendet da das Unternehmen wie Chacon et al. in dem Buch Pro Git \cite{Chacon2014} beschreiben, der größte Dienstleister für die Bereitstellung von Git Repositories ist. Neben der Speicherung von Quellcode ist Github ebenfalls eine zentrale Plattform für den Austausch und die Zusammenarbeit von Millionen von Entwicklern. Nicht nur open-source sondern auch closed-source Projekte werden dort gespeichert und mithilfe von Problemverfolgung und Codereviews weiterentwickelt. Für die Verwaltung der Informationen verwendet Github das Versionsverwaltungstool Git und baut somit seine Funktionalität um diese Technologie herum.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Test Client/Broker implementieren
@@ -52,6 +53,7 @@ Github wurde im Verlauf der Arbeit verwendet da das Unternehmen wie Chacon et al
         Probleme
             
     %Herausforderungen
+    
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Implementieren des Proxys (Backend)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -99,28 +101,25 @@ Github wurde im Verlauf der Arbeit verwendet da das Unternehmen wie Chacon et al
 %%%%%%%%%%%
 %Bibliothek
 %%%%%%%%%%%
-    NewsoftJSON
-        Was ist das
-        Vorteile
-        Probleme
+    %Was ist das
+    %Vorteile
+    %Probleme
+    NewsoftJSON \cite{newton_king_2013} ist ein quelloffenes Framework für die Serialisierung und Deserialisierung von .NET Framework Objekten.
+    Heinzl beschreibt Serialisierung mit folgenden Worten \glqq Unter Serialisierung versteht man die Zerlegung des Status eines Objekts in ein Bytearray.\grqq{} \cite{Heinzl2005}. Allerdings ist es auch möglich dieses Bytearray als strukturierter Text anzeigen zu lassen.
+    Dies ermöglicht, ein Nachrichtenobjekt an das Frontend zu übertragen und es dort anschließend wieder darstellen zu lassen.
+    
     MQTTNet
         Was ist das
         Vorteile
         %Probleme
         Da die Bibliothek MQTTnet \cite{chkr1011_2018},
-        welche in dieser Arbeit verwendet wird, diese Funktionalität nicht besitzt ist es notwendig sie selbst zu implementieren. Um das gleiche Ergebnis wie die der Bridge zu erreichen muss an den Broker eine Client Komponente angeschlossen werden der die Kommunikation nach außen steuert und die Antworten weiter verarbeitet. 
-    SharpRest
+        welche in dieser Arbeit verwendet wird, die Bridge Funktionalität nicht besitzt ist es notwendig sie selbst zu implementieren. Um das gleiche Ergebnis wie die der Bridge zu erreichen muss an den Broker eine Client Komponente angeschlossen werden der die Kommunikation nach außen steuert und die Antworten weiter verarbeitet. 
+    WebSocketSharp
         Was ist das
         Vorteile
         Probleme
+    Grapevine
     
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Kommunikation mit Firewall
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Kommunikation steuern}
-
-    %MITM (APR Spoof, DNS, ICMP, FW)
-        
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Implementieren des Proxys (Frontend)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -163,7 +162,17 @@ Github wurde im Verlauf der Arbeit verwendet da das Unternehmen wie Chacon et al
 %%%%%%%%%%%
 %Bibliothek
 %%%%%%%%%%%
-    Bootstrap-vue
-        Was ist das
-        Vorteile
-        Probleme
+    %Was ist das
+    %Vorteile
+    %Probleme
+    Als Bibliothek wurde Bootstrap-Vue gewählt, um schnell anpassbare Oberflächen erstelle zu können.
+    Laut Morehouse \cite{morehouse_2019} ist sie die umfassendste Implementierung von Bootstrap in der Version 4 für Vue.js.
+    Bootstrap ist ein quelloffenes Framework, welches fertige Vorlagen und Komponenten für die Erstellung von Webseiten bereitstellt. Der Unterschied zwischen Bootstrap und Bootstrap-Vue besteht darin, dass die vorhandenen Elemente nun als Komponenten in Vue vorhanden sind und somit nicht der ursprüngliche \ac{HTML}-Code\footnote{\ac{HTML} ist die Auszeichnungssprache für das \ac{WWW} \cite{w3c_2017}. Das bedeutet, dass es die grundlegende Sprache für das Erstellen von Webseiten ist.} geschrieben werden muss. Diese Informationen werden automatisch mithilfe der Vue Komponenten generiert.
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Kommunikation mit Firewall
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Kommunikation steuern}
+
+    %MITM (APR Spoof, DNS, ICMP, FW)
+        
