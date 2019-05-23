@@ -84,26 +84,31 @@
     \captionof{figure}{Use-Case Diagramm}
     \label{fig:use-case}
 \end{figure}
+    
     Zum ersten Use-Case \emph{Kommunikation analysieren}:
-    	Msg anzeigen
-    	Die Anzahl der Msg (gefiltert) anzeigen
-    	ClientManager intercept (toggle)
+    	Der Nutzer möchte die Nachrichten der \ac{MQTT}-Kommunikation analysieren.
+    	Des Weiteren ist es notwendig das Abfangen der Nachrichten pro Gerät einstellen zu können, um nur die gewünschte Kommunikation und somit eine selektive Analyse zu ermöglichen.
+    	Um dies zu bewerkstelligen, ist es notwendig die angezeigten Nachrichten nach den Inhalten zu filtern.
     	
     Zu \emph{Kommunikation manipulieren}:
-    	Payload ändern
-    	Msg senden
-    	Msg kopieren
-    	Msg ändern/speichern
-    	Msg drop
+    	%Payload ändern,Msg senden,Msg kopieren,Msg ändern/speichern,Msg drop
+    	Der Nutzer möchte auf verschiedene Weisen die Kommunikation zwischen zwei Kommunikationspartnern über ein drittes System verändern können.
+    	Durch Veränderung des Nachrichteninhalts einzelner Nachrichten ist es dem Nutzer möglich die Kommunikation zu verändern.
+    	Anhand von selbsterstellten Pakete, welche im Namen der Kommunikationspartner erstellt werden, sollen vom Nutzer gewünschte Informationen übertragen werden.
+    	Um die repetitive Arbeit der Nachrichtenerstellung zu reduzieren und die Arbeit zu beschleunigen, kann eine abgefangene Nachricht kopiert werden.
+    	Diese Änderungen sollen anschließend gespeichert werden können um Nachrichten zu einem späteren Zeitpunkt versenden oder weiter Verändern zu können.
+    	Für den Fall, dass übertragene Nachrichten Inhalte beinhalten, welche nicht ankommen dürfen oder nicht den gewünschten Inhalt haben, möchte der Nutzer sie verwerfen und somit von der Kommunikation entfernen.
 
     %Tabelle mit Funktionale Anforderungen
     \subsection{Formale Anforderungen}
-    Anhand der Use-Cases lassen sich folgende formale Anforderungen ableiten.
-    \begin{table}[]
+    Anhand der Use-Cases lassen sich folgende formale Anforderungen ableiten (siehe Tabelle \ref{tab:functional_requirements}).
+    Dabei ist zu beachten, dass diese Anforderungen, dadurch das es sich um ein abstraktes Konzept handelt, unspezifisch und ausschließlich funktional sind.
+    \begin{table}[h]
         \centering
         \begin{tabular}{c|c}
             \hline
             $Nr.$ & $Name$ \\ \hline
+            %Nachricht abfangen vllt auch ein Feature was nennenswert ist oder wird es m it Nr.3 abgedeckt???
             1 & Nachrichten anzeigen \\ \hline
             2 & Nachrichten filtern \\ \hline
             3 & Abfangen umschalten \\ \hline
@@ -117,10 +122,10 @@
     
         \subsubsection{1. Nachrichten anzeigen}
         Das System ermöglicht die Anzeige von Nachrichten einer \ac{MQTT}-Kommunikation.
-        Dabei werden diese in einer chronologischen Reihenfolge dargestellt und stellen relevanten Informationen wie Topic, Payload, Quality of Service und Zeitpunkt der Übertragung zur Verfügung.
+        Dabei werden diese in einer chronologischen Reihenfolge dargestellt und stellen relevante Informationen wie Topic, Payload, Quality of Service und Zeitpunkt der Übertragung zur Verfügung.
         
         \subsubsection{2. Nachrichten filtern}
-        Die Software muss angezeigte Nachrichten nach deren Attributen filtern können. 
+        Die Software muss angezeigte Nachrichten nach deren Attributen filtern können.
         
         \subsubsection{3. Abfangen umschalten}
         Dem Nutzer muss die Möglichkeit gegeben werden, das Abfangen der  Kommunikation der \ac{IoT}-Geräte zu aktivieren oder deaktivieren.
@@ -132,7 +137,12 @@
         Vorrangig muss der übertragene Nachrichteninhalt als Text verändert werden können.
         
         \subsubsection{5. Nachricht senden}
+        Es muss garantiert werden, dass eigene Nachrichten gesendet werden können.
+        Das Senden beinhaltet nicht nur das senden neuer Nachrichten, sondern umfasst auch das erneute senden (\emph{replay attack}) von bereits übertragenen Nachrichten. Die Inhalte werden in diesem Fall nicht verändert und wie erfasst erneut versendet.
         
         \subsubsection{6. Nachricht verwerfen}
+        Das System muss es dem Nutzer ermöglichen, abgefangene Nachrichten verwerfen zu können.
+        Dies bedeutet, dass gesendete Inhalte nicht an den gewünschten Kommunikationspartner weitergeleitete werden, sondern nachdem sie abgefangen wurden aus der Kommunikation entfernt werden.
+        Die ausgewählten Nachrichten werden somit auch in der Oberfläche nicht weiter angezeigt.
         
         
