@@ -3,11 +3,10 @@
 %    Szenarien mit erwarteten Ergebnissen vergleichen
 %    Ergebnisse über Prototyp bestätigen
     
-Um bewerten zu können, ob das entwickelte Programm den im Kapitel 4 genannten Anforderungen entspricht, wird in diesem Kapitel zur Validierung ein virtuelles Labor aufgebaut, dass \ac{IoT}-Client, einen Broker und natürlich den Proxy bereitstellt.
+Um bewerten zu können, ob das entwickelte Programm den genannten Anforderungen entspricht (siehe Kapitel 4), wird in diesem Kapitel zur Validierung ein virtualisiertes Labor aufgebaut, das einen virtuellen \ac{IoT}-Client, einen virtuellen Broker und den Proxy bereitstellt.
 
 %Szenario, was mit dem Labor versucht wird zu erreichen.
-Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in der Glühbirne im Wohnzimmer des Nutzer befindet, und dem Broker des Herstellers. Der Sensor, im weiteren Client genannt, stellt dem Broker jede Sekunde den aktuelle Status zur Verfügung. Der Broker auf der anderen Seite erwartet den Status eines Clients und gleicht diese mit dem, vom Nutzer hinterlegten, Wunschwert ab. Anschließend sendet er bei einer Differenz zum Wunsch den neuen Wert los und bei einer Übereinstimmung einfach den gleichen Wert zurück.
-%Erhält der Broker ein zu niedrigen Wert sendet er einen Befehl womit die Heizung die Leistung erhöht. Für den Fall, dass die aktuelle Temperatur höher als die eingestellte Temperatur ist, wird ein Befehl gesendet, wodurch die Heizung die Leistung reduziert.
+Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in der Glühbirne im Wohnzimmer des Nutzer befindet, und dem Broker des Herstellers ab. Der Sensor, im weiteren Client genannt, stellt dem Broker jede Sekunde den aktuelle Status zur Verfügung. Der Broker auf der anderen Seite erwartet den Status eines Clients und veröffentlicht diesen für andere externe Clients.
 
 \begin{figure}[h]%h=direkt danach t=top b=bottom
     \centering
