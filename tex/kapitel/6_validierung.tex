@@ -18,59 +18,53 @@ Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in der Gl
 \section{Laboraufbau}
     %Warum Virtualisierung/ Virtualisierte Umgebung
     Das Labor wird mithilfe der Virtualisierungslösung ESXi %\cite{https://www.vmware.com/de/products/esxi-and-esx.html}
-    von VMware umgesetzt. Dadurch, dass alle Systeme und Applikationen in sogenannten Virtuellen Maschinen laufen sind sie, obwohl sie auf dem gleichen Gerät (Server) laufen können, voneinander unabhängig. Das bedeutet, dass ganze Systeme abgeschottet und auf \ac{VMDK}s gespeichert und somit auch sehr einfach gesichert oder untereinander ausgetauscht werden können. Durch die dynamische Verteilung von zum Beispiel CPU oder RAM ist ebenfalls eine effektivere Nutzung der Ressourcen möglich. Damit wird nur ein Server oder leistungsfähiger Computer benötigt um ganze Systemlandschaften und Netzwerke abzubilden. Des Weiteren ermöglicht es auch die hier durchgeführten Tests und somit Ergebnisse in der gleichen Umgebung durch die Bereitstellung der Dateien nachvollziehen zu können ohne selbst Arbeit und Zeit investieren zu müssen.
+    von VMware umgesetzt. Dadurch, dass alle Systeme und Applikationen in sogenannten Virtuellen Maschinen laufen, sind sie, obwohl sie auf dem gleichen Gerät (Server) laufen können, voneinander unabhängig. Das bedeutet, dass ganze Systeme abgeschottet und auf Virtuellen Festplatten (sog. \emph{\acp{VMDK}}) gespeichert und somit auch sehr einfach gesichert oder untereinander ausgetauscht werden können. Durch die dynamische Verteilung von zum Beispiel CPU oder RAM ist ebenfalls eine effektivere Nutzung von Hardwareressourcen möglich. Damit wird nur ein Server oder leistungsfähiger Computer benötigt um ganze Systemlandschaften und Netzwerke abzubilden. Des Weiteren ermöglicht es auch die hier durchgeführten Tests und somit Ergebnisse in der gleichen Umgebung durch die Bereitstellung der Dateien nachvollziehen zu können ohne selbst Arbeit und Zeit investieren zu müssen.
     %Warum mit ESXI
-    ESXi wurde als Lösung gewählt, da bereits Wissen und Erfahrung im Umgang mit der Lösung vorhanden war. Zusätzlich stand ein Server mit benötigter Leistung bereits zur Verfügung was wodurch das Aufsetzen und Konfigurieren eines solchen oder ähnlichen Produkts nicht mehr nötig machte.
+    ESXi wurde als Lösung gewählt, da bereits Wissen und Erfahrung im Umgang mit der Lösung vorhanden war. Zusätzlich stand ein Server mit benötigter Leistung bereits zur Verfügung wodurch das Aufsetzen und Konfigurieren eines solchen oder ähnlichen Produkts nicht mehr nötig machte.
     
     Die folgenden Voraussetzungen sind notwendig um das Programm ausführen zu können.
     \begin{itemize}
         \item Betriebssystem: ab Windows 7, Linux mit Mono
-        \item Abhängigkeiten: .NET Framework v4.6.1
+        \item Abhängigkeiten: .NET Framework v4.6.1, Mono ab 4.2.0.X
         \item Speicher: 50 MB frei
         \item RAM: 100 MB frei
         \item Prozessor: 2 virtuelle Kerne  mit 2,0 Ghz
+        \item Netzwerkkarte: Ja
     \end{itemize}
     
-    Die in diesem Szenario enthaltenen System sind die folgenden.
-    
     \subsection{Virtualisierung der Geräte}
-        \begin{enumerate}
-            \item Der Client (die Heizung) ist wie folgt konfiguriert:
-            \begin{itemize}
-                \item Debian 9
-                \item Ressourcen ?, 
-            \end{itemize}
-            Programme und Pakete
-            \begin{itemize}
-                \item Python 2.X
-                \item pip Pakete ?
-            \end{itemize}
+    Die in diesem Szenario enthaltenen Systeme sind die Folgenden.
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{c|c|c|c}
+            Name & Client & Broker & Proxy \\ \hline
+            OS & Debian 9 & Debian 9 & Microsoft Windows 10 \\
+            CPU & 1 vCPUs & 1 vCPUs & 4 vCPUs \\
+            RAM & 512 MB & 512 MB & 8 GB \\
+            HDD & 5 GB & 5 GB & 50 GB \\
+        \end{tabular}
+        \caption{Ressourcen der Virtuelle Maschinen}
+        \label{tab:ressourcenverteilung}
+    \end{table}
+    
+    Der Client verwendet folgende Software:
+    \begin{itemize}
+        \item Python 2.7.X
+        \item pip-Paket: paho-mqtt
+    \end{itemize}
             
-            \item Der Broker (vom Hersteller) ist wie folgt konfiguriert:
-            \begin{itemize}
-                \item Debian 9
-                \item Ressourcen ?, 
-            \end{itemize}
-            Programme und Pakete
-            \begin{itemize}
-                \item Python 2.X
-                \item pip Pakete ?
-            \end{itemize}
+    Der Broker arbeitet mithilfe folgender Software:
+    \begin{itemize}
+        \item Python 3.X, Python3-pip
+        \item pip-Paket: hbmqtt
+    \end{itemize}
             
-            \item Der Proxy, welcher die Kommunikation überwacht: 
-            \begin{itemize}
-                \item Microsoft Windows 10 Pro, Version, 10.0.17763 Build 17763
-                \item Die CPU besteht aus vier virtuellen CPU Kernen.
-                \item Es wurde der Maschine 8 GB \ac{RAM} zur Verfügung gestellt.
-                \item 50 GB virtuelle Festplatte nach der \ac{VMDK} Format-Spezifikation für \ac{VM}s.
-            \end{itemize}
-            Frameworks:
-            \begin{itemize}
-                \item Microsoft Visual C++ 2008
-                \item Microsoft Visual C++ 2017
-                \item .NET Framework 4.6.1
-            \end{itemize}
-        \end{enumerate}
+    Das Proxy-System, welches die Kommunikation überwacht, benötigt zum Ausführen der Proxy-Anwendung folgende Software:
+    \begin{itemize}
+        \item Microsoft Visual C++ 2008
+        \item Microsoft Visual C++ 2017
+        \item .NET Framework 4.6.1
+    \end{itemize}
     
     \subsection{Netwerk}
     Netzwerk-Setup
