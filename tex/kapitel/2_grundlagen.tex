@@ -10,15 +10,26 @@ High level Ziel ist ein Proxy zu implementieren, deswegen die Grundlagen
     %HPKP / Cert pinning
 
 \section{Protokolle}
-    \subsection{Ethernet}
     \subsection{IP}
     \subsection{MQTT}
+    \glqq
+    MQTT is a light-weight publish/subscribe messaging protocol, originally created by IBM and Arcom (later to become part of Eurotech) around 1998. The MQTT 3.1.1 specification has now been standardised by the OASIS consortium. The standard is available in a variety of formats.
 
-\section{.NET Framework und Mono}
+    As of 2016, MQTT is now an ISO standard (ISO/IEC 20922). \grqq{}
+    \cite{eclipse_foundation2017}
+
+    %More information about the protocol can be found on the MQTT.org community site.
+
+\section{Technologien}
+\subsection{Network Address Translation}
+    %TODO
+    
+\subsection{.NET Framework und Mono}
+    %TODO: .NET FRAMEWEWORK
     Dadurch, dass das .NET Framework Bibliotheken, Kompiler und Laufzeitumgebungen bereitstellt, ist es notwendig diese in der oben genannten Version zu installieren um in diesem Projekt verwendete Funktionen nutzen zu können und das Programm zu kompilieren.
     
 %Was ist Mono?
-    *Wie der offiziellen Webseite \cite{mono_project_2018} zu entnehmen ist, ist Mono eine Entwicklungsplattform auf Basis des .NET Frameworks von Microsoft und stellt dessen Funktionalität auf verschiedenen Plattformen zur Verfügung. Um die Funktionalität abbilden zu können, besteht Mono aus verschiedenen Komponenten.
+    Wie der offiziellen Webseite \cite{mono_project_2018} zu entnehmen ist, ist Mono eine Entwicklungsplattform auf Basis des .NET Frameworks von Microsoft und stellt dessen Funktionalität auf verschiedenen Plattformen zur Verfügung. Um die Funktionalität abbilden zu können, besteht Mono aus verschiedenen Komponenten.
     
     Der C\# Kompiler beinhaltet alle genormten Funktionen der C\# Versionen 1.0 - 6.0.
     
@@ -187,7 +198,6 @@ High level Ziel ist ein Proxy zu implementieren, deswegen die Grundlagen
 
 \section{Bestehende Lösungen}
     %Implementierungen auf dem Markt
-    %\subsection{Confluent MQTT Proxy} Confluent MQTT Proxy %https://www.confluent.io/confluent-mqtt-proxy/ %https://docs.confluent.io/current/kafka-mqtt/index.html %MQTT Proxy provides a scalable and lightweight interface that allows MQTT clients to produce messages to Apache Kafka® directly, in a Kafka-native way that avoids redundant replication and increased lag. %Ist wohl nur ein Addon über das mithilfe von Clients an Kafaka .. kein Ahnung was das ist Daten geschickt werden können.
     Im Folgenden wird auf zwei Implementierungen eingegangen die das Ziel haben, Nachrichten des \ac{MQTT}-Protokolls an ein drittes Gerät weiterzuleiten.
     Diese ist interessant, da diese Funktionalität im Standard \cite{gupta_banks_2015} nicht unterstützt wird. Durch das publish/subscribe Prinzip ist der Broker nicht in der Lage, selbst kommunizieren zu können. Er kommuniziert ausschließlich die neuen Nachrichten an die abonnierten Geräte weiter und kann nicht selbst Nachrichten schicken.
     
