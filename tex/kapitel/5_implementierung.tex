@@ -26,7 +26,6 @@ Die Software kann nur funktionieren, wenn garantiert werden kann, dass keine eff
     Da zum Zeitpunkt der Entwicklung keine Geräte zur Verfügung standen, wurden ein virtueller Client und Broker erzeugt, die für die Verifizierung im Labor verwendet wurden.
     Auf diese wird im Folgenden Abschnitt eingegangen.
 
-
     %Gewählte Sprache für Client und Broker
     Für die Implementierung des virtuellen Clients und externen Brokers bot sich aus folgenden Gründen Python an:
     \begin{itemize}
@@ -167,7 +166,7 @@ Die Software kann nur funktionieren, wenn garantiert werden kann, dass keine eff
     Es gibt verschiedene Techniken und Möglichkeiten, die Kommunikation so zu verändern, dass ein drittes Gerät die übertragenen Nachrichten mitlesen kann. Ein solches Konzept ist auch unter dem Namen \emph{Man in the Middle} bekannt.
     
     Eine der Möglichkeiten wird auch in dieser Arbeit umgesetzt das die Verbindung vom Client direkt zum Broker aufgebaut wird.
-    Mithilfe der \ac{NAT} Funktionalität der Firewall \emph{OPNSense} wurden Netzwerkpakete des \ac{IoT}-Gerätes an den Proxy umgeleitet. Hierzu wurde eine Regel erzeugt (siehe \ref{fig:firewall_rule}, die das \emph{source} Attribut jedes eintreffenden Pakets mit der IP-Addresse des Geräts und dem Standard-Port 1883 vergleicht. Bei Übereinstimmung wurde das \emph{destination} Attribut der Pakete umgeschrieben um die Pakete anschließend an den Proxy weiterzuleiten.
+    Mithilfe von Portweiterleitungung in der Firewall \emph{OPNSense} wurden Netzwerkpakete des \ac{IoT}-Gerätes an den Proxy umgeleitet. Hierzu wurde eine Regel erzeugt (siehe \ref{fig:firewall_rule}, die das \emph{source} Attribut jedes eintreffenden Pakets mit der IP-Addresse des Geräts und dem Standard-Port 1883 vergleicht. Bei Übereinstimmung wurde das \emph{destination} Attribut der Pakete umgeschrieben um die Pakete anschließend an den Proxy weiterzuleiten.
     \begin{figure}[h]%h=direkt danach t=top b=bottom
         \centering
         \includegraphics[width=14cm]{tex/bilder/5_implementierung/firewall.PNG}

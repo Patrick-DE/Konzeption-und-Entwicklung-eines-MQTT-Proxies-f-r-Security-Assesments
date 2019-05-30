@@ -22,7 +22,7 @@
     
     Einer der Clients (\emph{ClientOut}) repräsentiert das tatsächliche Gerät und täuscht dies dem externen Broker gegenüber vor. Er übernimmt somit die Übertragung der Nachrichten zwischen dem Broker des Proxies und dem externen Broker. Daraus resultiert, dass für den Fall, das Nachrichten von dem externen Broker an den \emph{ClientOut} gesendete werden, diese auch dem echten Gerät übermittelt werden müssen. Dazu dient der zweite virtuelle Client (\emph{ClientIn}). Dieser sendet die vom ersten Client erhaltene Nachricht an den internen Broker weiter. Mit der Folge, dass dieser anschließend die Nachricht veröffentlicht. Dabei muss sichergestellt werde, dass die erhaltene Nachricht nicht erneut nach außen gesendet wird.
     
-    Der ClientManager übersetzt die externe Clients zu den dazugehörigen \emph{ClientIn} und \emph{ClientOut} Instanzen. Damit wird sichergestellt, dass die eine Kommunikation mit dem externen Broker stattfinden kann.
+    Der ClientManager übersetzt die externe Clients zu den dazugehörigen \emph{ClientIn}- und \emph{ClientOut}-Instanzen. Damit wird sichergestellt, dass die eine Kommunikation mit dem externen Broker stattfinden kann.
     \begin{figure}[h]%h=direkt danach t=top b=bottom
         \centering
         \includegraphics[width=8cm]{tex/bilder/4_konzept/Systemdiagramm_Konzept_Backend.pdf}
