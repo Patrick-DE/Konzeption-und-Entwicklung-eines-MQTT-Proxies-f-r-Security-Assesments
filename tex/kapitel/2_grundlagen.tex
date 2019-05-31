@@ -2,31 +2,67 @@
 Um die Folgenden Inhalte wie Konzeption und Implementierung aber auch Verwandte Arbeiten nachvollziehen zu können, werden in diesem Kapitel grundlegende Begriffe, Techniken sowie Technologien erläutert.
 
 \section{Definitionen}
-    \subsection{Smart Devices}
-    \subsection{IoT}
+    \subsection{Smart Devices} \label{SmartDevices}
+    \glqq informationstechnisch aufgerüstete Alltagsgegenstände, die einen Mehrwert durch sensorgestützte Informationsverarbeitung und Kommunikation erhalten.\grqq{} \cite{lackes_siepermann_2018}.
+    
+    Dieses Zitat von Herr Lakes et al. nennt als Hauptmerkmale eines solchen Geräts, den alltäglichen Einsatz der Gegenstände, welche mithilfe von Sensorik und Kommunikation einen Mehrwert generieren.
+    Nimmt man nun ein Gerät, welches als \emph{Smart Device} bezeichnet wird, erkennt man, dass die Aussage zutreffend ist. Als Beispiel wird eine intelligente Steckdose verwendet. Sie ist ein alltäglicher Gegenstand, welcher über Funk angesteuert werden kann. Somit kann ein anderes Gerät, welches sich mit der Steckdose verbinden lässt, den aktuellen Status abfragen oder verändern.
+    Hier repräsentiert der Funk den Sensor, welcher in normalen Steckdosen nicht verfügbar ist, und übermittelt den aktuellen Status (Informationen) an ein externes Gerät. Mithilfe dieses Gerätes ist dann eine Steuerung der Steckdose möglich, was einen Mehrwert bietet.
+    
+    \subsection{Internet der Dinge}
+    \glqq bezeichnet die Vernetzung von Gegenständen mit dem Internet, damit diese Gegenstände selbstständig über das Internet kommunizieren und so verschiedene Aufgaben für den Besitzer erledigen können. Der Anwendungsbereich erstreckt sich dabei von einer allg. Informationsversorgung über automatische Bestellungen bis hin zu Warn- und Notfallfunktionen.\grqq{}
+    \cite{lackes_siepermann_2018_iot}.
 
-\section{Protokolle}
-    \subsection{IP}
-    \subsection{MQTT}
-    \glqq
-    MQTT is a light-weight publish/subscribe messaging protocol, originally created by IBM and Arcom (later to become part of Eurotech) around 1998. The MQTT 3.1.1 specification has now been standardised by the OASIS consortium. The standard is available in a variety of formats.
+    Die Definition des Begriffs \emph{Internet der Dinge} oder \ac{IoT} von Herr Lakes et al. deckt sich in vielen Punkten mit der Definition \ref{SmartDevices}. Hier befinden sich ebenfalls vernetzte Geräte, welche sich untereinander mit Informationen versorgen und somit Aufgaben übernehmen (einen Mehrwert bieten) können. Das Wichtige an diesem Begriff ist der Zusammenschluss solch intelligenter Geräte in größere Netze. Die Geräte müssen dabei nicht gleichartig sein und können unterschiedliche Aufgaben im Alltag übernehmen. Sie können Abhängigkeiten zueinander besitzen und sich gegenseitig Ansprechen oder aktivieren ohne direkte Befehle vom Besitzer, also Nutzer, zu erhalten.
+    
+    Diese Vorstellung von \ac{IoT} teilt auch Ashton im RFID Journal.
+    %http://www.itrco.jp/libraries/RFIDjournal-That%20Internet%20of%20Things%20Thing.pdf
+    \grqq If we had computers that knew everything there was to know about things—using data they gathered without any help from us—we would be able to track and count everything, and greatly reduce waste, loss and cost. We would know when things needed replacing, repairing or recalling, and whether they were fresh or past their best.\glqq{} \cite{ashton2009internet}
+    Dieses Zitat beschreibt die Motivation, welche hinter dem \emph{Internet der Dinge} steht.
+    Im Fokus ist die Automatisierung von Abläufen, ohne Zutun von Menschen. Darüber hinaus bekommen Menschen umfassende Informationen über aktuelle Zustände aller Geräte und können ihre Aktionen besser koordinieren. Dies würde die Abläufe effizienter machen wodurch Geld eingespart und Prozesse optimiert werden können.
 
-    As of 2016, MQTT is now an ISO standard (ISO/IEC 20922). \grqq{}
-    \cite{eclipse_foundation2017}
+\section{MQTT}
+    \subsection{Publish/Subscribe}
+    Das publish/subscribe Prinzip besteht aus einer Client-Server Architektur, wobei nur der Client aktiv kommuniziert. Er verbindet sich mit dem Server und hält eine Verbindung zu diesem offen, wodurch er die Nachrichten an eine sogenannte Topic, vergleichbar mit einem Postfach im Broker, sendet. Gleichzeitig kann er mehrere angelegte Topics abonnieren (subscriben), was bedeutet, dass er auf diesem Pfad nach neuen Nachrichten lauscht. Sobald sie beim Broker eintrifft, veröffentlicht er diese für die Clients. Anschließend können diese die Informationen der Mitteilungen verarbeiten.
 
-    %More information about the protocol can be found on the MQTT.org community site.
+    Dieses Prinzip ermöglicht eine Kommunikation zwischen Geräten, welche keine gute Verbindung besitzen oder eine niedrige Bandbreite einhalten müssen. Im Gegensatz zu dem Request/Response Prinzip, welches unter anderem bei Webseiten verwendet wird, ist es hier nicht nötig sogenannte \glqq Update-Requests\grqq{} zu senden, da die Verbindung offen gehalten wird.
+    Diese Eigenschaft eignet sich besonders für \emph{Smart Devices} oder Geräte die nur wenig Informationen bei Bedarf senden müssen oder wenig Rechenkraft besitzen.
+    %TODO: \cite{}
+
+    \subsection{Standard}
+        \ac{MQTT} oder auch Message Queue Telemetry Transport ist ein Protokoll, welches auf dem zuvor beschriebenen Publish/Subscribe Prinzip basiert. Es wurde ursprünglich zwischen 1998-1999 von IBM und Arcom (heute Eurotech) entwickelt. Die Version 3.1.1 wurde Ende 2014 als OASIS Standard verabschiedet und ist bis heute noch der De-Facto-Standard. Dies ist ebenfalls anhand des ISO/IEC 20922 Standards zu erkennen, wodurch das Protokoll in 2016 aufgenommen wurde. \cite{eclipse_foundation2017} Mitte 2019 wurde die Version 5.0 ebenfalls als OASIS Standard verabschiedet und unterstützt mit weiteren Funktionen und Rückwärtskompatibilität die zukünftigen Geräte \cite{mqtt_org_2019}.
+        
+        \ac{MQTT} ist ein sehr kompaktes Protokoll, mit dem Zweck der \ac{M2M} Kommunikation.
+        Es setzt auf TCP auf und arbeitet asynchron\footnote{Das heißt es werden mehrere Anfragen parallel verarbeitet, anstatt auf den Abschluss der vorigen zu warten} nach dem publish/subscribe Prinzip. Es existieren im einfachsten Fall zwei Akteure. Der Broker (Server), welcher die Topics enthält und der Client, der Nachrichten an Topics sendet und weitere abonniert.
+        Um garantieren zu können, dass die Nachrichten auch ankommen gibt es die Möglichkeit ein \ac{QoS} zu definieren. Um dem gewünschten Szenario zu entsprechen, existieren drei verschiedene Stufen. 
+        \cite{soni2017survey}
+        \begin{itemize}
+            \item \glqq QoS 0: At most once delivery\grqq{}: Es wird keine Antwort vom Empfänger gesendet und die Nachricht wird nicht erneut versendet. Entweder wird die Nachricht beim ersten Mal empfangen oder nie.
+            \item \glqq QoS 1: At least once delivery\grqq{}: Es wird eine Antwort vom Empfänger erwartet. Bleibt diese aus, wird die Nachricht erneut versendet, bis der Sender eine Antwort erhält.
+            \item \glqq QoS 2: Exactly once delivery\grqq{}: Dies ist die höchste Qualitätsstufe und garantiert das die Nachricht auf der einen Seite sicher ankommt und auf der anderen Seite auch nur einmal empfangen wird, also keine Duplikate entstehen. Um dies zu erreichen, ist es jedoch notwendig die Pakete des leichtgewichtigen Protokolls mit weiteren Daten anzureichern was zu einem erhöhten Aufwand/ Größe führt.
+        \end{itemize} \cite{gupta_banks_2015}
+        Obwohl \ac{MQTT} auf \ac{TCP} basiert, wurde es so entworfen, dass es, im Vergleich zu Alternativen Protokollen nur das nötigste enthält. \cite{soni2017survey}
+
+    \subsection{Sicherheit}
+        \glqq
+        You can pass a user name and password with an MQTT packet in V3.1 of the protocol. Encryption across the network can be handled with TLS/SSL, the same security protocols
+        that ensure privacy for HTTP transactions all over the Internet, independently of the MQTT protocol itself. It is worth noting that SSL is not the lightest of protocols, and does add significant network overhead. Additional security can be added by an application encrypting data that it sends and receives, but this is not something built-in to the protocol, in order to keep it simple and lightweight.\grqq{} \cite{mqtt_org_2019}.
+
+    \subsection{Implementierungen}
+        %More information about the protocol can be found on the MQTT.org community site.
 
 \section{Technologien}
-\subsection{Zertifikate} %Für Kapitel Implementierung Section Einschränkung 
+    \subsection{Zertifikate} %Für Kapitel Implementierung Section Einschränkung 
     %Zertifikate
     %Zertifizierungspfad
     %HPKP / Cert pinning
     
-\subsection{.NET Framework und Mono}
+    \subsection{.NET Framework}
     %TODO: .NET FRAMEWEWORK
     Dadurch, dass das .NET Framework Bibliotheken, Kompiler und Laufzeitumgebungen bereitstellt, ist es notwendig diese in der oben genannten Version zu installieren um in diesem Projekt verwendete Funktionen nutzen zu können und das Programm zu kompilieren.
     
-%Was ist Mono?
+    \subsection{Mono}
+    %Was ist Mono?
     Wie der offiziellen Webseite \cite{mono_project_2018} zu entnehmen ist, ist Mono eine Entwicklungsplattform auf Basis des .NET Frameworks von Microsoft und stellt dessen Funktionalität auf verschiedenen Plattformen zur Verfügung. Um die Funktionalität abbilden zu können, besteht Mono aus verschiedenen Komponenten.
     
     Der C\# Kompiler beinhaltet alle genormten Funktionen der C\# Versionen 1.0 - 6.0.

@@ -1,16 +1,16 @@
 \chapter{Konzept}
 \section{Aufbau der Software}
-    Die im vorherigen Kapitel dargestellten Use-Case Diagramm und den daraus abgeleiteten Anforderungen, werden in diesem Kapitel zum Aufbau einer Architektur verwendet.
-    Hierbei wurde zunächst das Systemdiagramm aus dem Use-Case Diagramm (Abbildung \ref{fig:use-case}) abgeleitet (siehe Abbildung \ref{fig:system_all}).
+    Das im vorherigen Kapitel dargestellte Use-Case Diagramm und die daraus abgeleiteten Anforderungen werden in diesem Kapitel zum Aufbau eines Konzepts verwendet.
+    Hierbei wurde zunächst ein Systemdiagramm aus dem Use-Case Diagramm (Abbildung \ref{fig:use-case}) abgeleitet (siehe Abbildung \ref{fig:system_all}).
     
     Die Akteure (\emph{Netwerk-, Systemadministrator} und \emph{Security Auditor}) konnten direkt aus dem Use-Case Diagramm übernommen werden.
     Sie stellen die mit dem System interagierende Nutzer dar und interagieren direkt mit einem Frontend.
     Es erfolgt eine klare Trennung zwischen Backend und Frontend damit Logik und Visualisierung voneinander unabhängig implementiert werden können.
     
-    Das \emph{Backend} kommuniziert, durch eine Proxy, mit dem Client und empfängt die gesendeten Nachrichten. Anschließend verarbeitet es diese und leitet die verarbeiteten Nachrichten an den Broker weiter. Sobald eine Antwort zurück kommt, wird diese erneut verarbeitet und anschließend veröffentlicht.
-    Die Hauptaufgaben des Backends sind die Datenhaltung (z.B.: Speicherung der Nachrichten, Verwalten der Clients) und die Verwaltung des Nachrichtenflusses zwischen allen beteiligten Kommunikationspartnern.
+    Das \emph{Backend} kommuniziert durch einen Proxy mit dem Client und empfängt die gesendeten Nachrichten. Anschließend verarbeitet es diese und leitet die verarbeiteten Nachrichten an den Broker weiter. Sobald eine Antwort zurückkommt, wird diese erneut verarbeitet und anschließend veröffentlicht.
+    Die Hauptaufgaben des Backends sind die Datenhaltung (unter Anderem Speicherung der Nachrichten, Verwalten der Clients) und die Verwaltung des Nachrichtenflusses zwischen allen beteiligten Kommunikationspartnern.
     
-    Das \emph{Frontend} hingegen, dient nur zur Visualisierung der Nachrichten und Clients sowie zur Interaktion mit dem Nutzer. Hierbei bezieht es die gespeicherten und neu eintreffenden Nachrichten vom Backend.
+    Das \emph{Frontend} hingegen dient nur zur Visualisierung der Nachrichten und Clients sowie zur Interaktion mit dem Nutzer. Hierbei bezieht es die gespeicherten und neu eintreffenden Nachrichten vom Backend.
     \begin{figure}[h]%h=direkt danach t=top b=bottom
         \centering
         \includegraphics[width=14cm]{tex/bilder/4_konzept/Systemdiagram.pdf}
@@ -18,11 +18,11 @@
         \label{fig:system_all}
     \end{figure}
     
-    Abbildung \ref{fig:system_backend} zeigt eine Verfeinerung des Backends.Sobald ein Client eine Verbindung zum Broker aufbaut, werden zwei virtuelle Clients erzeugt.
+    Abbildung \ref{fig:system_backend} zeigt eine Verfeinerung des Backends. Sobald ein Client eine Verbindung zum Broker aufbaut werden zwei virtuelle Clients erzeugt.
     
-    Einer der Clients (\emph{ClientOut}) repräsentiert das tatsächliche Gerät und täuscht dies dem externen Broker gegenüber vor. Er übernimmt somit die Übertragung der Nachrichten zwischen dem Broker des Proxies und dem externen Broker. Daraus resultiert, dass für den Fall, das Nachrichten von dem externen Broker an den \emph{ClientOut} gesendete werden, diese auch dem echten Gerät übermittelt werden müssen. Dazu dient der zweite virtuelle Client (\emph{ClientIn}). Dieser sendet die vom ersten Client erhaltene Nachricht an den internen Broker weiter. Mit der Folge, dass dieser anschließend die Nachricht veröffentlicht. Dabei muss sichergestellt werde, dass die erhaltene Nachricht nicht erneut nach außen gesendet wird.
+    Einer der Clients (\emph{ClientOut}) repräsentiert das tatsächliche Gerät und täuscht dies dem externen Broker gegenüber vor. Er übernimmt somit die Übertragung der Nachrichten zwischen dem Broker des Proxies und dem externen Broker. Daraus resultiert, dass für den Fall, dass Nachrichten von dem externen Broker an den \emph{ClientOut} gesendete werden, diese auch dem echten Gerät übermittelt werden müssen. Dazu dient der zweite virtuelle Client (\emph{ClientIn}). Dieser sendet die vom ersten Client erhaltene Nachricht an den internen Broker weiter. Mit der Folge, dass dieser anschließend die Nachricht veröffentlicht. Dabei muss sichergestellt werden, dass die erhaltene Nachricht nicht erneut nach außen gesendet wird.
     
-    Der ClientManager übersetzt die externe Clients zu den dazugehörigen \emph{ClientIn}- und \emph{ClientOut}-Instanzen. Damit wird sichergestellt, dass die eine Kommunikation mit dem externen Broker stattfinden kann.
+    Der \emph{ClientManager} ermittelt die externen Clients zu den dazugehörigen \emph{ClientIn}- und \emph{ClientOut}-Instanzen. Damit wird sichergestellt, dass die Kommunikation mit dem externen Broker stattfinden kann.
     \begin{figure}[h]%h=direkt danach t=top b=bottom
         \centering
         \includegraphics[width=8cm]{tex/bilder/4_konzept/Systemdiagramm_Konzept_Backend.pdf}
@@ -32,11 +32,11 @@
     
     Abbildung \ref{fig:system_frontend} stellt die Komponenten des Frontends dar. Alle drei Komponenten sind voneinander unabhängig und arbeiten mit unabhängigen Informationen.
     
-    Die Clients Komponente enthält die Informationen der virtuellen Clients (\emph{ClientIn} und \emph{ClientOut}). Diese werden sobald der Nutzer die Seite besucht vom Backend geladen und anschließend angezeigt. Sie ermöglicht ebenfalls die Konfigurieren der abzufangenden Kommunikation pro Gerät.
+    Die \emph{Clients}-Komponente enthält die Informationen der virtuellen Clients (\emph{ClientIn} und \emph{ClientOut}). Diese werden, sobald der Nutzer die Seite besucht, vom Backend geladen und anschließend angezeigt. Sie ermöglicht ebenfalls die Konfiguration der abzufangenden Kommunikation pro Gerät.
     
-    Die NewMessages Komponente ermöglicht das Erzeugen von neuen Nachrichten auf der Seite des Frontends und überträgt am Ende alle Informationen an das Backend, wo diese weiter verarbeitet (z.B.: versendet) werden.
+    Die \emph{NewMessages}-Komponente ermöglicht das Erzeugen von neuen Nachrichten auf der Seite des Frontends und überträgt am Ende alle Informationen an das Backend, wo diese weiter verarbeitet (z.B.: versendet) werden.
     
-    Der Interceptor ist für die Anzeige der abgefangen Nachrichten zuständig. Zu Beginn werden alle bestehenden Nachrichten abgefangen und, um das wiederholte laden der Webseite zu verhindern und die Aktualität zu gewährleisten, dynamisch alle weiteren eingehenden Nachrichten nachgeladen. Um die Anzeige noch weiter zu strukturieren, werden ebenfalls verschiedene Filter zur Verfügung gestellt, welche auf die Nachrichteninhalte angewendet werden können.
+    Der \emph{Interceptor} ist für die Anzeige der abgefangen Nachrichten zuständig. Zu Beginn werden alle bestehenden Nachrichten abgefangen und, um das wiederholte Laden der Webseite zu verhindern und die Aktualität der Inhalte zu gewährleisten, dynamisch alle weiteren eingehenden Nachrichten nachgeladen. Um die Anzeige noch weiter strukturieren zu können, werden ebenfalls verschiedene Filter zur Verfügung gestellt, welche auf die Nachrichteninhalte und -Attribute angewendet werden können.
     \begin{figure}[h]%h=direkt danach t=top b=bottom
         \centering
         \includegraphics[width=8cm]{tex/bilder/4_konzept/Systemdiagramm_Konzept_Frontend.pdf}
@@ -47,25 +47,25 @@
 \section{Prozess}
     Im Folgenden wird der interne Ablauf des zu entwickelten Systems (Proxy), bestehend aus dem internen Broker, \emph{ClientIn} und \emph{ClientOut}, beschrieben.
 
-    Das Aktivitätsdiagramm \ref{fig:aktivitaetsdiagramm_connect} veranschaulicht den Ablauf des Verbindungsprozesses, nach der Verbindungsanfrage des Clients, und terminiert mit dem erfolgreichen Verbindungsaufbau.
-    Durch das Publish/Subscribe Programmiermuster des \ac{MQTT}-Protokolls ist es notwendig, für jedes verbundene Gerät zwei Clients zu erzeugen die die Nachrichten an den externen Broker übermitteln und die veröffentlichten Nachrichten wieder an den internen Broker (im Proxy) übermitteln.
+    Das Aktivitätsdiagramm \ref{fig:aktivitaetsdiagramm_connect} veranschaulicht den Ablauf des Verbindungsprozesses nach der Verbindungsanfrage des Clients und terminiert mit dem erfolgreichen Verbindungsaufbau.
+    Durch das \emph{Publish/Subscribe}-Programmiermuster des \ac{MQTT}-Protokolls ist es notwendig, für jedes verbundene Gerät zwei Clients zu erzeugen, die die Nachrichten an den externen Broker übermitteln und die veröffentlichten Nachrichten wieder an den internen Broker (im Proxy) übermitteln.
     
     \begin{figure}[!h]%h=direkt danach t=top b=bottom
         \centering
         \includegraphics[width=14cm]{tex/bilder/4_konzept/Activity_Connect.pdf}
-        \captionof{figure}{Aktivitätsdiagramm für das Event Client verbindet sich}
+        \captionof{figure}{Aktivitätsdiagramm für das Event "Client verbindet sich"}
         \label{fig:aktivitaetsdiagramm_connect}
     \end{figure}
     %%%%%%%%%%%%%%%%%%%%%%%%
     \newpage
     %%%%%%%%%%%%%%%%%%%%%%%%
-    Das nächste Diagramm (\ref{fig:aktivitaetsdiagramm_message}) stellt den Nachrichtenempfang Prozess im Proxy dar.
-    Durch das Event \glqq Nachricht empfangen\grqq{} wird geprüft ob die Nachricht von einem virtuellen Client kommt. Ist dies der Fall, wird die diese veröffentlicht und somit dem physischen Gerät bereitgestellt. Falls nicht, wird die Veröffentlichung verhindert und abhängig von der Einstellung zum Abfangen der Nachrichten an den externen Broker weitergeleitet.
+    Das nächste Diagramm (\ref{fig:aktivitaetsdiagramm_message}) stellt den Nachrichtenempfangsprozess im Proxy dar.
+    Durch das Event \glqq Nachricht empfangen\grqq{} wird geprüft ob die eingehende Nachricht von einem virtuellen Client kommt. Ist dies der Fall, wird diese veröffentlicht und somit dem physischen Gerät bereitgestellt. Falls nicht, wird die Veröffentlichung verhindert und abhängig von der Einstellung zum Abfangen der Nachrichten an den externen Broker weitergeleitet.
     
     \begin{figure}[!h]%h=direkt danach t=top b=bottom
         \centering
         \includegraphics[width=14cm]{tex/bilder/4_konzept/Activity_Message.pdf}
-        \captionof{figure}{Aktivitaetsdiagramm für das Event Nachricht erhalten}
+        \captionof{figure}{Aktivitätsdiagramm für das Event Nachricht erhalten}
         \label{fig:aktivitaetsdiagramm_message}
     \end{figure}
     
