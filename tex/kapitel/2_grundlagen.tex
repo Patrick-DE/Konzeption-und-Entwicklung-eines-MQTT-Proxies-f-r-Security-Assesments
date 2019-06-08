@@ -1,16 +1,16 @@
 \chapter{Grundlagen}
-Um die Folgenden Inhalte wie Konzeption und Implementierung aber auch Verwandte Arbeiten nachvollziehen zu können, werden in diesem Kapitel grundlegende Begriffe, Techniken sowie Technologien erläutert.
+Um die Inhalte wie Konzeption und Implementierung aber auch verwandte Arbeiten nachvollziehen zu können, werden in diesem Kapitel grundlegende Begriffe, Techniken sowie Technologien erläutert.
 
 \section{Definitionen}
     \subsection{Smart Devices} \label{SmartDevices}
-        \glqq informationstechnisch aufgerüstete Alltagsgegenstände, die einen Mehrwert durch sensorgestützte Informationsverarbeitung und Kommunikation erhalten.\grqq{} \cite{lackes_siepermann_2018}.
+        \glqq informationstechnisch [sic] aufgerüstete Alltagsgegenstände, die einen Mehrwert durch sensorgestützte Informationsverarbeitung und Kommunikation erhalten.\grqq{} \cite{lackes_siepermann_2018}
         
-        Dieses Zitat von Herr Lakes et al. nennt als Hauptmerkmale eines solchen Geräts, den alltäglichen Einsatz der Gegenstände, welche mithilfe von Sensorik und Kommunikation einen Mehrwert generieren.
+        Dieses Zitat von Herr Lakes et al. nennt als Hauptmerkmale eines solchen Geräts den alltäglichen Einsatz der Gegenstände, welche mithilfe von Sensorik und Kommunikation einen Mehrwert generieren.
         Nimmt man nun ein Gerät, welches als \emph{Smart Device} bezeichnet wird, erkennt man, dass die Aussage zutreffend ist. Als Beispiel wird eine intelligente Steckdose verwendet. Sie ist ein alltäglicher Gegenstand, welcher über Funk angesteuert werden kann. Somit kann ein anderes Gerät, welches sich mit der Steckdose verbinden lässt, den aktuellen Status abfragen oder verändern.
         Hier repräsentiert der Funk den Sensor, welcher in normalen Steckdosen nicht verfügbar ist, und übermittelt den aktuellen Status an ein externes Gerät. Mithilfe dieses Gerätes ist dann eine Steuerung der Steckdose möglich, was einen Mehrwert bietet.
     
     \subsection{Internet der Dinge}
-        \glqq bezeichnet die Vernetzung von Gegenständen mit dem Internet, damit diese Gegenstände selbstständig über das Internet kommunizieren und so verschiedene Aufgaben für den Besitzer erledigen können. Der Anwendungsbereich erstreckt sich dabei von einer allg. Informationsversorgung über automatische Bestellungen bis hin zu Warn- und Notfallfunktionen.\grqq{}
+        \glqq bezeichnet [sic] die Vernetzung von Gegenständen mit dem Internet, damit diese Gegenstände selbstständig über das Internet kommunizieren und so verschiedene Aufgaben für den Besitzer erledigen können. Der Anwendungsbereich erstreckt sich dabei von einer allg. Informationsversorgung über automatische Bestellungen bis hin zu Warn- und Notfallfunktionen.\grqq{}
         \cite{lackes_siepermann_2018_iot}.
     
         Die Definition des Begriffs \emph{Internet der Dinge} oder \ac{IoT} von Herr Lakes et al. deckt sich in vielen Punkten mit der Definition \ref{SmartDevices}. Hier befinden sich ebenfalls vernetzte Geräte, welche sich untereinander mit Informationen versorgen und somit Aufgaben übernehmen (also einen Mehrwert bieten) können. Das Wichtige an diesem Begriff ist der Zusammenschluss solch intelligenter Geräte in größere Netze. Die Geräte müssen dabei nicht gleichartig sein und können unterschiedliche Aufgaben im Alltag übernehmen. Sie können Abhängigkeiten zueinander besitzen und sich gegenseitig Ansprechen oder aktivieren ohne direkte Befehle vom Besitzer, also Nutzer, zu erhalten.
@@ -23,7 +23,7 @@ Um die Folgenden Inhalte wie Konzeption und Implementierung aber auch Verwandte 
 
 \section{MQTT}
     \subsection{Publish/Subscribe}
-    Das publish/subscribe Prinzip besteht aus einer Client-Server Architektur, wobei nur der Client aktiv kommuniziert. Er verbindet sich mit dem Server und hält eine Verbindung zu diesem offen, wodurch er die Nachrichten an eine sogenannte Topic, vergleichbar mit einem Postfach im Broker, sendet. Gleichzeitig kann er mehrere angelegte Topics abonnieren (oder auch subscriben genannt), was bedeutet, dass er auf diesem Pfad nach neuen Nachrichten lauscht. Sobald sie beim Broker eintrifft, veröffentlicht er diese für die Clients. Anschließend können diese die Informationen der Mitteilungen verarbeiten.
+    Das publish/subscribe Prinzip besteht aus einer Client-Server Architektur, wobei nur der Client aktiv kommuniziert. Der Broker, ist eine Endstelle, welche meist vom Betreiber zur Verfügung gestellt wird und die Nachrichten empfängt und bei sich veröffentlicht. Der Client verbindet sich mit dem Broker und hält eine Verbindung zu diesem offen, wodurch er die Nachrichten an eine sogenannte Topic, vergleichbar mit einem Postfach im Broker, sendet. Gleichzeitig kann er mehrere angelegte Topics abonnieren (oder auch subscriben genannt), was bedeutet, dass er auf diesem Pfad nach neuen Nachrichten lauscht. Sobald sie beim Broker eintrifft, veröffentlicht er diese für die Clients. Anschließend können diese die Informationen der Mitteilungen verarbeiten.
 
     Dieses Prinzip ermöglicht eine Kommunikation zwischen Geräten, welche keine gute Verbindung besitzen oder eine niedrige Bandbreite einhalten müssen. Im Gegensatz zu dem Request/Response Prinzip, welches unter anderem bei Webseiten verwendet wird, ist es hier nicht nötig sogenannte \glqq Update-Requests\grqq{} zu senden, da die Verbindung offen gehalten wird.
     Diese Eigenschaft eignet sich besonders für \emph{Smart Devices} oder Geräte die nur wenig Informationen bei Bedarf senden müssen oder wenig Rechenkraft besitzen.
@@ -39,14 +39,14 @@ Um die Folgenden Inhalte wie Konzeption und Implementierung aber auch Verwandte 
         \begin{itemize}
             \item \glqq QoS 0: At most once delivery\grqq{}: Es wird keine Antwort vom Empfänger gesendet und die Nachricht wird nicht erneut versendet. Entweder wird die Nachricht beim ersten Mal empfangen oder nie.
             \item \glqq QoS 1: At least once delivery\grqq{}: Es wird eine Antwort vom Empfänger erwartet. Bleibt diese aus, wird die Nachricht erneut versendet, bis der Sender eine Antwort erhält.
-            \item \glqq QoS 2: Exactly once delivery\grqq{}: Dies ist die höchste Qualitätsstufe und garantiert das die Nachricht auf der einen Seite sicher ankommt und auf der anderen Seite auch nur einmal empfangen wird, also keine Duplikate entstehen. Um dies zu erreichen, ist es jedoch notwendig die Pakete des leichtgewichtigen Protokolls mit weiteren Daten anzureichern was zu einem erhöhten Aufwand/ Größe führt.
+            \item \glqq QoS 2: Exactly once delivery\grqq{}: Dies ist die höchste Qualitätsstufe und garantiert, dass die Nachricht an der Endstelle sicher ankommt und zusätzlich dazu auch nur einmal empfangen werden kann, also keine Duplikate entstehen. Um dies zu erreichen, ist es jedoch notwendig die Pakete des leichtgewichtigen Protokolls mit weiteren Daten anzureichern was zu einem erhöhten Aufwand/ Größe führt.
         \end{itemize} \cite{gupta_banks_2015}
-        Obwohl \ac{MQTT} auf \ac{TCP} basiert, wurde es so entworfen, dass es, im Vergleich zu Alternativen Protokollen nur das nötigste enthält. \cite{soni2017survey}
+        Obwohl \ac{MQTT} auf \ac{TCP} basiert, wurde es so entworfen, dass es im Vergleich zu alternativen Protokollen nur das nötigste enthält. \cite{soni2017survey}
 
     \subsection{Sicherheit}
         Das Protokoll V3.1 und höher kann im Standard nur mit einem Benutzernamen und Passwort gesichert werden. Eine Transportverschlüsselung ist mithilfe von \ac{TLS}/\ac{SSL}, welche auch im Sicherheitsprotokoll für \ac{HTTP} (auch \ac{HTTPS} genannt) verwendet werden um das Internet zu sichern, als zusätzliche Maßnahme möglich. Jedoch beinhaltet SSL viele Informationen, welche in Bezug auf \ac{MQTT} nicht notwendig sind und somit viel Overhead erzeugen.
-        Dies kann sich in verschiedenen Szenarien als problematisch herausstellen, da \ac{MQTT} genau für das Gegenteil, der sparsamen Kommunikation, entwickelt wurde.
-        Eine Alternative oder zusätzliche Maßnahme zum Schützen der Inhalte ist eine anwendungsbasierte Verschlüsselung der übertragenen Daten. Dies muss jedoch unabhängig vom Protokoll implementiert vom Hersteller implementiert werden, was weitere Sicherheitsrisiken entstehen lassen kann. \cite{mqtt_org_2019}.
+        Dies kann sich in verschiedenen Szenarien als problematisch herausstellen, da \ac{MQTT} genau für das Gegenteil nämlich der sparsamen Kommunikation, entwickelt wurde.
+        Eine Alternative oder zusätzliche Maßnahme zum Schützen der Inhalte ist eine anwendungsbasierte Verschlüsselung der übertragenen Daten. Dies muss jedoch unabhängig vom Protokoll vom Hersteller implementiert werden, was weitere Sicherheitsrisiken entstehen lassen kann. \cite{mqtt_org_2019}.
 
     \subsection{Produkte}
         Es gibt verschiedene Anbieter, die Bibliotheken aus dem Standard entwickelt haben. Auch wenn sie den gleichen Standard implementieren, haben Sie verschiedene Schwerpunkte und somit Unterschiede. Einer der bekanntesten Broker ist die quelloffene Implementierung Eclipse Mosquitto \cite{eclipse_foundation_inc_2018}. Darüber hinaus gibt noch weitere Dienstleister, welche komplette Services um das Verwalten und Steuern von Broker bereitstellen. Bekannte Vertreter sind HIVEMQ \cite{hivemq_dc_square_gmbh} und CloudMQTT \cite{84codes_ab_2019}.
@@ -67,9 +67,9 @@ Um die Folgenden Inhalte wie Konzeption und Implementierung aber auch Verwandte 
         Um eine plattformunabhängige Verwendung der Programme zu ermöglichen, wurde Mono entwickelt.
         Wie der offiziellen Webseite \cite{mono_project_2018} zu entnehmen ist, ist Mono eine Entwicklungsplattform auf Basis des .NET Frameworks von Microsoft und stellt dessen Funktionalität auf verschiedenen Plattformen zur Verfügung. Um die Funktionalität abbilden zu können, besteht Mono aus verschiedenen Komponenten.
         Der C\# Kompiler beinhaltet alle genormten Funktionen der C\# Versionen 1.0 - 6.0.
-        Die Laufzeitumgebung beinhaltet neben zwei Kompilern auch eine Möglichkeit zum Laden von Bibliotheken, einem Garbage Collector und der parallelen Ausführen von Anwendungen.
+        Die Laufzeitumgebung beinhaltet neben zwei Kompilern auch eine Möglichkeit zum Laden von Bibliotheken, einem Garbage Collector und parallelen Ausführen von Anwendungen.
         Die Monos Implementierung der .NET Framework Standardbibliotheken ist kompatibel mit denen von Microsoft.
-        Monos Standardbibliotheken stellen auch darüber hinaus noch weiter Zusatzfunktionalitäten zur Verfügung die entweder plattformabhängig sind oder nützliche Zusätze wie verarbeiten von Zip-Archiven oder Anbindung an LDAP-Systemen sind.
+        Monos Standardbibliotheken stellen auch darüber hinaus noch weiter Zusatzfunktionalitäten zur Verfügung, die entweder plattformabhängig sind oder nützliche Zusätze wie Verarbeiten von Zip-Archiven oder Anbindung an LDAP-Systemen sind.
 
 \section{Konzepte}
     \subsection{Proxy}
@@ -119,8 +119,8 @@ Um die Folgenden Inhalte wie Konzeption und Implementierung aber auch Verwandte 
     \subsubsection{\glqq Exploitation\grqq{}}
         In diesem Schritt wird versucht, unter Umgehen weitere Sicherheitsmechanismen, die bestätigte Schwachstelle so zu verwenden, dass entweder eine Steigerung der Berechtigungen oder das weiter Infiltrieren erreicht wird.
     \subsubsection{\glqq Post Exploitation\grqq{}}
-        Im vorletzten Schritt wird versucht den erlangten Zugriff zu festigen und eventuelle benötigte Daten herunterzuladen. Das heißt, dass selbst nach dem Neustart des Systems die Kontrolle über das System bestehen bleibt ohne erneut den Exploit zu verwenden. Üblicherweise wird dies mithilfe von Tools wie einer \ac{RAT} gemacht, welche in den Autostart, die Registry geschrieben oder mithilfe von/ in Windows Komponenten integriert werden.
-        Diese Programme ermöglichen die Steuerung des Computers ohne anwesend (vor dem Gerät) zu sein. Des Weiteren sind die Programme, sehr gut versteckt um nicht aufzufallen. Die Namen ähneln meist Dienst- oder Programmbezeichnungen um legitim auszusehen. Es gibt ebenfalls die Möglichkeit, das Programm so zu schützen, dass beim Versuch das Programm zu beenden das System selbst herunterfährt.
+        Im vorletzten Schritt wird versucht den erlangten Zugriff zu festigen und eventuelle benötigte Daten herunterzuladen. Das heißt, dass selbst nach dem Neustart des Systems die Kontrolle über das System bestehen bleibt ohne erneut den Exploit zu verwenden. Üblicherweise wird dies mithilfe von Tools wie einer \ac{RAT} gemacht, welche in den Autostart, die Registry geschrieben oder mithilfe von in Windows Komponenten integriert werden.
+        Diese Programme ermöglichen die Steuerung des Computers ohne anwesend (vor dem Gerät) zu sein. Des Weiteren sind die Programme sehr gut versteckt um nicht aufzufallen. Die Namen ähneln meist Dienst- oder Programmbezeichnungen, um legitim auszusehen. Es gibt ebenfalls die Möglichkeit, das Programm so zu schützen, dass beim Versuch das Programm zu beenden das System selbst herunterfährt.
     \subsubsection{\glqq Reporting\grqq{}}
         Dies ist der letzte und einer der wichtigsten Schritte. Da Security Tests durchgeführt werden um die Sicherheit zu erhöhen, ist es auch zwingend notwendig die Schwachstellen und Exploits so zu dokumentieren, dass der Hersteller sich entscheiden kann, ob die existierenden Probleme behoben werden oder das Risiko getragen wird. Abhängig von dem Einfluss auf das Geschäft (auch Business Impact gennant) kann es aus wirtschaftlicher Sicht gerechtfertigt sein eine Schwachstelle nicht zu schließen und die daraus resultierenden Folgen wie Strafen zu bezahlen.
 
@@ -166,24 +166,23 @@ Um die Folgenden Inhalte wie Konzeption und Implementierung aber auch Verwandte 
             
             Der Datenverkehr zwischen den Komponenten sowie den Geräten und dem Ziel sollte verschlüsselt sein um das Mitlesen oder Manipulieren der Nachrichten zu verhindern.
             
-            Eine Verschlüsselungen zu verwenden hilft jedoch nicht immer beim erreichen der Sicherheitsziele Integrität, Vertraulichkeit. Nur für den Fall, dass die Verschlüsselung auch noch auf dem aktuelle Stand und noch nicht ausgehebelt wurde \cite{bsi_2019}.
+            Eine Verschlüsselungen zu verwenden hilft jedoch nicht immer beim Erreichen der Sicherheitsziele Integrität, Vertraulichkeit. Nur für den Fall, dass die Verschlüsselung auch noch auf dem aktuelle Stand und noch nicht ausgehebelt wurde \cite{bsi_2019}.
             
-            Für die sichere Übertragung steht SSL/TLS zur Verfügung welches verwendet werden sollte um ebenfalls eine Manipulation zu vermeiden. Dies ist in Bezug auf das \ac{MQTT} Protokoll ebenfalls möglich, jedoch nicht im Standard enthalten (siehe Kapitel 2.2.3).
+            Für die sichere Übertragung steht SSL/TLS zur Verfügung, welches verwendet werden sollte, um ebenfalls eine Manipulation zu vermeiden. Dies ist in Bezug auf das \ac{MQTT} Protokoll ebenfalls möglich, jedoch nicht im Standard enthalten (siehe Kapitel 2.2.3).
             
             \item I5: Datenschutzbedenken
             
-            Es soll sichergestellt werden, dass nur die nötigsten personenbezogenen Daten gesammelt und übertragen werden. Diese sollten dann auch anonymisiert werden um keinen Rückschluss auf die Person oder den Account schließend zu können.
+            Es soll sichergestellt werden, dass nur die nötigsten personenbezogenen Daten gesammelt und übertragen werden. Diese sollten dann auch anonymisiert werden, um keinen Rückschluss auf die Person oder den Account schließend zu können.
             Selbstverständlich dürfen auch nur speziell zugelassene Personen die Daten erheben und übertragen können.
-            Des Weiteren spielt auch im Bereich des Datenschutzes spielt die Verschlüsselung eine Rolle, denn die sensiblen Daten sollten zu jeder Zeit verschlüsselt sein.
+            Des Weiteren spielt auch im Bereich des Datenschutzes die Verschlüsselung eine Rolle, denn die sensiblen Daten sollten zu jeder Zeit verschlüsselt sein.
     
             \item I6: Unsichere Cloud Schnittstellen \& I7: Unsichere Mobile Schnittstellen
             
-            Weiterhin sollten die bereits erwähnten Richtlinien und Sicherheitsmechanismen (siehe \emph{I1: Unsichere Weboberflächen}) ebenfalls für die Kommunikationspartner oder entfernte Schnittstellen,  
-            umgesetzt werden. Hinzukommt jedoch das die Übertragung zu diesem entfernten Gerät ebenfalls durch passende Sicherheitsmechanismen, wie TLS1.2 / TLS1.3, geschützt werden sollten.
+            Weiterhin sollten die bereits erwähnten Richtlinien und Sicherheitsmechanismen (siehe \emph{I1: Unsichere Weboberflächen}) ebenfalls für die Kommunikationspartner oder entfernte Schnittstellen umgesetzt werden. Hinzukommt jedoch, dass die Übertragung zu diesem entfernten Gerät ebenfalls durch passende Sicherheitsmechanismen, wie TLS1.2 / TLS1.3, geschützt werden sollten.
             
             \item I8: Unzureichende Anpassungen im Bereich der Sicherheit
             
-            Unzureichendes Loggen von Sicherheitsevents wie Angriffen oder Meldung über manipulierte oder unrealistische Nachrichten sind ebenfalls notwendig um rechtzeitig reagieren zu können. Der Nutzer sollte darüber schnellstmöglich informiert werden um entsprechende Maßnahmen einleiten zu können wie Passwörter ändern oder das Gerät vom Netz nehmen.
+            Loggen von Sicherheitsevents wie Angriffen oder Meldung über manipulierte oder unrealistische Nachrichten sind ebenfalls notwendig, um rechtzeitig reagieren zu können. Der Nutzer sollte darüber schnellstmöglich informiert werden um entsprechende Maßnahmen einleiten zu können wie Passwörter ändern oder das Gerät vom Netz nehmen.
             
             Mithilfe dieser Maßnahmen wäre es ebenfalls möglich unberechtigte Aktivitäten Dritter schnellstmöglich zu unterbinden.
             
@@ -205,19 +204,20 @@ Um die Folgenden Inhalte wie Konzeption und Implementierung aber auch Verwandte 
         \begin{enumerate}
             \item Die Geräte
             
-            Die Geräte verwenden eine Software, wo die Architektur nicht immer vollständig durchdacht oder mit Fokus auf Sicherheit entwickelt wurde. Dies kann zu Schwachstellen und dadurch Kompromittierungen von Daten der Geräten führen. Bereits gelöste Probleme kommen wieder zum Vorschein, da die Geräte nicht die gleichen Spezifikationen haben wie die, die wir jeden Tag verwenden um uns die Arbeit zu erleichtern. 
+            Die Geräte verwenden eine Software, die Architektur nicht immer vollständig durchdacht oder mit Fokus auf Sicherheit entwickelt wurde. Dies kann zu Schwachstellen und dadurch Kompromittierungen von Daten der Geräten führen. Bereits gelöste Probleme kommen wieder zum Vorschein, da die Geräte nicht die gleichen Spezifikationen haben wie die, die wir jeden Tag verwenden um uns die Arbeit zu erleichtern. 
         
             Es ist laut einer Umfrage von Statista \cite{kaspersky_lab_2019}
             heutzutage oft der Fall, dass Antivirus Software zum Schutz des Computers oder Smartphone verwendet werden. Diese Software benötigt allerdings viele Ressourcen um verwendet werden zu können.
             Kaspersky \cite{ao_kaspersky_lab_2018_1}
-            als Beispiel, setzt 1150 MB Festplattenspeicher mit einem Intel/AMD 32/64 Bit Prozessor mit 1 GHz und 1 GB freien Arbeitsspeicher nur für die Funktionalität der Software voraus. Es ist davon auszugehen, dass bei Geräten die für einen speziellen Einsatzzweck optimiert sind, keine Hardware verbaut wird die mehr als das nötigste leisten kann um das Produkt entsprechend preiswert anbieten zu können. Dies ist notwendig, da zum Beispiel der Markt im Bereich Sprachsteuerungen laut Futuresource Consulting \cite{futuresource_consulting_ltd_2019}, mit fünf Geräten von drei verschiedenen Herstellern, hart umkämpft ist. Schaut man sich den Stromverbrauch des Amazon Echo Dot \cite{amazon_de_alle_produkte_2018} an, fällt auch recht schnell auf, dass 15 W nicht mit einem Computer mithalten kann. 
-            Der Microcontroller Raspberry Pi 2B \cite{raspberry_pi_foundation_2016}, welcher auch gerne dazu verwendet um \ac{MQTT} Projekte umzusetzen, lässt auch eine Diskrepanz in der technischen Spezifikationen in mehreren Punkten erkennen. Der Prozessor besitzt eine ARM Architektur, taktet mit 900 MHz 
+            als Beispiel, setzt 1150 MB Festplattenspeicher mit einem Intel/AMD 32/64 Bit Prozessor mit 1 GHz und 1 GB freien Arbeitsspeicher nur für die Funktionalität der Software voraus. Es ist davon auszugehen, dass bei Geräten die für einen speziellen Einsatzzweck optimiert sind, keine Hardware verbaut wird die mehr als das nötigste leisten kann um das Produkt entsprechend preiswert anbieten zu können. Dies ist notwendig, da zum Beispiel der Markt im Bereich Sprachsteuerungen laut Futuresource Consulting \cite{futuresource_consulting_ltd_2019}, mit fünf Geräten von drei verschiedenen Herstellern hart umkämpft ist. Schaut man sich den Stromverbrauch des Amazon Echo Dot \cite{amazon_de_alle_produkte_2018} an, fällt auch recht schnell auf, dass 15 W nicht mit einem Computer mithalten kann. 
+            Der Microcontroller Raspberry Pi 2B \cite{raspberry_pi_foundation_2016}, welcher auch gerne dazu verwendet wird, um \ac{MQTT} Projekte umzusetzen, lässt auch eine Diskrepanz in der technischen Spezifikationen in mehreren Punkten erkennen. Der Prozessor besitzt eine ARM Architektur, taktet mit 900 MHz 
             und ist 32 Bit fähig. Der Prozessor entspricht also den Mindestanforderungen der Architektur nicht und würde weiterhin der eigentlichen Anwendung auf dem Gerät eine zu geringe Performance ermöglichen. Des Weiteren entspricht auch der Arbeitsspeicher von 1 GB nicht den Mindestanforderungen.
             Somit kommen Sicherheitsprobleme, welche in der Vergangenheit bereits gelöst wurden, erneut zum Vorschein und bedürfen einer neuen Lösung.
             
             Zusätzlich zu den Sicherheitsmechanismen, welche nun nicht mehr verwendet werden können, sind \ac{IoT} Geräte nicht nur von einem Typ. Es gibt viele verschiedene Hersteller und Geräte die sich in den Funktionen, Erscheinungen und Spezifikationen unterscheiden. Diese heterogene Landschaft erhöht die Komplexität, eine Lösungen für alle Geräte zu finden oder den Aufwand für jedes Gerät einen eigenen Sicherheitsmechanismus zu implementieren.
             
             \item Die Kommunikation
+            
             Die heterogene Landschaft beeinflusst jedoch nicht nur die Komplexität auf der Seite der Geräte sondern auch in Bezug auf die Kommunikation.
         
             Es ist denkbar, dass der Wecker mit den Rollläden kommunizieren kann, dieser wiederum die Fenster dazu bringt sich zum Lüften zu öffnen. Automatisch wird die Kaffeemaschine und das Radio angeschaltet damit der Besitzer Kaffee während den neuesten Meldungen genießen kann.

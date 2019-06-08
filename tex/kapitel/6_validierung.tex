@@ -157,7 +157,7 @@ Das Frontend des \emph{Interceptors}, welches auf Abbildung \ref{fig:frontend_me
         zurückzuführen, das dazu führt, dass jeder Client die Antworten aller Clients an den Proxy schickt. Dies bedeutet, dass Antworten des externen Brokers doppelt erfasst und publiziert werden.
         Bei genauerer Analyse beider am Ansteigen beteiligten Funktionen, ist zu erkennen, dass der größte Ressourcenbedarf bei den folgenden Funktionen zu verorten ist:
         \begin{itemize}
-            \item Für 30 Prozent der maximalen \ac{CPU}-Auslastung des Programms ist die \glqq Connect\grqq -Funktion verantwortlich. Sie wird aufgerufen, sobald sich ein \ac{IoT}-Client bei dem Proxy registriert. Sie beinhaltet mehrere kaskadierende Methodenaufrufe, womit der Verbindungsauf von Clients ressourcenintensiv wird.  
+            \item Für 30 Prozent der maximalen \ac{CPU}-Auslastung des Programms ist die \glqq Connect\grqq -Funktion verantwortlich. Sie wird aufgerufen, sobald sich ein \ac{IoT}-Client bei dem Proxy registriert. Sie beinhaltet mehrere kaskadierende Methodenaufrufe, womit der Verbindungsaufbau von Clients ressourcenintensiv wird.  
             \item Für 57 Prozent der maximalen \ac{CPU}-Auslastung des Programms ist die Systemfunktion \emph{Console.WriteLine()} Funktion verantwortlich. Da in diesem Programm viele Informationen an die Konsole zur Information an den Entwickler oder Nutzer weitergereicht werden, ist dies die Hauptursache dafür, dass das Programm die oben genannten \ac{CPU}-Auslastung aufweist. Zu bemerken ist jedoch, dass diese nur den maximalen Wert anzeigen, welcher nur vorhanden ist, wenn Nachrichten an den externen Broker weitergeleitet werden.
         \end{itemize}
     \end{enumerate}
