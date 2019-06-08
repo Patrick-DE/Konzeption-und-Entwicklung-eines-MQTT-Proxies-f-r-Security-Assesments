@@ -18,7 +18,7 @@ Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in der Gl
 \section{Laboraufbau} \label{Laboraufbau}
     %Warum Virtualisierung/ Virtualisierte Umgebung
     Das Labor wird mithilfe der Virtualisierungslösung \emph{ESXi} %\cite{https://www.vmware.com/de/products/esxi-and-esx.html}
-    der Firma \emph{VMware} umgesetzt. Dadurch, dass alle Systeme und Applikationen in sogenannten virtuellen Maschinen laufen, sind sie, obwohl sie auf dem gleichen physikalischen Gerät (Server) laufen können, voneinander unabhängig. Das bedeutet, dass ganze Systeme abgeschottet und auf virtuellen Festplatten (sog. \emph{\acp{VMDK}}) gespeichert und somit auch sehr einfach gesichert oder untereinander ausgetauscht werden können. Durch die dynamische Verteilung von zum Beispiel \ac{CPU} oder RAM ist ebenfalls eine effektivere Nutzung von Hardwareressourcen möglich. Damit wird nur ein Server oder leistungsfähiger Computer benötigt um ganze Systemlandschaften und Netzwerke abzubilden. Des Weiteren ermöglicht es auch, die hier durchgeführten Tests und somit Ergebnisse in der gleichen Umgebung durch die Bereitstellung der Dateien nachvollziehen zu können, ohne selbst Arbeit und Zeit in den Aufbau derselben Systeme investieren zu müssen.
+    der Firma \emph{VMware} umgesetzt. Dadurch, dass alle Systeme und Applikationen in sogenannten virtuellen Maschinen laufen, sind sie, obwohl sie auf dem gleichen physikalischen Gerät (bzw. Server) laufen können, voneinander unabhängig. Das bedeutet, dass ganze Systeme abgeschottet und auf virtuellen Festplatten (sog. \emph{\acp{VMDK}}) gespeichert und somit auch sehr einfach gesichert oder untereinander ausgetauscht werden können. Durch die dynamische Verteilung von zum Beispiel \ac{CPU} oder RAM ist ebenfalls eine effektivere Nutzung von Hardwareressourcen möglich. Damit wird nur ein Server oder leistungsfähiger Computer benötigt um ganze Systemlandschaften und Netzwerke abzubilden. Des Weiteren ermöglicht es auch, die hier durchgeführten Tests und somit Ergebnisse in der gleichen Umgebung durch die Bereitstellung der Dateien nachvollziehen zu können, ohne selbst Arbeit und Zeit in den Aufbau derselben Systeme investieren zu müssen.
     %Warum mit ESXI
     \emph{ESXi} wurde als Lösung gewählt, da bereits Wissen und Erfahrung im Umgang mit der Lösung vorhanden war. Zusätzlich stand ein Server mit benötigter Leistung bereits zur Verfügung wodurch das Aufsetzen und Konfigurieren eines solchen oder ähnlichen Produkts nicht mehr nötig war.
     
@@ -125,7 +125,7 @@ In Abbildung \ref{fig:broker_connections} ist die Initialisierung des Brokers zu
     \label{fig:broker_connections}
 \end{figure}
 
-Der Proxy zeigt, wie Abbildung \ref{fig:proxy_messages} zu entnehmen ist, beim Erhalt einer Nachricht, vom virtuellen Client (\ac{IoT}-Gerät), sowie vom Proxy Client (\emph{ClientIn}), deren Inhalt an.
+Der Proxy zeigt, wie Abbildung \ref{fig:proxy_messages} zu entnehmen ist, beim Erhalt einer Nachricht, vom virtuellen Client (\ac{IoT}-Gerät), sowie vom Proxy Client (in diesem Fall \emph{ClientIn}), deren Inhalt an.
 Darüber hinaus, zeigt er auch weitere Aktionen des \emph{ClientManagers} und der virtuellen Client an.
 Mithilfe der Nachrichten lassen sich der Ablauf des Programms und etwaige Fehler nachvollziehen. Diese Ausgabe kostet jedoch vergleichsweise viel Leistung, woraus die in \ref{Laboraufbau} aufgeführten Systemanforderungen resultieren. 
 \begin{figure}[!h]%h=direkt danach t=top b=bottom

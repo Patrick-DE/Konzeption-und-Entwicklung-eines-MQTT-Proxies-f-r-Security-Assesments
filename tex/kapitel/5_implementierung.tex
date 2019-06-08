@@ -12,10 +12,10 @@ Die Software kann nur funktionieren, wenn garantiert werden kann, dass keine eff
     \item Nur ohne \ac{HPKP}
     
     Auf dem Server wird ein für den Client ausgestelltes Zertifikat hinterlegt. Der öffentlichen Schlüssel oder der \glqq subjectPublicKeyInfo\grqq{}, ein weiterer Schlüssel mit Zusatzinformationen über die Verschlüsselung, dieses Zertifikats wird auf dem Client abgespeichert. Anschließend wird dieser gespeicherte Schlüssel mit jeder Anfrage an den Server mitgeschickt. Anschließend kann der Server die eingehenden Nachrichten mithilfe der Informationen aus dem Zertifikat verifizieren und sicherstellen das sie vom tatsächlichen Ziel kommt \cite{evans_palmer_sleevi_2015}.
-    \item Nur wenn der Zertifizierungspfad des SSL Zertifikat (\emph{trust chain}) nicht geprüft wird.
+    \item Nur wenn der Zertifizierungspfad des SSL Zertifikat (auch \emph{trust chain} genannt) nicht geprüft wird.
     
-    Bei Verwendung von TLS ist es möglich, den Client prüfen zu lassen, ob der Server das entsprechende Hersteller Zertifikat besitzt. Jedes gültige Zertifikat muss von einer \ac{CA} ausgestellt werden, welche das Vertrauen und eventuell die Identität des Besitzers verifiziert. Jedoch gibt es auch Implementierungen die vom Zertifikat nur die formalen Details und nicht die Herkunft (CA) prüfen.
-    Dies ermöglicht, dass die Kommunikation trotz eines manuell (unverifizierbaren) Zertifikats mit den gleichen Details hergestellt werden kann.
+    Bei Verwendung von TLS ist es möglich, den Client prüfen zu lassen, ob der Server das entsprechende Hersteller Zertifikat besitzt. Jedes gültige Zertifikat muss von einer \ac{CA} ausgestellt werden, welche das Vertrauen und eventuell die Identität des Besitzers verifiziert. Jedoch gibt es auch Implementierungen die vom Zertifikat nur die formalen Details und nicht die Herkunft (also das \ac{CA}) prüfen.
+    Dies ermöglicht, dass die Kommunikation trotz eines manuell (also unverifizierbaren) Zertifikats mit den gleichen Details hergestellt werden kann.
 \end{enumerate}
 
 
@@ -60,7 +60,7 @@ Die Software kann nur funktionieren, wenn garantiert werden kann, dass keine eff
 %%%%%%%%%%%
 %Visual Studio
 %%%%%%%%%%%
-    Als Entwicklungsumgebung für das Backend wurde Visual Studio 2017 \cite{microsoft_2019} von Microsoft verwendet. Dadurch sind auch die Projektdateien, die in dem Repository \glqq MQTT-Proxy\grqq{} \cite{eisenschmidt_2019} gefunden werden können, in einem Visual Studio Projektfile (.sln) definiert.
+    Als Entwicklungsumgebung für das Backend wurde Visual Studio 2017 \cite{microsoft_2019} von Microsoft verwendet. Dadurch sind auch die Projektdateien, die in dem Repository \glqq MQTT-Proxy\grqq{} \cite{eisenschmidt_2019} gefunden werden können, in einem Visual Studio Projektfile (Datei mit einer .sln Endung) definiert.
     
 %%%%%%%%%%%
 %Anforderungen an die Programmiersprache

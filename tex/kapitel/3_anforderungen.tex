@@ -70,7 +70,7 @@
     
     %was gibt es bereits (Wireshark) was kann die Software besser/kann nur die Software
     Wie beim Netzwerkadministrator bereits geschildert, kann Wireshark zur Informationsbeschaffung verwendet werden.
-    Da bei Wireshark viele verschiedene Protokolle unterstützt und auch sehr detaillierte Informationen angezeigt werden, passiert es schnell, dass durch die große Menge wichtige Bestandteile untergehen (\emph{visual clutter}) oder nur mit Aufwand gefunden werden.
+    Da bei Wireshark viele verschiedene Protokolle unterstützt und auch sehr detaillierte Informationen angezeigt werden, passiert es schnell, dass durch die große Menge wichtige Bestandteile untergehen (auch \emph{visual clutter} genannt) oder nur mit Aufwand gefunden werden.
     
     Burp Suite von PortSwigger bietet im Gegensatz zu Wireshark ebenfalls eine Proxy Komponente und kann somit, wie in diesem Tool geplant, die Nachrichten protokollieren bzw. überwachen sondern auch in die Kommunikation eingreifen. Der große Unterschied besteht darin, dass Burp Suite ausschließlich für HTTP/s und (Sec)Websocket Kommunikation zu verwenden ist und keinerlei Unterstützung für das \ac{MQTT}-Protokoll bietet. Man könnte die Idee jedoch am einfachsten mit dieser Lösung vergleichen, da auch eine ähnlich Bedienung von Vorteil wäre. Dadurch würden Nutzer eine geringere Einarbeitungszeit benötigen und auch die Akzeptanz steigern.
 
@@ -138,7 +138,7 @@
         
         \subsubsection{5. Nachricht senden}
         Es muss garantiert werden, dass eigene Nachrichten gesendet werden können.
-        Das Senden beinhaltet nicht nur das senden neuer Nachrichten, sondern umfasst auch das erneute senden (\emph{replay attack}) von bereits übertragenen Nachrichten. Die Inhalte werden in diesem Fall nicht verändert und wie erfasst erneut versendet.
+        Das Senden beinhaltet nicht nur das senden neuer Nachrichten, sondern umfasst auch das erneute senden (auch \emph{replay attack} genannt) von bereits übertragenen Nachrichten. Die Inhalte werden in diesem Fall nicht verändert und wie erfasst erneut versendet.
         
         \subsubsection{6. Nachricht verwerfen}
         Das System muss es dem Nutzer ermöglichen, abgefangene Nachrichten verwerfen zu können.
