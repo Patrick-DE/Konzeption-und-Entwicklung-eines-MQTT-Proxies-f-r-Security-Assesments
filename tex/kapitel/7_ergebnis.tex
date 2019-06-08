@@ -1,9 +1,19 @@
 \chapter{Ergebnis}
-Was sind die gewonnenen Erkenntnisse?
-Was kann ich jetzt damit anstellen?
-Hab Software erstellt um
-Bruteforcen
-Fuzzen
-Crashen
-Schwachstellen finden
-Information disclosure
+%Was sind die gewonnenen Erkenntnisse?
+%Was kann ich jetzt damit anstellen?
+
+Es wurde ein Konzept entworfen, welches Protokoll unabhängig ist. Die modulare Konzeption der Komponenten lässt das \ac{MQTT} Protokoll durch andere austauschen. Zusätzlich dazu ist es Sprachen unabhängig, da auf keine sprachen spezifischen Funktionen referenziert werden und das Konzept auf einer hohen Abstraktionsebene gehalten wurde. Dank der Sprachenunabhängigkeit ist es ebenfalls möglich, das Konzept plattformunabhängig zu realisieren. Des Weiteren ermöglicht dies ebenfalls eine weite Verwendung dieses Konzepts, da jeder externe Entwickler dieses Konzept in seiner gewünschten Programmiersprache entwickeln kann.
+
+Mithilfe von Kapitel 6 wurde festgestellt, dass die entwickelte Software in mehreren Aufgabengebieten den Nutzer unterstützen kann.
+Es ist möglich eingeschleuste Nachrichten zum \emph{bruteforcen}\footnote{Strukturiertes durchprobieren jeder möglichen Kombination.} von Zugängen anderer Geräte oder Netzwerke um sich unberechtigten Zugriff zu verschaffen.
+Weiter ist es möglich, spezifische Nutzdaten dem Endgerät oder Client zu senden und anhand der Reaktion des Kommunikationspartners oder der empfangenen Nachrichten Schwachstellen zu erkennen.
+Falls nur die eingehenden und ausgehenden Nachrichten, und keine Antworten, interessant sind ist ebenfalls ein aktives Logging möglich. Dies bedeutet, dass die aufgezeichneten Nachrichten fallen gelassen und nicht mehr weitergesendet werden.
+
+Zusätzlich, hat sich herausgestellt, dass nicht eine wichtige Funktion für die Überwachung nicht vorhanden ist. Es mangelt an einer separaten Aufzeichnung aller Pakete der verbundenen Clients ohne in die Kommunikation aktiv einzugreifen.
+%Hab Software erstellt um
+%    Bruteforcen
+%    Fuzzen
+%    Crashen
+%    Schwachstellen finden
+%    Information disclosure
+%    Nachvollziehen

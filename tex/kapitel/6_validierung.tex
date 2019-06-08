@@ -81,7 +81,7 @@ Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in der Gl
     \subsection{Konfiguration der Software} \label{KonfigurationDerSoftware}
     %Konfiguration
     Das Projekt ist im Standard auf Prozessoren mit x86-Befehlssatz ausgerichtet, kann allerdings bei Bedarf auch auf Prozessoren mit x64-Befehlssatz durch Änderung der entsprechenden Einstellung in Visual Studio geändert werden.
-    Eine Unterstützung für weitere Architekturen ist durch die Installation plattformübergreifender Implementierungen von Mono und Python möglich. Auch muss hierzu in Visual Studio die Zielarchitektur auf "Any CPU" gesetzt werden. 
+    Eine Unterstützung für weitere Architekturen ist durch die Installation plattformübergreifender Implementierungen von Mono und Python möglich. Auch muss hierzu in Visual Studio die Zielarchitektur auf \glqq Any CPU\grqq{} gesetzt werden. 
     Zusätzlich ist zur Ausführung der Anwendung ein privilegierter Account erforderlich, um die Berichtigung für Zugriff auf die erforderlichen Ports zu erhalten.
     
     Es werden Port 1883 für die Kommunikation über das \ac{MQTT}-Protokoll und Port 80 für die \ac{REST} Schnittstelle und einen Webserver, der die Weboberfläche bereitstellt, benötigt.
@@ -109,7 +109,7 @@ Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in der Gl
 \section{Ausführung und Bewertung}
 Auf Abbildung \ref{fig:client_messages} ist der erstellte virtuelle Client zu sehen, welcher Nachrichten über den Proxy an den Broker schickt.
 %Was für Nachrichten
-Nach dem erfolgreichen Abonnieren des \emph{Topics}, sendet der virtuelle Client jede Sekunde eine Nachrichten mit dem aktuellen Status an den Broker. Kurz darauf veröffentlicht der Broker diese Nachricht in dem abonnierten \emph{Topic}. Aus diesem Grund erhält der Client anschließend dieselbe Nachricht wieder zurück. Abhängig vom Szenario muss der Client nicht an seinen Veröffentlichungen interessiert sein und kann auch andere \emph{Topics} \emph{"subscriben"} (abonnieren).
+Nach dem erfolgreichen Abonnieren des \emph{Topics}, sendet der virtuelle Client jede Sekunde eine Nachrichten mit dem aktuellen Status an den Broker. Kurz darauf veröffentlicht der Broker diese Nachricht in dem abonnierten \emph{Topic}. Aus diesem Grund erhält der Client anschließend dieselbe Nachricht wieder zurück. Abhängig vom Szenario muss der Client nicht an seinen Veröffentlichungen interessiert sein und kann auch andere \emph{Topics} \emph{subscriben} (oder auch abonnieren genannt).
 \begin{figure}[!h]%h=direkt danach t=top b=bottom
     \centering
     \includegraphics[width=10cm]{tex/bilder/6_validierung/ClientMessages.png}
@@ -151,14 +151,14 @@ Das Frontend des \emph{Interceptors}, welches auf Abbildung \ref{fig:frontend_me
         \item Ohne Clients:
         Solange das Programm im Leerlauf arbeitet, also nur Events registriert, die auf Einwirkung anderer Komponenten warten, benötigt es rund 19 \ac{MB} \ac{RAM} und hat eine maximale \ac{CPU} Auslastung von einem Prozent.
         \item Mit einem Client:
-        Sobald der erste Client sich verbunden hat, wir nur ein \ac{MB} mehr \ac{RAM} benötigt, in einer Summe von 20 \ac{MB} resultiert. Im Gegensatz dazu werden nun nach der ankommenden Nachricht vom \ac{IoT}-Client alle Funktionen des Programms ausgeführt. Dies führt zu einer Erhöhung beim Ausführen der "Connect"-Funktion auf 20 Prozent und anschießend maximal 17 Prozent.
+        Sobald der erste Client sich verbunden hat, wir nur ein \ac{MB} mehr \ac{RAM} benötigt, in einer Summe von 20 \ac{MB} resultiert. Im Gegensatz dazu werden nun nach der ankommenden Nachricht vom \ac{IoT}-Client alle Funktionen des Programms ausgeführt. Dies führt zu einer Erhöhung beim Ausführen der \glqq Connect\grqq{} -Funktion auf 20 Prozent und anschießend maximal 17 Prozent.
         \item Mit zwei Clients:
         Kommt nun ein weiterer Client dazu, sodass nun zwei Clients mit dem Proxy verbunden sind, steigt der \ac{RAM}-Verbrauch weiterhin nur um einen Prozent auf 21 \ac{MB} an. Die maximale \ac{CPU} Auslastung steigt jedoch auf 33 Prozent an, was eine Steigerung um 95 Prozent darstellt. Dies ist unter anderem auf ein aktuelles Problem in der Proxy-Implementierung %\cite{https://github.com/Patrick-DE/MQTT-Proxy/issues/3}
         zurückzuführen, das dazu führt, dass jeder Client die Antworten aller Clients an den Proxy schickt. Dies bedeutet, dass Antworten des externen Brokers doppelt erfasst und publiziert werden.
         Bei genauerer Analyse beider am Ansteigen beteiligten Funktionen, ist zu erkennen, dass der größte Ressourcenbedarf bei den folgenden Funktionen zu verorten ist:
         \begin{itemize}
-            \item Für 30 Prozent der maximalen \ac{CPU}-Auslastung des Programms ist die "Connect"-Funktion verantwortlich. Die "Connect"-Funktion wird aufgerufen, sobald sich ein \ac{IoT}-Client bei dem Proxy registriert. Sie beinhaltet mehrere kaskadierende Methodenaufrufe, womit der Verbindungsauf von Clients ressourcenintensiv wird.  
-            \item Für 57 Prozent der maximalen \ac{CPU}-Auslastung des Programms ist die Systemfunktion \emph{"Console.WriteLine()"} Funktion verantwortlich. Da in diesem Programm viele Informationen an die Konsole zur Information an den Entwickler oder Nutzer weitergereicht werden, ist dies die Hauptursache dafür, dass das Programm die oben genannten \ac{CPU}-Auslastung aufweist. Zu bemerken ist jedoch, dass diese nur den maximalen Wert anzeigen, welcher nur vorhanden ist, wenn Nachrichten an den externen Broker weitergeleitet werden.
+            \item Für 30 Prozent der maximalen \ac{CPU}-Auslastung des Programms ist die \glqq Connect\grqq -Funktion verantwortlich. Sie wird aufgerufen, sobald sich ein \ac{IoT}-Client bei dem Proxy registriert. Sie beinhaltet mehrere kaskadierende Methodenaufrufe, womit der Verbindungsauf von Clients ressourcenintensiv wird.  
+            \item Für 57 Prozent der maximalen \ac{CPU}-Auslastung des Programms ist die Systemfunktion \emph{Console.WriteLine()} Funktion verantwortlich. Da in diesem Programm viele Informationen an die Konsole zur Information an den Entwickler oder Nutzer weitergereicht werden, ist dies die Hauptursache dafür, dass das Programm die oben genannten \ac{CPU}-Auslastung aufweist. Zu bemerken ist jedoch, dass diese nur den maximalen Wert anzeigen, welcher nur vorhanden ist, wenn Nachrichten an den externen Broker weitergeleitet werden.
         \end{itemize}
     \end{enumerate}
     %TODO Visual Studio Profiler Screenshot von timeline mit marker auf 1 2 3 Clients

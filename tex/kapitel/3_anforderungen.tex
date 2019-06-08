@@ -72,7 +72,7 @@
     Wie beim Netzwerkadministrator bereits geschildert, kann Wireshark zur Informationsbeschaffung verwendet werden.
     Da bei Wireshark viele verschiedene Protokolle unterstützt und auch sehr detaillierte Informationen angezeigt werden, passiert es schnell, dass durch die große Menge wichtige Bestandteile untergehen (\emph{visual clutter}) oder nur mit Aufwand gefunden werden.
     
-    Burp Suite von PortSwigger bietet im Gegensatz zu Wireshark ebenfalls eine Proxy Komponente und kann somit wie in diesem Tool geplant die Nachrichten protokollieren/ überwachen sondern auch in die Kommunikation eingreifen. Der große Unterschied besteht darin, dass Burp Suite ausschließlich für HTTP/s und (Sec)Websocket Kommunikation zu verwenden ist und keinerlei Unterstützung für das \ac{MQTT}-Protokoll bietet. Man könnte die Idee jedoch am einfachsten mit dieser Lösung vergleichen, da auch eine ähnlich Bedienung von Vorteil wäre. Dadurch würden Nutzer eine geringere Einarbeitungszeit benötigen und auch die Akzeptanz steigern.
+    Burp Suite von PortSwigger bietet im Gegensatz zu Wireshark ebenfalls eine Proxy Komponente und kann somit, wie in diesem Tool geplant, die Nachrichten protokollieren bzw. überwachen sondern auch in die Kommunikation eingreifen. Der große Unterschied besteht darin, dass Burp Suite ausschließlich für HTTP/s und (Sec)Websocket Kommunikation zu verwenden ist und keinerlei Unterstützung für das \ac{MQTT}-Protokoll bietet. Man könnte die Idee jedoch am einfachsten mit dieser Lösung vergleichen, da auch eine ähnlich Bedienung von Vorteil wäre. Dadurch würden Nutzer eine geringere Einarbeitungszeit benötigen und auch die Akzeptanz steigern.
 
 \section{Abgeleitete Anforderungen}
     Im Folgenden werden die werden Use-Cases aus den obigen Nutzerbeschreibungen extrahiert und beschrieben.
@@ -91,7 +91,7 @@
     	Um dies zu bewerkstelligen, ist es notwendig die angezeigten Nachrichten nach den Inhalten zu filtern.
     	
     Zu \emph{Kommunikation manipulieren}:
-        Im Folgenden werden Aktionen wie Payload ändern, Nachricht senden, Nachricht kopieren, Nachricht ändern/speichern,Nachricht verwerfen beschrieben.
+        Im Folgenden werden Aktionen wie Payload ändern, Nachricht senden, Nachricht kopieren, Nachricht ändern bzw. speichern,Nachricht verwerfen beschrieben.
     	Der Nutzer möchte auf verschiedene Weisen die Kommunikation zwischen zwei Kommunikationspartnern über ein drittes System verändern können.
     	Durch Veränderung des Nachrichteninhalts einzelner Nachrichten ist es dem Nutzer möglich die Kommunikation zu verändern.
     	Anhand von selbsterstellten Pakete, welche im Namen der Kommunikationspartner erstellt werden, sollen vom Nutzer gewünschte Informationen übertragen werden.

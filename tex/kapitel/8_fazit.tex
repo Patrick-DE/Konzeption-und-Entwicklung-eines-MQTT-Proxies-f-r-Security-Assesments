@@ -1,13 +1,22 @@
 \chapter{Fazit}
+%Zusammenfassung
+Es wurde ein Konzept für eine Software erstellt, die einen Proxy realisiert und von System-, Netzwerkadministratoren sowie Security Auditoren verwendet werden kann um deren Arbeit zu erleichtern. Dieses Konzept kann nicht nur unabhängig von der Sprache entwickelt, sondern auch auf verschiedenen Plattformen ausgeführt werden. Eine weitere Besonderheit ist, dass selbst das Protokoll dank der Modularität ausgetauscht werden kann und somit weitere Protokolle unterstützt.
+Die Software, welche im Rahmen der Arbeit entwickelt wurde, erfüllt die erfassten Anforderungen und unterstützt mithilfe verschiedener Funktionen (wie ...) die Nutzer bei Ihrer Arbeit. Es wurde jedoch eine Schwächen bei der Überwachung identifiziert, da Nachrichten nicht ohne einen aktiven Eingriff in die Kommunikation aufgezeichnet werden können.
+
+%Was gemacht
+%Was gelernt
+%Wichtigsten Punkte aus dem Ergebnis mit Verweis
+%Bewertung der wichtigsten Punkte, gut/ schlecht? wie verbessern
 
 \section{Ausblick}
-Was wäre noch als Erweiterung möglich
-    Loggen/Monitoren der MQTT-Requests
-    Manipulieren
-    Replay
-    Addons:
-    Discovery-Modus: TCP/IP durchsuchen mit Pattern Scanning auf Plain getunneltes MQTT z.B.: in SSH, Websockets
-    Auto-Analyse: "Magic Bytes" check ob MQTT 3.1.1 oder MQTT 5
-    MQTT 5: Proxien und decoden
+%Wo kann es in Zukunft genutzt werden?
+Die Software kann in Zukunft in Netzwerken eingesetzt werden, um die Kommunikation eines oder mehrerer Geräte zu einem Broker zu überprüfen.
+Weiter kann sie eingesetzt werden, um mithilfe verschiedener Methoden (zum Beispiel: Fuzzen, Bruteforce, Replay) den Endpunkt des Gerätes oder des Brokers auf Schwachstellen zu prüfen. Somit kann die Sicherheit der Geräte durch melden der fehlerhaften Funktionen an den Hersteller oder Entwickler erhöht werden. Weiter ist es möglich herauszufinden, welche Daten an den Hersteller übertragen werden um somit mehr Transparenz, in Bezug auf Themen rund um den Datenschutz, zu ermöglichen.
 
 \section{Weiterführende Arbeiten}
+%Was wäre noch als Erweiterung möglich
+%konkrete Projekte zur Erweiterung/ Verbesserung vorschlagen
+Im Laufe der Arbeit wurden verschiedene Ideen und Konzepte über potenzielle Erweiterungen entwickelt, welche im Folgenden aufgeführt werden.
+Es könnte ein \emph{Discovery-Modus} hinzugefügt werden, der in unbekannten Netzwerkverbindungen, anhand von speziellen Mustern, die implementierten Protokolle automatisch erkennen kann. Zusätzlich soll die Erkennung auch umschließende Transporttechnologien erkennen können und somit geschachtelte Verbindungen ebenfalls erkennen können. Dies würde in unbekannten oder neuen Netzen das Suchen der Geräte beschleunigen und die Überwachung präziser und vollständiger machen.
+Dadurch, dass Anfang 2019 MQTT in der Version 5 verabschiedet wurde, wäre es notwendig in Zukunft eine Unterstützung für das neue Protokoll hinzuzufügen um auch die Kommunikation der neueren Geräte lesen zu können \cite{mqtt_org_2019}.
+Darauf aufbauend könnte eine automatisierte Analyse der Protokolle erfolgen und auf Basis der erkannten \ac{MQTT} Version der korrekte Dekoder ausgewählt werden. Dies würde die Nutzereingabe bezüglich der verwendeten Version pro Client überflüssig machen und das Programm komfortabler somit gestalten.
