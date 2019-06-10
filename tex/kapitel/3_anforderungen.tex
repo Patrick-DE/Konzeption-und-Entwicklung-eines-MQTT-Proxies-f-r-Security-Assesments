@@ -8,7 +8,7 @@
     Aus diesem Szenario heraus ergeben sich zwei wichtige Nutzerrollen.
     
 %=====================================================================%    
-%wer? Nutzerrolle: Admin (monitoring)
+%Wer? Nutzerrolle: Admin (monitoring)
 %=====================================================================%    
     Auf der einen Seite existiert der System- , Netwerkadministrator, welcher versucht Probleme in der Kommunikation zu finden und zu lösen oder eventuelle Anomalien zu erkennen.
 %Aufgabenbereiche Motivation
@@ -27,7 +27,7 @@
         \item \glqq Application-level services\grqq{}
         
         %Reverse Proxies und DNS
-        Auf dieser Ebene müssen Administratoren verschiedene Applikationen wie \ac{DNS}-Server\footnote{\glqq Das DNS verknüpft [...] Rechnernamen und IP-Adressen miteinander. Es leistet zusätzlich die Speicherung und Ausgabe weiterer Informationen über die Dienste, die mit einer Domain verknüpft sind \cite{denic_eg}.\grqq{}} oder Proxies konfigurieren und Anwendungen miteinander verbinden um neue Systeme in die bestehende Systemlandschaften zu integrieren.
+        Auf dieser Ebene müssen Administratoren verschiedene Applikationen wie \ac{DNS}-Server\footnote{\glqq Das DNS verknüpft [...] Rechnernamen und IP-Adressen miteinander. Es leistet zusätzlich die Speicherung und Ausgabe weiterer Informationen über die Dienste, die mit einer Domain verknüpft sind.\grqq{} \cite{denic_eg}} oder Proxies konfigurieren und Anwendungen miteinander verbinden um neue Systeme in die bestehende Systemlandschaften zu integrieren.
         
         \item \glqq Network-level services\grqq{}
         
@@ -100,7 +100,7 @@
     	Für den Fall, dass übertragene Nachrichten Inhalte beinhalten, welche nicht ankommen dürfen oder nicht den gewünschten Inhalt haben, möchte der Nutzer sie verwerfen und somit von der Kommunikation entfernen.
 
     %Tabelle mit Funktionale Anforderungen
-    \subsection{Formale Anforderungen}
+    \subsection{Formale Anforderungen} \label{FormaleAnforderungen}
     Anhand der Use-Cases lassen sich folgende formale Anforderungen ableiten (siehe Tabelle \ref{tab:functional_requirements}).
     Dabei ist zu beachten, dass diese Anforderungen, dadurch das es sich um ein abstraktes Konzept handelt, unspezifisch und ausschließlich funktional sind.
     \begin{table}[h]
@@ -123,6 +123,7 @@
         \subsubsection{1. Nachrichten anzeigen}
         Das System ermöglicht die Anzeige von Nachrichten einer \ac{MQTT}-Kommunikation.
         Dabei werden diese in einer chronologischen Reihenfolge dargestellt und stellen relevante Informationen wie Topic, Payload, Quality of Service und Zeitpunkt der Übertragung zur Verfügung.
+        In dieser Arbeit werden jedoch nicht alle eingehenden, sondern nur aktiv abgefangene, Nachrichten betrachtet, da diese die höchste Priorität besitzen.
         
         \subsubsection{2. Nachrichten filtern}
         Die Software muss angezeigte Nachrichten nach deren Attributen filtern können.
