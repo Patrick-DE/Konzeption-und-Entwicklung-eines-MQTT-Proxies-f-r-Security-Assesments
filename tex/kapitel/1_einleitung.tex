@@ -1,17 +1,26 @@
 \chapter{Einleitung}
+%Motivation
+%%Umfeld
+
+%%Problemstellung
+%Ziel
+%%Herangehensweise
+%%Verwandte Arbeiten
+%%Konkrete Ziel
+%Stuktur der Arbeit
 
 \section{Motivation}
-Eine Statistik von Nier zeigt, wie die Akzeptanz von intelligenten Geräten zwischen 2015 und 2017 angestiegen ist: bei smarten Thermostaten war der geringste Anstieg zu verzeichnen, bei Fitness-Trackern stieg sie um mehr als das Dreifache \cite{nier_2017}. Weitemeyer prognostiziert bis 2020 weiterhin einen Anstieg an vernetzen Geräten in Deutschland \cite{weitemeyer_2018}.
-Zusammen mit der steigenden Akzeptanz sind allerdings in den letzten Jahren ebenfalls die Angriffe von Kriminellen gegen zum Beispiel Geräte im sogenannten \ac{IoT}, oder auch intelligente Geräte genannt, gestiegen \cite{statista_2019}.
+Eine Statistik von Nier zeigt, wie die Akzeptanz von intelligenten Geräten zwischen 2015 und 2017 angestiegen ist: bei smarten Thermostaten war der geringste Anstieg zu verzeichnen, bei Fitness-Trackern stieg sie um mehr als das Dreifache \cite{nier_2017}. Weitemeyer prognostiziert bis 2020 weiterhin einen Anstieg an vernetzten Geräten in Deutschland \cite{weitemeyer_2018}.
+Zusammen mit der steigenden Akzeptanz sind allerdings in den letzten Jahren ebenfalls die Angriffe von Kriminellen gegen zum Beispiel Geräte im sogenannten \ac{IoT}, oder auch \glqq intelligente Geräte\grqq{} genannt, gestiegen \cite{statista_2019}.
 
 %Warum (Fallbeispiele) 
-Auch finden sich solche Fälle von Angriffen oder Verstöße gegen die Privatsphäre immer häufiger in den Medien \cite{holland_2016,it_verlag_informationstechnik_gmbh_2018}. Aus diesem Grund beschäftigen sich auch immer häufiger Firmen im IT-Sicherheitssektor mit diesen Themen und untersuchen verschiedene Produkte auf die Anfälligkeit für solche Attacken und auf die Existenz von Schwachstellen \cite{lorenz_2018,ao_kaspersky_lab_2018}.
+Darüber hinaus finden sich solche Fälle von Angriffen oder Verstöße gegen die Privatsphäre immer häufiger in den Medien \cite{holland_2016,it_verlag_informationstechnik_gmbh_2018}. Aus diesem Grund beschäftigen sich auch Firmen im IT-Sicherheitssektor mit diesen Themen und untersuchen verschiedene Produkte auf die Anfälligkeit für solche Attacken sowie auf die Existenz von Schwachstellen \cite{lorenz_2018,ao_kaspersky_lab_2018}.
 
 Als Beispiel untersuchte die Firma \emph{Positive Technologies} einen intelligenten Saugroboter \cite{salmi_2017}.
 Dieser enthielt zwei kritische Schwachstellen, mithilfe derer ein Angreifer nicht nur Informationen von dem Roboter bekommen konnte, sondern ihn Befehle ausführen lassen und somit die vorhandene Kamera mit einer Nachtsichtfunktion ansteuern konnte. Die Konsequenz war, dass der Angreifer ein aktuelles Kamerabild sowie Zugriff auf das Netzwerk hatte, in dem sich der Roboter befand. Die Tatsache, dass die Schwachstelle in einem, durch eine Anmeldung geschützten Bereich war, störte nicht, da die Standardpasswörter der Produkte oft nicht geändert werden \cite{positive_technologies_2018}.
-Dies zeigt auch zwei Berichte von Trustwave aus 2014 und 2018 \cite{trustwave_holdings_inc_2014,trustwave_holdings_inc_2018}.
+Dies zeigen auch zwei Berichte von Trustwave aus 2014 und 2018.
 Im Jahr 2014 schrieb Trustwave \cite{trustwave_holdings_inc_2014}: \glqq Thirty percent of the time, an attacker gains access because of a weak password.\grqq{}
-Dies bedeutet, dass ungefähr ein Drittel der Angriffe nur durch schwache oder Standardpasswörter möglich waren. Vergleicht man dies mit dem aktuellsten Global Security Report 2018, wird zwar erkenntlich, dass die Anzahl dieser Fälle abgenommen hat, allerdings immer noch die zweithäufigste Schwachstelle mit einem hohen Risiko darstellt.
+Dies bedeutet, dass ungefähr ein Drittel der Angriffe nur durch schwache oder Standardpasswörter möglich waren. Vergleicht man dies mit dem aktuellsten Global Security Report 2018, wird zwar erkenntlich, dass die Anzahl dieser Fälle abgenommen hat, allerdings immer noch die zweithäufigste Schwachstelle mit einem hohen Risiko darstellt \cite{trustwave_holdings_inc_2018}.
 
 Diese Behauptung deckt sich nicht nur mit den Top 10 Risiken 2018 des \ac{OWASP}, bei der die größte Schwachstelle und somit Nummer eins folgende Kategorie ist: \glqq I1 Weak Guessable, or Hardcoded Passwords\grqq{}, sondern auch mit weiteren Artikeln \cite{guzman_2019,eckstein_2018}.
 
@@ -25,25 +34,25 @@ Diese Behauptung deckt sich nicht nur mit den Top 10 Risiken 2018 des \ac{OWASP}
 
 %Zweck
     Ein wichtiger Punkt ist die Identifikation von Schwachstellen in den Geräten, Services oder der Kommunikation, um Produkte sicherer zu machen und den Verlust von Kundendaten zu verhindern.
-    Um das Gerät sowie den vom Betreiber zur Verfügung gestellten Dienst auf Schwachstellen untersuchen zu können, ist es notwendig, sich mit dem zur Kommunikation genutzten Protokoll auseinander zu setzen. Dazu gehört beispielsweise darüber gesendete Nachrichten zu bearbeiten und erneut zu senden oder neue Nachrichten im Namen des eigentlichen Gerätes zu verfassen. Dies entspricht dem IT-Schutzziel Authentizität.
+    Um das Gerät sowie den vom Betreiber zur Verfügung gestellten Dienst auf Schwachstellen untersuchen zu können, ist es notwendig, sich mit dem zur Kommunikation genutzten Protokoll auseinander zu setzen. Dazu gehört beispielsweise darüber gesendete Nachrichten zu bearbeiten und erneut zu senden oder neue Nachrichten im Namen des eigentlichen Gerätes zu verfassen. Dies entspricht dem IT-Schutzziel Authentizität \cite{Bedner2010}.
     
     Der zweite Punkt bezieht sich auf personenbezogene oder sensitive, geheime Informationen von privaten Personen.
     Wenn man im Internet von Webseite zu Webseite klickt, hinterlässt man Spuren, welche abhängig von der Masse der Daten, zur eindeutigen Identifizierung einer einzelnen Person verwendet werden können. %TODO: QUELLE
     %AUf Amazon Echo z.B.: umschreiben
     Die Erhebung dieser Daten kann jedoch durch Browser-Erweiterungen wie \emph{Disconnect} oder Werbeblocker reduziert oder gesteuert werden. Vor allem weiterführende Daten wie Positionsdaten werden normalerweise nicht übertragen und Gewohnheiten können nur schwer herausgefunden werden, da nur alle Aktionen im Browser überwacht werden können.
     \ac{IoT} Geräte jedoch befinden sich im öffentlich erreichbaren Internet und nicht innerhalb eines abgeschlossenen Netzes. Mithilfe von Daten wie Nutzungsverhalten in Verbindung mit Zeit und den tatsächlichen Gegebenheiten in der Welt lassen sich viel schneller und präziser Aussagen über das Verhalten von Menschen treffen. %TODO: QUELLE
-    Regularien oder Möglichkeiten, diese Sammlung von Daten einzuschränken, gestalten sich schwierig, da man keinen Zugriff zu der Konfiguration der Geräten besitzt und somit keine Änderungen daran vornehmen kann.
-    Des Weiteren ist es notwendig sicherzustellen, dass ausschließlich unternehmensbezogene Daten an jene externe Firmen gehen, welche auch im Rahmen der Verträge definiert wurden. Dies soll eine erhöhte Transparent im Bezug zu Datenschutz fördern und die Geheimhaltung der Daten sicherstellen.
-    Dadurch, dass nicht beeinflusst werden kann, ob und welche Daten übertragen werden, ist es wichtig die Kommunikation zu überwachen, um ein Abfluss von geheimen oder sensitiven Informationen zu verhindern und bei Bedarf diese Übertragungen zu verändern um diese Informationen zu entfernen.
+    Regularien oder Möglichkeiten, diese Sammlung von Daten einzuschränken, gestalten sich schwierig, da man keinen Zugriff zu der Konfiguration der Geräte besitzt und somit keine Änderungen daran vornehmen kann.
+    Des Weiteren ist es notwendig sicherzustellen, dass ausschließlich unternehmensbezogene Daten an jene externe Firmen gehen, welche auch im Rahmen der Verträge definiert wurden. Dies soll eine erhöhte Transparenz im Bezug auf Datenschutz fördern und die Geheimhaltung der Daten sicherstellen.
+    Dadurch, dass nicht beeinflusst werden kann, ob und welche Daten übertragen werden, ist es wichtig die Kommunikation zu überwachen, um einen Abfluss von geheimen oder sensitiven Informationen zu verhindern und bei Bedarf diese Übertragungen zu verändern, um diese Informationen zu entfernen.
     
     %Forschungsfrage!
     Die Frage, welche in dieser Arbeit behandelt wird, ist die Folgende: 
-    Ist es möglich, mithilfe eines Programms die übertragenen Daten der intelligenten Geräte herstellerübergreifend zu überwachen und verändern zu können?
+    Ist es möglich, mithilfe eines Programms die übertragenen Daten der intelligenten Geräte herstellerübergreifend zu überwachen und zu verändern?
 
 %Struktur
     Zu Beginn dieser Arbeit wird Wissen über die benötigten grundlegenden Protokolle vermittelt.
     Anschließend werden die darauf aufbauenden Konzepte erläutert und in Kontext zu der Forschungsfrage gestellt.
-    Nachdem die Grundlagen vermittelt wurden bekommt der Leser eine Übersicht über bereits vorhandene Konzepte und Herangehensweisen zur Absicherung von \ac{IoT} oder im deutschen Sprachgebrauch \emph{Internet der Dinge}. 
+    Nachdem die Grundlagen vermittelt wurden, bekommt der Leser eine Übersicht über bereits vorhandene Konzepte und Herangehensweisen zur Absicherung von \ac{IoT} oder im deutschen Sprachgebrauch \emph{Internet der Dinge}. 
     Dies soll den Leser befähigen, die vorgestellten Produkte sowie die Entwicklung und Umsetzung des in dieser Arbeit erstellten Konzepts korrekt einordnen und bewerten zu können.
     Direkt im Anschluss wird das Konzept der eigenen Software erläutert und auf Schwierigkeiten sowie die daraus resultierenden Lösungen eingegangen. Das darauf folgende Kapitel \glqq Implementierung\grqq{} beschreibt die Umsetzung des zuvor erläuterten Konzepts und setzt die Rahmenbedingungen und verwendeten Technologien fest. Um die Ergebnisse der Arbeit bewerten zu können, wird im Anschluss eine Validierung anhand von Versuchen durchgeführt und die Ergebnisse der Forschungsfrage festgehalten. Zuletzt wird ein Ausblick gegeben, welche Probleme, Gefahren und Potenziale sich in Zukunft ergeben könnten und welche weiteren Arbeiten sich zu diesen Themen anbieten.
     %Check with Fazit!

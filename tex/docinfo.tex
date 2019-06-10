@@ -12,10 +12,10 @@
 % der Literatur die Sortierreihenfolge mit sortlocale=en_US.
 
 % Titel der Arbeit auf Deutsch
-\newcommand{\hsmatitelde}{Konzeption und Entwicklung eines MQTT Proxies für Security Assesments}
+\newcommand{\hsmatitelde}{Konzeption und Entwicklung eines MQTT Proxies für Security Assessments}
 
 % Titel der Arbeit auf Englisch
-\newcommand{\hsmatitelen}{Conception and developement of an MQTT Proxy for Security Assesments}
+\newcommand{\hsmatitelen}{Conception and developement of an MQTT Proxy for Security Assessments}
 
 % Weitere Informationen zur Arbeit
 \newcommand{\hsmaort}{Mannheim}    % Ort
@@ -37,12 +37,23 @@
 % Abstract
 
 % Kurze (maximal halbseitige) Beschreibung, worum es in der Arbeit geht auf Deutsch
-\newcommand{\hsmaabstractde}{Immer mehr intelligente Geräte werden im häuslichen Umfeld und der Industrie eingesetzt. Dies ist auf die Reduktion der Betriebskosten sowie der Bequemlichkeit von Menschen zurückzuführen. Oft verwenden diese Geräte ein Protokoll, welches im Standard keine Sicherheit garantiert, und Hersteller müssen somit eigene Sicherheitsmechanismen implementieren.
-Das zweite Problem, neben den Eigenschaften des Protokolls, ist die fehlerhafte Konfiguration und Einrichtung der Produkte. Um die unter anderem daraus resultierenden Schwachstellen zu finden und auch um zu erfahren, welche Daten wirklich an den externen Anbieter gesendet werden ist es notwendig ein Tool zu entwickeln, das ermöglicht, die Kommunikation einer Reihe von Geräten zu analysieren und zu manipulieren.
-Die Arbeit hat zum Ziel, eine Software zu konzipieren und zu entwickeln, die es möglich macht, die \acs{MQTT}-Kommunikation zwischen \acs{IoT}-Geräten und deren Ziel abzufangen. Anschließend kann der Inhalt der Nachrichten ausgelesen oder manipuliert werden, um die Endstelle oder das Gerät selbst zu testen.}
+%Problem
+\newcommand{\hsmaabstractde}{Immer mehr intelligente Geräte werden im häuslichen Umfeld und der Industrie eingesetzt. Dies ist auf die Reduktion der Betriebskosten sowie die Bequemlichkeit von Menschen zurückzuführen. Oft verwenden diese Geräte ein Protokoll, welches im Standard keine Sicherheit garantiert, und Hersteller müssen somit eigene Sicherheitsmechanismen implementieren.
+Das zweite Problem, neben den Eigenschaften des Protokolls, ist die fehlerhafte Konfiguration und Einrichtung der Produkte. Um die unter anderem daraus resultierenden Schwachstellen zu finden und auch um zu erfahren, welche Daten wirklich an den externen Anbieter gesendet werden, ist es notwendig ein Tool zu entwerfen, das ermöglicht, die Kommunikation einer Reihe von Geräten zu analysieren und zu manipulieren. 
+%Ziel
+Die Arbeit hat zum Ziel, eine Software zu konzipieren und zu entwickeln, die es möglich macht, die Kommunikation zwischen \acs{IoT}-Geräten und dem Betreiber abzufangen und zu modifizieren.
+%Was in der Arbeit gemacht wurde
+Um Unterstützung beim Überprüfen solcher Geräte zu erhalten, wird ein Konzept entwickelt, welches nicht nur unabhängig von der Plattform, sondern auch von der Sprache und dem untersuchten Protokoll ist.
+%Ergebnisse
+Anschließend wird dieses Konzept für das \acs{MQTT}-Protokoll implementiert und in einem virtuellen Labor getestet. Die Ergebnisse zeigen, dass die Software in der Lage ist, die Kommunikation abzufangen und zu verändern. Mithilfe von verschiedenen Funktionen, wie dem Modifizieren der Nachrichten, dem erneuten Senden oder neuen Erstellen dieser, ist es möglich die Kommunikation und Endpunkte zu testen.}
 
 % Kurze (maximal halbseitige) Beschreibung, worum es in der Arbeit geht auf Englisch
 \newcommand{\hsmaabstracten}{More and more intelligent devices are used in the domestic environment and industry. Most of the time this is due to the reduction of operating costs and the convenience of users. Often, these devices use a protocol that does not guarantee security by design, and manufacturers must therefore implement their own security mechanisms.
 The second problem, besides the characteristics of the protocol, is the misconfiguration and wrong setup of these devices. 
 To find the resulting vulnerabilities and to be able to gain knowledge about the information provided to third parties, through monitoring the data sent or received, it is mandatory to develop a tool for analyzing and manipulating this kind of traffic.
-The goal of this paper is to write a concept and create a programm with the ability to intercept the \acs{MQTT} communication between an \acs{IoT} device and its target. After that the content of the messages can be read or altered to allow the operator to monitor or test the device itself or the target.}
+%Ziel
+The goal of this paper is to write a concept and create a programm with the ability to intercept the communication between an \acs{IoT} device and its target.
+%Was in der Arbeit gemacht wurde
+To support the testing procedure of such devices, a concept is developed which is not only independent of the platform but also of the programming language and the protocol beeing used.
+%Ergebnisse
+Afterwards, this concept, with support for the \acs{MQTT}-protocol, is implemented and tested in a virtual lab. The results show that the software is capable of intercepting and changing the communication. Using various features, such as modifying the messages, resending, or rebuilding them, it is possible to test the communication and endpoints.}
