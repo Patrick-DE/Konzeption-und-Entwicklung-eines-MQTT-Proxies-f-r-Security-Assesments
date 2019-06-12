@@ -1,4 +1,4 @@
-\chapter{Einleitung}
+\chapter{Einleitung} %TODO
 %Motivation
 %%Umfeld
 %Problemstellung
@@ -10,13 +10,13 @@
 
 \section{Motivation}
 %%Umfeld
-Eine Statistik von Nier zeigt, wie die Akzeptanz von intelligenten Geräten zwischen 2015 und 2017 angestiegen ist: bei smarten Thermostaten war der geringste Anstieg zu verzeichnen, bei Fitness-Trackern stieg sie um mehr als das Dreifache \cite{nier_2017}. Weitemeyer prognostiziert bis 2020 weiterhin einen Anstieg an vernetzten Geräten in Deutschland \cite{weitemeyer_2018}.
-Zusammen mit der steigenden Akzeptanz sind allerdings in den letzten Jahren ebenfalls die Angriffe von Kriminellen gegen zum Beispiel Geräte im sogenannten \ac{IoT}, oder auch \glqq intelligente Geräte\grqq{} genannt, gestiegen \cite{statista_2019}.
+Eine 2017 veröffentlichte Statistik zeigt, wie stark die Akzeptanz von intelligenten Geräten zwischen 2015 und 2017 angestiegen ist: während bei smarten Thermostaten mit einem Prozent der geringste Anstieg zu verzeichnen war, stieg sie bei Fitness-Trackern um mehr als das Dreifache \cite{nier_2017}. Weitemeyer prognostiziert bis 2020 weiterhin einen Anstieg an vernetzten Geräten in Deutschland \cite{weitemeyer_2018}.
+Zusammen mit der Akzeptanz sind allerdings in den letzten Jahren ebenfalls die Angriffe von Kriminellen gegen Geräte im sogenannten \ac{IoT}, oder auch \glqq intelligente Geräte\grqq{} genannt, gestiegen \cite{statista_2019}.
 
 %Warum (Fallbeispiele) 
-Darüber hinaus finden sich solche Fälle von Angriffen oder Verstöße gegen die Privatsphäre immer häufiger in den Medien \cite{holland_2016,it_verlag_informationstechnik_gmbh_2018}. Aus diesem Grund beschäftigen sich auch Firmen im IT-Sicherheitssektor mit diesen Themen und untersuchen verschiedene Produkte auf die Anfälligkeit für solche Attacken sowie auf die Existenz von Schwachstellen \cite{lorenz_2018,ao_kaspersky_lab_2018}.
+Darüber hinaus finden sich solche Fälle von Angriffen oder Verstößen gegen die Privatsphäre immer häufiger in den Medien \cite{holland_2016,it_verlag_informationstechnik_gmbh_2018}. Aus diesem Grund beschäftigen sich auch Unternehmen im IT-Sicherheitssektor mit diesen Themen und untersuchen verschiedene Produkte auf ihre Anfälligkeit für solche Attacken bzw. deren Schwachstellen \cite{lorenz_2018,ao_kaspersky_lab_2018}.
 
-Als Beispiel untersuchte die Firma \emph{Positive Technologies} einen intelligenten Saugroboter \cite{salmi_2017}.
+Beispielsweise untersuchte die Firma \emph{Positive Technologies} einen intelligenten Saugroboter \cite{salmi_2017}.
 Dieser enthielt zwei kritische Schwachstellen, mithilfe derer ein Angreifer nicht nur Informationen von dem Roboter bekommen konnte, sondern ihn Befehle ausführen lassen und somit die vorhandene Kamera mit einer Nachtsichtfunktion ansteuern konnte. Die Konsequenz war, dass der Angreifer ein aktuelles Kamerabild sowie Zugriff auf das Netzwerk hatte, in dem sich der Roboter befand. Die Tatsache, dass die Schwachstelle in einem, durch eine Anmeldung geschützten Bereich war, störte nicht, da die Standardpasswörter der Produkte oft nicht geändert werden \cite{positive_technologies_2018}.
 Diese Aussage bestätigen auch zwei Berichte von Trustwave aus 2014 und 2018.
 Im Jahr 2014 schrieb Trustwave \cite{trustwave_holdings_inc_2014}: \glqq Thirty percent of the time, an attacker gains access because of a weak password.\grqq{}
@@ -34,7 +34,7 @@ Um solche Schwachstellen in Geräten, herstellerübergreifend erkennen zu könne
     In der Arbeit wird untersucht, ob es möglich ist, mithilfe eines Programms die übertragenen Daten der intelligenten Geräte herstellerübergreifend abzufangen und zu verändern.
 
 %%Herangehensweise
-    Um diese Fragestellung zu beantworten, wird ein Konzept entworfen, welches mithilfe eines Proxies in der Lage sein soll, die gewünschte Verbindung zu verändern. %TODO
+    Um diese Fragestellung zu beantworten, wird ein Konzept entworfen, welches mithilfe eines Proxies in der Lage sein soll, die gewünschte Verbindung zu verändern. Es wird versucht eine möglichst zuverlässige Weiterleitung der Pakete ermöglichen um die Lösung praktikabel zu machen. %TODO vllt noch mehr?
     
 \section{Existierende Lösungen}
 %Implementierungen auf dem Markt
@@ -47,7 +47,7 @@ Um solche Schwachstellen in Geräten, herstellerübergreifend erkennen zu könne
     
     \subsection{Axway - API Management Plus}
         Die API-Management-Software von Axway vereint das Erstellen und Organisieren vieler verschiedener Schnittstellen mit direkten Anbindungsmöglichkeiten für Endgeräte. Darüber hinaus können alle Endpunkte auf fehlerhaftes Verhalten oder Anfragen geprüft werden. Dies soll ermöglichen, auf schnelle Änderungen des Marktes einzugehen und viele verschiedene Geräte parallel zu unterstützen.
-        Um auch intelligente Geräte aus dem \ac{IoT}-Bereich unterstützen zu können, wurde ein Proxy für das \ac{MQTT}-Protokoll entwickelt \cite{axway_2018}. Der Proxy befindet sich zwischen dem Client und dem Broker. Dadurch hat er die Möglichkeit, die eingehenden Pakete abzufangen und anhand eines Regelwerks, welches per \ac{REST}\footnote{TODO} über den API-Manager erreichbar ist, Daten zu validieren.
+        Um auch intelligente Geräte aus dem \ac{IoT}-Bereich unterstützen zu können, wurde ein Proxy für das \ac{MQTT}-Protokoll entwickelt \cite{axway_2018}. Der Proxy befindet sich zwischen dem Client und dem Broker. Dadurch hat er die Möglichkeit, die eingehenden Pakete abzufangen und anhand eines Regelwerks, welches per \ac{REST}\footnote{Ist ein Architekturstiel der helfen soll verteilte Anwendungen zu realisieren und organisieren. Es ist kein Regelwerk und besitzt somit auch keine Regeln oder Standards die eingehalten werden müssen. \cite{Doglio2015}} über den \acs{API}-Manager erreichbar ist, Daten zu validieren.
         
         Das Ziel dieser Lösung ist somit, auf Basis der Richtlinien, welche auf dem Management-Server hinterlegt werden, gesendete Nachrichten des \ac{MQTT}-Protokolls zu filtern und nicht regelkonforme Kommunikation zu blockieren. Dies ermöglicht, mithilfe eines Identifizierungsmerkmals, Beispielsweise Zugriffe auf Topics oder das Versenden von Nachrichten einzuschränken..
         
@@ -57,7 +57,7 @@ Um solche Schwachstellen in Geräten, herstellerübergreifend erkennen zu könne
         Es ist zum Beispiel nicht möglich:
         \begin{itemize}
             \item Mehrere Broker per Proxy-Instanz zu definieren
-            \item TLS-Unterstützung zwischen Client und Proxy sowie Proxy und Broker zu ermöglichen
+            \item \acs{TLS}-Unterstützung zwischen Client und Proxy sowie Proxy und Broker zu ermöglichen
         \end{itemize}
         
         Trotz den Einschränkungen ist es möglich bei einer unverschlüsselten Kommunikation Daten abzufangen, deren Inhalt auswerten zu können und anhand von Regeln Pakete zu verwerfen.
@@ -92,9 +92,11 @@ Um solche Schwachstellen in Geräten, herstellerübergreifend erkennen zu könne
 
 \section{Struktur der Arbeit}
 %Struktur
-    Zu Beginn dieser Arbeit wird Wissen über die benötigten grundlegenden Protokolle vermittelt.
-    Anschließend werden die darauf aufbauenden Konzepte erläutert und in Kontext zu der Forschungsfrage gestellt.
-    Nachdem die Grundlagen vermittelt wurden, bekommt der Leser eine Übersicht über bereits vorhandene Konzepte und Herangehensweisen zur Absicherung von \ac{IoT} oder im deutschen Sprachgebrauch \emph{Internet der Dinge}. 
+    In Kapitel \ref{MQTT} dieser Arbeit wird Wissen über die benötigten grundlegende Protokoll vermittelt.
+    Anschließend werden in Kapitel \ref{TechKonzepte} die darauf aufbauenden Konzepte erläutert und in Kontext zu der Forschungsfrage gestellt.
+    %Nachdem die Grundlagen vermittelt wurden, bekommt der Leser eine Übersicht über bereits vorhandene Konzepte und Herangehensweisen zur Absicherung von \ac{IoT} oder im deutschen Sprachgebrauch \emph{Internet der Dinge}. 
     Dies soll den Leser befähigen, die vorgestellten Produkte sowie die Entwicklung und Umsetzung des in dieser Arbeit erstellten Konzepts korrekt einordnen und bewerten zu können.
-    Direkt im Anschluss wird das Konzept der eigenen Software erläutert und auf Schwierigkeiten sowie die daraus resultierenden Lösungen eingegangen. Das darauf folgende Kapitel \glqq Implementierung\grqq{} beschreibt die Umsetzung des zuvor erläuterten Konzepts und setzt die Rahmenbedingungen und verwendeten Technologien fest. Um die Ergebnisse der Arbeit bewerten zu können, wird im Anschluss eine Validierung anhand von Versuchen durchgeführt und die Ergebnisse der Forschungsfrage festgehalten. Zuletzt wird ein Ausblick gegeben, welche Probleme, Gefahren und Potenziale sich in Zukunft ergeben könnten und welche weiteren Arbeiten sich zu diesen Themen anbieten.
+    Direkt im Anschluss wird das Konzept der eigenen Software erläutert und auf Schwierigkeiten sowie die dafür entwickelten Lösungen eingegangen. Das darauf folgende Kapitel \glqq Implementierung\grqq{} beschreibt die Umsetzung des zuvor erläuterten Konzepts und setzt die Rahmenbedingungen und verwendeten Technologien fest. Um die Ergebnisse der Arbeit bewerten zu können, wird im Anschluss eine Validierung anhand von Versuchen durchgeführt und die Ergebnisse der Forschungsfrage festgehalten. Zuletzt wird ein Ausblick gegeben, welche Probleme, Gefahren und Potenziale sich in Zukunft ergeben könnten und welche weiteren Arbeiten sich zu diesen Themen anbieten.
     %Check with Fazit!
+    
+    %TODO: Zusammenfassung

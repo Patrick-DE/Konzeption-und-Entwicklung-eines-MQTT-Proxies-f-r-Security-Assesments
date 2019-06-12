@@ -1,7 +1,7 @@
 \chapter{Grundlagen}
 Um die Inhalte wie Konzeption und Implementierung aber auch verwandte Arbeiten nachvollziehen zu können, werden in diesem Kapitel grundlegende Begriffe, Techniken sowie Technologien erläutert.
 
-\section{Definitionen}
+\section{Definitionen} \label{Definitionen}
     \subsection{Smart Devices} \label{SmartDevices}
         \glqq informationstechnisch [sic] aufgerüstete Alltagsgegenstände, die einen Mehrwert durch sensorgestützte Informationsverarbeitung und Kommunikation erhalten.\grqq{} \cite{lackes_siepermann_2018}
         
@@ -21,15 +21,15 @@ Um die Inhalte wie Konzeption und Implementierung aber auch verwandte Arbeiten n
         Dieses Zitat beschreibt die Motivation, welche hinter dem \emph{Internet der Dinge} steht.
         Im Fokus ist die Automatisierung von Abläufen, ohne Zutun von Menschen. Darüber hinaus bekommen Menschen umfassende Informationen über aktuelle Zustände aller Geräte und können ihre Aktionen besser koordinieren. Dies würde die Abläufe effizienter machen, wodurch Geld eingespart und Prozesse optimiert werden können.
 
-\section{MQTT}
+\section{MQTT} \label{MQTT}
     \subsection{Publish/Subscribe}
     Das publish/subscribe-Prinzip besteht aus einer Client-Server-Architektur, wobei nur der Client aktiv kommuniziert. Der Broker ist eine Endstelle, welche meist vom Betreiber zur Verfügung gestellt wird und die Nachrichten empfängt und bei sich veröffentlicht. Der Client verbindet sich mit dem Broker und hält eine Verbindung zu diesem offen, wodurch er die Nachrichten an eine sogenannte Topic, vergleichbar mit einem Postfach im Broker, sendet. Gleichzeitig kann er mehrere angelegte Topics abonnieren (oder auch  \glqq subscriben\grqq{} genannt), was bedeutet, dass er in diesem Pfad auf neuen Nachrichten wartet. Sobald sie beim Broker eintrifft, veröffentlicht er diese für die Clients. Anschließend können diese die Informationen der Mitteilungen verarbeiten. \cite{Redbooks2012}
 
     Dieses Prinzip ermöglicht eine Kommunikation zwischen Geräten, welche keine stabile Verbindung besitzen oder eine niedrige Bandbreite einhalten müssen. Im Gegensatz zu dem Request/Response-Prinzip, welches unter anderem bei Webseiten verwendet wird, ist es hier nicht nötig sogenannte \glqq Update-Requests\grqq{} zu senden, da die Verbindung offen gehalten wird.
-    Diese Eigenschaft eignet sich besonders für \emph{Smart Devices}, die wenig Rechenkraft besitzen oder die nur wenig Informationen bei Bedarf senden müssen. \cite{Hwang2016}
+    Diese Eigenschaft eignet sich besonders für \emph{Smart Devices}, die wenig Rechenkraft besitzen oder die nur wenig Informationen bei Bedarf senden müssen \cite{Hwang2016}.
 
     \subsection{Standard}
-        \ac{MQTT} ist ein Protokoll, welches auf dem zuvor beschriebenen Publish/Subscribe-Prinzip basiert. Es wurde ursprünglich zwischen 1998 und 1999 von IBM und Arcom (heute Eurotech) entwickelt. Die Version 3.1.1 wurde Ende 2014 von der OASIS Foundation als Standard verabschiedet und ist bis heute noch der De-Facto-Standard. Dies ist ebenfalls anhand des ISO/IEC Standards zu erkennen, worin das Protokoll in 2016 unter der Bezeichnung 20922 aufgenommen wurde \cite{eclipse_foundation2017}. Mitte 2019 wurde die MQTT-Version 5.0 ebenfalls als OASIS Standard verabschiedet. Anhand von weiteren Funktionen und Rückwärtskompatibilität wird sichergestellt, dass zukünftige Geräte besser unterstützt werden können. \cite{mqtt_org_2019}.
+        \ac{MQTT} ist ein Protokoll, welches auf dem zuvor beschriebenen Publish/Subscribe-Prinzip basiert. Es wurde ursprünglich zwischen 1998 und 1999 von IBM und Arcom (heute Eurotech) entwickelt. Die Version 3.1.1 des Protokolls wurde Ende 2014 von der OASIS Foundation als Standard verabschiedet und ist bis heute noch der De-Facto-Standard. Dies ist ebenfalls anhand des ISO/IEC Standards zu erkennen, worin das Protokoll in 2016 unter der Bezeichnung 20922 aufgenommen wurde \cite{eclipse_foundation2017}. Mitte 2019 wurde die MQTT-Version 5.0 ebenfalls als OASIS Standard verabschiedet. Anhand von weiteren Funktionen und Rückwärtskompatibilität wird sichergestellt, dass Schritt für Schritt die ganze Landschaft auf die neue Version gehoben werden kann ohne Kompatibilitätsprobleme zu erzeugen. \cite{mqtt_org_2019}.
         
         \ac{MQTT} ist ein sehr kompaktes Protokoll, mit dem Zweck der \ac{M2M} Kommunikation.
         Es setzt auf \ac{TCP} auf und arbeitet asynchron\footnote{Das heißt es werden mehrere Anfragen parallel verarbeitet, anstatt auf den Abschluss der vorigen zu warten} nach dem publish/subscribe-Prinzip. Es existieren im einfachsten Fall zwei Akteure. Der Broker (alternativ auch \glqq Server\grqq{} genannt), welcher die Topics enthält und der Client, der Nachrichten an Topics sendet und weitere abonniert.
@@ -51,7 +51,7 @@ Um die Inhalte wie Konzeption und Implementierung aber auch verwandte Arbeiten n
         Es gibt verschiedene Anbieter, die Bibliotheken aus dem Standard entwickelt haben. Auch wenn sie den gleichen Standard implementieren, haben Sie verschiedene Schwerpunkte und somit Unterschiede. Einer der bekanntesten Broker ist die quelloffene Implementierung Eclipse Mosquitto \cite{eclipse_foundation_inc_2018}. Darüber hinaus gibt noch weitere Dienstleister, welche komplette Services um das Verwalten und Steuern von Broker bereitstellen. Bekannte Vertreter sind HIVEMQ \cite{hivemq_dc_square_gmbh} und CloudMQTT \cite{84codes_ab_2019}.
         %More information about the protocol can be found on the MQTT.org community site.
 
-\section{Technologien}
+\section{Technologien} \label{Technologien}
         \subsection{Zertifikate}
         Siller beschreibt Zertifikate wie folgt:
         \glqq Ein digitales Zertifikat ist ein digitaler Datensatz, der bestimmte Eigenschaften von Personen oder Objekten bestätigt und dessen Authentizität und Integrität durch kryptografische Verfahren geprüft werden kann.\grqq{} \cite{siller_2018}.
@@ -70,7 +70,7 @@ Um die Inhalte wie Konzeption und Implementierung aber auch verwandte Arbeiten n
         Die Mono-Implementierung der .NET Framework Standardbibliotheken ist kompatibel mit denen von Microsoft.
         Monos Standardbibliotheken stellen darüber hinaus noch weitere Zusatzfunktionalitäten zur Verfügung, die entweder plattformabhängig sind oder nützliche Zusätze wie Verarbeiten von Zip-Archiven oder Anbindung an Authentifizierungssysteme sind.
 
-\section{Konzepte}
+\section{Konzepte} \label{TechKonzepte}
     \subsection{Proxy}
     Die Oxford University Press definiert Proxy als \glqq A person authorized to act on behalf of another.\grqq{} und beschreibt somit das Wort im normalen Sprachegebrauch \cite{oxford_university_press_2019}.
     Tauscht man den Begriff \glqq Person\grqq{} durch \glqq Gerät\grqq{}, bekommt man eine passende technische Definition. Es handelt sich bei einem technischen Proxy um ein Gerät das im Namen eines anderen Gerätes handelt.
@@ -80,7 +80,7 @@ Um die Inhalte wie Konzeption und Implementierung aber auch verwandte Arbeiten n
         \subsubsection{DNS}
         Mithilfe von Einträgen im \ac{DNS} in der Firewall oder einem Router ist es möglich die \ac{DNS}-Anfragen\footnote{Ein Client fragt nach der \acs{IP}-Adresse des Gerätes (z.B.: google.de -> 216.58.207.35)} manuell zu überschreiben. Somit wird beim Aufruf des Brokers nicht die originale (oder auch externe) IP-Adresse\footnote{Die \acs{IP}-Adresse identifiziert jedes Gerät in einem Netzwerk eindeutig und ermöglicht das Verteilen von Paketen über Netzwerke hinweg.}, sondern die überschriebene zur Verfügung gestellt.
         \subsubsection{ARP}
-        Durch das \ac{ARP} können Einträge im \ac{DNS} von extern verändert werden. Mithilfe des sogenannten \ac{ARP}-poisoning Angriffs werden Pakete einer veränderten \ac{MAC}-Adresse (die des Opfers) an die legitimen \ac{ARP}-Anfragen gesendet. Dies ist möglich, da diese Anfragen an alle Teilnehmer in einem Netzwerk gesendet werden und die am schnellsten antwortende Nachricht akzeptiert wird. Dies verändert die Korrelation der \acs{IP}-Adresse zur \acs{MAC}-Adresse, was dazu führt, dass Nachrichten für das Opfer an den Angreifer gesendet werden. \cite{4768661}
+        Durch das \ac{ARP} können Einträge im \ac{DNS} von extern verändert werden. Mithilfe des sogenannten \acs{ARP}-Poisoning-Angriffs werden Pakete einer veränderten \ac{MAC}-Adresse (die des Opfers) an die legitimen \ac{ARP}-Anfragen gesendet. Dies ist möglich, da diese Anfragen an alle Teilnehmer in einem Netzwerk gesendet werden und die am schnellsten antwortende Nachricht akzeptiert wird. Dies verändert die Korrelation der \acs{IP}-Adresse zur \acs{MAC}-Adresse, was dazu führt, dass Nachrichten für das Opfer an den Angreifer gesendet werden. \cite{4768661}
         \subsubsection{ICMP}
         Durch das \ac{ICMP} ist es möglich, mithilfe einer Nachricht zur Weiterleitung von Paketen, den Nachrichtenfluss über das eigene Gerät laufen zu lassen.
         Diese Nachricht wird üblicherweise dazu verwendet, Router über einen besseren bzw. schnelleren Weg zu informieren, jedoch kann sie auch manuell erzeugt und somit missbraucht werden. Obwohl diese Methode den großen Vorteil bietet, nicht im lokalen Netz sein zu müssen, ist der Nachteil, dass viele Router statische Routen verwenden oder diese Pakete schlichtweg abweisen, nicht zu ignorieren.
@@ -122,12 +122,12 @@ Um die Inhalte wie Konzeption und Implementierung aber auch verwandte Arbeiten n
     \subsubsection{\glqq Reporting\grqq{}}
         Dies ist der letzte und einer der wichtigsten Schritte. Da Security-Tests durchgeführt werden um die Sicherheit zu erhöhen, ist es auch zwingend notwendig die Schwachstellen und Exploits so zu dokumentieren, dass der Hersteller sich entscheiden kann, ob die existierenden Probleme behoben werden oder das Risiko getragen wird. Abhängig von dem Einfluss auf das Geschäft (auch \glqq Business Impact\grqq{} gennant) kann es aus wirtschaftlicher Sicht gerechtfertigt sein, eine Schwachstelle nicht zu schließen und die daraus resultierenden Folgen zu tragen, d.h. beispielsweise Geldstrafen zu zahlen.
 
-\section{IoT Security}
+\section{IoT Security} \label{IoTSecurity}
     \subsection{OWASP IoT Guide}
         Die OWASP Foundation \cite{guzman_2019} beschreibt das \ac{OWASP} wie folgt.
         \glqq OWASP is an open community dedicated to enabling organizations to conceive, develop, acquire, operate, and maintain applications that can be trusted. All of the OWASP tools, documents, forums, and chapters are free and open to anyone interested in improving application security. We advocate approaching application security as a people, process, and technology problem because the most effective approaches to application security include improvements in all of these areas.\grqq{}
         
-        Das bedeutet, dass das Projekt eine offene Gemeinschaft ist, welche freie und unentgeltlich nutzbare Software zum Testen von IT-Sicherheit bereitstellt. Darüber hinaus veröffentlichen sie ebenfalls jährliche Ranglisten bezüglich der am häufigsten vorgefundenen Schwachstellen. Ebenfalls werden Entwickler durch Informationen, oft auftretender Schwachstellen und dessen Behebung sowie Methodiken, unterstützt die für eine sichere Entwicklung und auch Architektur entscheidend sind. Darüber hinaus ist ein weiteres Ziel, die Bevölkerung auf die Existenz solcher Probleme hinzuweisen, sie zum kritischen Nachdenken und zu einem vorsichtigeren Umgang mit digitalen Medien zu bewegen.
+        Das bedeutet, dass das Projekt eine offene Gemeinschaft ist, welche freie und unentgeltlich nutzbare Software zum Testen von IT-Sicherheit bereitstellt. Darüber hinaus veröffentlichen sie ebenfalls jährliche Ranglisten bezüglich der am häufigsten vorgefundenen Schwachstellen. Ebenfalls werden Entwickler durch Bereitstellung von Informationen, oft auftretender Schwachstellen und dessen Behebung sowie Methodiken, unterstützt die für eine sichere Entwicklung und auch Architektur entscheidend sind. Darüber hinaus ist ein weiteres Ziel, die Bevölkerung auf die Existenz solcher Probleme hinzuweisen, sie zum kritischen Nachdenken und zu einem vorsichtigeren Umgang mit digitalen Medien zu bewegen.
         
         Aus diesem Zusammenschluss vieler Sicherheitsexperten ist ebenfalls das \glqq Manufacturer \ac{IoT} Security Guidance\grqq{} Dokument \cite{stahl_2017} entstanden. Es beschreibt wie Hersteller von intelligenten Geräten sichere Produkte erstellen können. Den Entwicklern wird eine Reihe an grundlegenden Richtlinien bereitgestellt, welche mindestens berücksichtigt werden sollten, um die Sicherheit stark zu erhöhen.
         Diese Inhalte zeigen, wieso \ac{IoT}-Geräte im Jahr 2018 verwundbar waren und welche Angriffsvektoren bei der Entwicklung berücksichtigt werden sollten. 
@@ -206,7 +206,7 @@ Um die Inhalte wie Konzeption und Implementierung aber auch verwandte Arbeiten n
             Es ist laut einer Umfrage von Statista \cite{kaspersky_lab_2019}
             heutzutage oft der Fall, dass Antivirussoftware zum Schutz des Computers oder Smartphones verwendet werden. Die Ausführung dieser Software benötigt allerdings viele Systemressourcen.
             Beispielsweise setzt Kaspersky \cite{ao_kaspersky_lab_2018_1}
-            1150 MB Festplattenspeicher mit einem x86/AMD64 Prozessor mit 1 GHz und 1 GB freien Arbeitsspeicher nur für die Funktionalität der Software voraus. Es ist davon auszugehen, dass bei Geräten, die für einen speziellen Einsatzzweck optimiert sind, keine Hardware verbaut wird, die mehr als das Nötigste leisten kann, um das Produkt entsprechend preiswert anbieten zu können. Dies ist notwendig, da zum Beispiel der Markt im Bereich Sprachsteuerung laut Futuresource Consulting \cite{futuresource_consulting_ltd_2019}, mit fünf Geräten von drei verschiedenen Herstellern hart umkämpft ist. Schaut man sich den Stromverbrauch des Amazon Echo Dot \cite{amazon_de_alle_produkte_2018} an, ist auffällig, dass ein Stromverbrauch von 15 W nicht mit dem eines Computers mithalten kann. 
+            1150 MB Festplattenspeicher mit einem x86/AMD64 Prozessor mit 1 GHz und 1 GB freien Arbeitsspeicher nur für die Funktionalität der Software voraus. Es ist davon auszugehen, dass bei Geräten, die für einen speziellen Einsatzzweck optimiert sind, keine Hardware verbaut wird, die mehr als das Nötigste leisten kann, um das Produkt entsprechend preiswert anbieten zu können. Dies ist notwendig, da zum Beispiel der Markt im Bereich Sprachsteuerung laut Futuresource Consulting \cite{futuresource_consulting_ltd_2019}, mit fünf Geräten von drei verschiedenen Herstellern hart umkämpft ist. Schaut man sich den Stromverbrauch des Amazon Echo Dot \cite{amazon_de_alle_produkte_2018} an, ist auffällig, dass der Stromverbrauch von 15 W nicht wesentlich geringer als ein heute üblicher Computer ist. Dies hat zur Folge, dass nur Bauteile mit einer geringeren Performance betrieben werden können.
             Der Microcontroller Raspberry Pi 2B \cite{raspberry_pi_foundation_2016}, welcher auch dazu verwendet wird, \ac{MQTT}-Projekte umzusetzen, lässt eine Diskrepanz in der technischen Spezifikationen in mehreren Punkten erkennen. Der 32 Bit Prozessor besitzt eine \ac{ARM}-Architektur und taktet mit 900 MHz. Der Prozessor verfügt also nicht über den vorausgesetzten Befehlssatz und würde weiterhin der eigentlichen Anwendung eine zu geringe Leistung ermöglichen. Darüber hinaus entspricht auch der verfügbare Arbeitsspeicher von 1 GB nicht den Mindestanforderungen.
             Somit kommen Sicherheitsprobleme (wie Schadprogramme durch fehlende Antivirussoftware), welche in der Vergangenheit bereits gelöst wurden, erneut zum Vorschein und bedürfen einer neuen Lösung \cite{6978614}.
             
@@ -223,8 +223,9 @@ Um die Inhalte wie Konzeption und Implementierung aber auch verwandte Arbeiten n
             DNS-Cache-Poisoning bedeutet, dass durch manipulierte DNS-Antworten der Zwischenspeicher, welcher die Gegenüberstellung von IP und Hostnamen besitzt, verändert wird. Die Folge daraus ist, dass nicht mehr die IP-Adresse des legitimen Ziels neben dem Namen (z.B. hochschule-mannheim.de), sondern die IP-Adresse des Angreifers steht, und somit auf den Angreifer weiterleitet.
             \ac{DNSSEC} wird von der zentralen Registrierungsstelle für die deutsche Domain-Endung \glqq .de\grqq{} \cite{denic_eg}
             als \ac{DNS}-Zusatz beschrieben, der verwendet wird, um sicherzustellen, dass der Eintrag sowie der Transportweg zwischen der legitimen Adresse und dem DNS-Server geschützt ist und somit kein Dritter Manipulationen an diesen Informationen vornehmen kann.
-        
     \end{enumerate}
+    
+    %TODO: Zusammenfassung???
     %Zusätzliche Quellen%
     %A Survey on the Internet of Things Security: https://ieeexplore.ieee.org/abstract/document/6746513
     %Blockchain for IoT security and privacy: The case study of a smart home: https://ieeexplore.ieee.org/abstract/document/7917634

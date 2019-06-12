@@ -1,17 +1,17 @@
 \chapter{Implementierung des Prototypen}
 
-Um das im vorigen Kapitel dargestellte Konzept zu realisieren, lassen sich folgende Hauptaufgaben ausmachen. Im Folgenden wird auf Informationen oder Probleme innerhalb der einzelnen Schritte eingegangen und diese erläutern.
+Um das im vorigen Kapitel dargestellte Konzept zu realisieren, lassen sich folgende Hauptaufgaben ausmachen. Im Folgenden wird auf Informationen oder Probleme innerhalb der einzelnen Schritte eingegangen und diese erläutert.
 
-Es wurden viele Open Source Bibliotheken verwendet um den Fokus der Arbeit auf die Neuentwicklung und Lösung der Fragestellung zu legen.
+Es wurden viele Open-Source-Bibliotheken verwendet, um den Fokus der Arbeit auf die Neuentwicklung und Lösung der Fragestellung zu legen.
 
-Github wurde im Verlauf der Arbeit verwendet da das Unternehmen wie Chacon et al. in dem Buch Pro Git \cite{Chacon2014} beschreiben, der größte Dienstleister für die Bereitstellung von Git Repositories ist. Neben der Speicherung von Quellcode ist Github ebenfalls eine zentrale Plattform für den Austausch und die Zusammenarbeit von Millionen von Entwicklern. Nicht nur open-source sondern auch closed-source Projekte werden dort gespeichert und mithilfe von Problemverfolgung und Codereviews weiterentwickelt. Für die Verwaltung der Informationen verwendet Github das Versionsverwaltungstool Git und baut somit seine Funktionalität um diese Technologie herum.
+Github wurde im Verlauf der Arbeit verwendet, da das Unternehmen wie Chacon et al. in dem Buch Pro Git \cite{Chacon2014} beschreiben, der größte Dienstleister für die Bereitstellung von Git-Repositorys ist. Neben der Speicherung von Quellcode ist Github ebenfalls eine zentrale Plattform für den Austausch und die Zusammenarbeit von Millionen von Entwicklern. Nicht nur open-source sondern auch closed-source Projekte werden dort gespeichert und mithilfe von Problemverfolgung und Codereviews weiterentwickelt. Für die Verwaltung der Informationen verwendet Github das Versionsverwaltungstool Git und baut somit seine Funktionalität um diese Technologie herum.
 
 \section{Einschränkungen}
-Die Software kann nur funktionieren, wenn garantiert werden kann, dass keine effektiven Sicherheitsmaßnahmen verwendet werden. Folgende Maßnahmen würden das mitlesen der Kommunikation verhindern.
+Die Software kann nur funktionieren, wenn garantiert werden kann, dass keine effektiven Sicherheitsmaßnahmen verwendet werden. Folgende Maßnahmen würden das Mitlesen der Kommunikation verhindern.
 \begin{enumerate}
     \item Nur ohne \ac{HPKP}
     
-    Auf dem Server wird ein für den Client ausgestelltes Zertifikat hinterlegt. Der öffentlichen Schlüssel oder der \glqq subjectPublicKeyInfo\grqq{}, ein weiterer Schlüssel mit Zusatzinformationen über die Verschlüsselung, dieses Zertifikats wird auf dem Client abgespeichert. Anschließend wird dieser gespeicherte Schlüssel mit jeder Anfrage an den Server mitgeschickt. Anschließend kann der Server die eingehenden Nachrichten mithilfe der Informationen aus dem Zertifikat verifizieren und sicherstellen das sie vom tatsächlichen Ziel kommt \cite{evans_palmer_sleevi_2015}.
+    Auf dem Server wird ein für den Client ausgestelltes Zertifikat hinterlegt. Der öffentliche Schlüssel oder der \glqq subjectPublicKeyInfo\grqq{}, ein weiterer Schlüssel mit Zusatzinformationen über die Verschlüsselung, dieses Zertifikats wird auf dem Client abgespeichert. Anschließend wird dieser gespeicherte Schlüssel mit jeder Anfrage an den Server mitgeschickt. Anschließend kann der Server die eingehenden Nachrichten mithilfe der Informationen aus dem Zertifikat verifizieren und sicherstellen das sie vom tatsächlichen Ziel kommt \cite{evans_palmer_sleevi_2015}.
     \item Nur wenn der Zertifizierungspfad des SSL Zertifikat (auch \emph{trust chain} genannt) nicht geprüft wird.
     
     Bei Verwendung von TLS ist es möglich, den Client prüfen zu lassen, ob der Server das entsprechende Hersteller Zertifikat besitzt. Jedes gültige Zertifikat muss von einer \ac{CA} ausgestellt werden, welche das Vertrauen und eventuell die Identität des Besitzers verifiziert. Jedoch gibt es auch Implementierungen die vom Zertifikat nur die formalen Details und nicht die Herkunft (also das \ac{CA}) prüfen.
@@ -172,3 +172,5 @@ Die Software kann nur funktionieren, wenn garantiert werden kann, dass keine eff
         \captionof{figure}{Firewallregel zum Umleiten der MQTT-Pakete}
         \label{fig:firewall_rule}
     \end{figure}
+    
+    %TODO. zusammenfassung
