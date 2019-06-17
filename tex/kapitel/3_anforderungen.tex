@@ -4,33 +4,33 @@ In diesem Kapitel werden zwei Nutzerrollen aus dem Bereich des Netzwerkmanagemen
 \section{Nutzer}
 %Thesis Fragestellung aufgegriffen
     Um die Frage beantworten zu können, ob es möglich ist, die übertragenen Daten der intelligenten Geräte herstellerübergreifend zu überwachen, ist es nötig, Zugriff auf die eingehenden sowie ausgehenden Daten der Geräte zu erhalten. In diesen Daten, welche vom \ac{IoT}-Gerät zum Broker und andersherum geschickt werden, befinden sich möglicherweise personenbezogene Daten sowie Hinweise auf mögliche Schwachstellen.
-    Die nächste Herausforderung besteht darin, die gesammelten Daten auch einem Nutzer in einer aufbereiteten Ansicht zugänglich zu machen und die direkte Interaktion mit den Daten zu ermöglichen.
+    Die nächste Herausforderung besteht darin, die gesammelten Daten einem Nutzer in einer aufbereiteten Ansicht zugänglich zu machen und die direkte Interaktion mit den Daten zu ermöglichen.
 
-    Aus diesem Szenario ergeben sich zwei wichtige Nutzerrollen: Netzwerk- und Systemadministratoren und Security-Auditoren.
+    Aus diesem Überlegung ergeben sich zwei wichtige Nutzerrollen: Netzwerk- und Systemadministratoren und Security-Auditoren.
     
 %=====================================================================%    
 %Wer? Nutzerrolle: Admin (monitoring)
 %=====================================================================%    
     \subsubsection{Netzwerk- und Systemadministratoren} \label{NetzwerkUndSystemadmin}
-    Auf der einen Seite existiert der System- und Netzwerkadministrator, welcher versucht Probleme in der Kommunikation zu finden und zu lösen oder eventuelle Anomalien darin zu erkennen.
+    Auf der einen Seite existiert der System- und Netzwerkadministrator, welcher versucht, Probleme in der Kommunikation zu finden und zu lösen oder eventuelle Anomalien darin zu erkennen.
 %Aufgabenbereiche Motivation
     Nach Burgess \cite{burgess2004principles} zählen zu den Aufgabenbereichen von Netzwerk- und Systemadministratoren unter anderem:
     \begin{itemize}
         \item \glqq Diagnostics, fault and change management\grqq{}
         
-        Die Aufgabe der Administratoren in einem Unternehmen besteht unter anderem darin, Systeme für das eigene Unternehmen oder Kunden bereitzustellen und Störungen darin zu beheben. Um bei Problemen herausfinden zu können, wo diese entstanden sind und wie sie schnell behoben werden können, ist es hilfreich, die Kommunikation im Netzwerk zu beobachten. Zum Beispiel kann erkannt werden, ob \ac{TCP}-Pakete überhaupt am Ziel ankommen oder schon auf dem Übertragungsweg verloren gehen. Abhängig davon, kann das Problem weiter eingeschränkt und schließlich lokalisiert werden.
+        Eine Aufgabe ist, Systeme für das eigene Unternehmen oder Kunden bereitzustellen und Störungen darin zu beheben. Um bei Problemen herausfinden zu können, wo diese entstanden sind und wie sie schnell behoben werden können, ist es hilfreich, die Kommunikation im Netzwerk zu beobachten. Zum Beispiel kann erkannt werden, ob \ac{TCP}-Pakete überhaupt am Ziel ankommen oder schon auf dem Übertragungsweg verloren gehen. Abhängig davon, kann das Problem weiter eingeschränkt und schließlich lokalisiert werden.
         
         \item \glqq Configuration and maintenance\grqq{}
         
-        Für eine korrekte Konfiguration der Systeme ist es notwendig, die Kommunikation nachvollziehen zu können. Dazu muss ein Verständnis der genutzten Technologien vorhanden sein. Des Weiteren sollte bekannt sein, welche Art von Daten mithilfe der Kommunikation übertragen werden.
+        Für eine korrekte Konfiguration der Systeme ist es notwendig, die Kommunikation nachvollziehen zu können. Dazu muss ein Verständnis der genutzten Technologien vorhanden sein. Außerdem sollte bekannt sein, welche Art von Daten übertragen werden.
         
         %Performance regarding bottlenect.
-        Dank der Informationen aus den aufgezeichneten Datenpaketen, wie deren Größe und Zeitstempel, können anhand von statistischer Analyse Rückschlüsse auf die Netzwerkbelastung gezogen werden.
+        Dank der Informationen aus den aufgezeichneten Datenpaketen, wie deren Größe und dem Zeitstempel, können anhand von statistischer Analyse Rückschlüsse auf die Netzwerkbelastung gezogen werden.
         
         \item \glqq Application-level services\grqq{}
         
         %Reverse Proxies und DNS
-        Auf dieser Ebene müssen Administratoren verschiedene Applikationen (beispielsweise \ac{DNS}-Server\footnote{\glqq Das DNS verknüpft [...] Rechnernamen und IP-Adressen miteinander. Es leistet zusätzlich die Speicherung und Ausgabe weiterer Informationen über die Dienste, die mit einer Domain verknüpft sind.\grqq{} \cite{denic_eg}} oder Proxys) konfigurieren und Anwendungen miteinander verbinden, um neue Systeme in bestehende Systemlandschaften zu integrieren.
+        Hier müssen Administratoren verschiedene Applikationen (beispielsweise \ac{DNS}-Server oder Proxys) konfigurieren und Anwendungen miteinander verbinden, um neue Systeme in bestehende Systemlandschaften zu integrieren.
         
         \item \glqq Network-level services\grqq{}
         
@@ -45,11 +45,11 @@ In diesem Kapitel werden zwei Nutzerrollen aus dem Bereich des Netzwerkmanagemen
 %was gibt es bereits (Wireshark) was kann die Software besser/kann nur die Software
     Wie bereits erwähnt, gibt es für die einzelnen Phasen verschiedene Werkzeuge, die sich in der Praxis etabliert haben und Anwender in ihrer Arbeit unterstützen.
     %https://proquestcombo.safaribooksonline.com/9781492020356
-    Wireshark \cite{SandersChris2017Ppa}, eine Anwendung zum Überwachen und Aufzeichnen von Netzwerkverkehr, stellt ein wichtige Komponente der zu konzipierenden Software dar. Ein wichtiger Unterschied besteht jedoch darin, dass in dem Konzept der Arbeit zusätzlich direkt in die Kommunikation eingegriffen werden muss. Das bedeutet, dass Nachrichten verändert, verworfen oder erneut gesendet werden sollen, was durch ein reines Monitoring-Tool nicht möglich ist.
+    Wireshark, eine Anwendung zum Überwachen und Aufzeichnen von Netzwerkverkehr, stellt ein wichtige Komponente der zu konzipierenden Software dar \cite{SandersChris2017Ppa}. Ein wichtiger Unterschied besteht jedoch darin, dass in dem Konzept der Arbeit zusätzlich direkt in die Kommunikation eingegriffen werden muss. Das bedeutet, dass Nachrichten verändert, verworfen oder erneut gesendet werden sollen, was durch ein reines Monitoring-Tool nicht möglich ist.
     
 % Was müsste die eigene Software verbessern
     %Log Messages
-    Der Nutzer möchte nun, wenn er mit diesem Programm arbeitet, den Proxy in den Modus \glqq intercept\grqq{} oder \glqq none intercept\grqq{} stellen können, um Inhalte spezieller Clients einzeln und gezielt prüfen zu können, ohne Daten anderer Geräte im Netzwerk zu erhalten.
+    Der Nutzer soll, wenn er mit diesem Programm arbeitet, den Proxy in den Modus \glqq intercept\grqq{} oder \glqq none intercept\grqq{} stellen können, um Inhalte spezieller Clients einzeln und gezielt prüfen zu können, ohne Daten anderer Geräte im Netzwerk zu erhalten.
     %View Messages
     Weiterhin möchte der Nutzer, dass die Nachrichten, welche durch den \glqq intercept\grqq{}-Modus abgefangen wurden, aufgelistet und angezeigt werden.
     %View ClientInfos
@@ -62,7 +62,7 @@ In diesem Kapitel werden zwei Nutzerrollen aus dem Bereich des Netzwerkmanagemen
 \subsubsection{Security-Auditor}
     Auf der anderen Seite existiert der Security-Auditor (auch "Penetration-Tester") welcher versucht, Schwachstellen in Kommunikation, Geräten oder Endpunkten zu identifizieren.
 % Ziel
-    Dies befähigt den Hersteller, von dem der Tester beauftragt wird, seine Produkte im Rahmen der Qualitätssicherung vor ihrer Veröffentlichung zu testen, um Fehler zu erkennen, diese beheben zu können und somit potentielle Probleme zu vermeiden. Dies ist nicht nur für Vertrauen innerhalb der Branche wichtig, sondern darüber hinaus in bestimmten Bereichen (z.B. kritischen Infrastrukturen) sogar gesetzlich vorgeschrieben.
+    Dies befähigt den Hersteller, von dem der Tester beauftragt wird, seine Produkte im Rahmen der Qualitätssicherung vor ihrer Veröffentlichung zu testen, um Fehler zu erkennen, diese beheben zu können und somit potentielle Probleme zu vermeiden. Das ist nicht nur für Vertrauen innerhalb der Branche wichtig, sondern darüber hinaus in bestimmten Bereichen (z.B. kritischen Infrastrukturen) sogar gesetzlich vorgeschrieben.
     Zusätzlich bestätigt es, dass der Dienst eines Unternehmens gute und effiziente Sicherheitsmechanismen korrekt implementiert hat, um die Kundendaten vor Gefährdungen der Vertraulichkeit, Integrität oder Verfügbarkeit zu schützen.
     
     Ein weiterer wichtiger Untersuchungsgegenstand sind personen- und unternehmensbezogene Daten. Der Schutz dieser hat aufgrund von datenschutzrechtlichen Bestimmungen eine besonders hohe Priorität. Dies wird in Form von manueller oder regelbasierter Inspektion der Übertragung überprüft.
@@ -70,13 +70,13 @@ In diesem Kapitel werden zwei Nutzerrollen aus dem Bereich des Netzwerkmanagemen
 %Was für Arbeitsabläufe
     
     %wie: Wie hilft die Software dabei das Ziel zu erreichen
-    Die in dieser Arbeit zu konzipierende Software soll den Tester mithilfe von passivem Scannen und Abfangen der Kommunikation in Schritt 2 (\emph{Information Gathering}) und durch Manipulieren sowie erneutes Senden der Nachrichten in Schritt 5 (\emph{Exploitation}) unterstützen.
+    Die in dieser Arbeit zu konzipierende Software soll den Tester mithilfe von passivem Scannen und Abfangen der Kommunikation in Kapitel \ref{IntelligenceGathering} Punkt 2 (\emph{Intelligence Gathering}) und durch Manipulieren sowie erneutes Senden der Nachrichten in Schritt 5 (\emph{Exploitation}) unterstützen.
     
     %was gibt es bereits (Wireshark) was kann die Software besser/kann nur die Software
     Wie in Kapitel \ref{NetzwerkUndSystemadmin} beschrieben, kann Wireshark zur Informationsbeschaffung verwendet werden.
     Da von Wireshark viele verschiedene Protokolle unterstützt und auch sehr detaillierte Informationen angezeigt werden, passiert es schnell, dass durch die große Menge wichtige Bestandteile untergehen (auch \emph{visual clutter} genannt) oder nur mit Aufwand gefunden werden.
     
-    Burp Suite von PortSwigger bietet wie Wireshark eine Proxy-Komponente und kann somit nicht nur, wie in diesem Tool geplant, die Nachrichten protokollieren bzw. überwachen, sondern auch in die Kommunikation eingreifen. Der große Unterschied besteht darin, dass Burp Suite ausschließlich für HTTP/s und (Sec)Websocket Kommunikation zu verwenden ist und keinerlei Unterstützung für das \ac{MQTT}-Protokoll bietet. Ähnliche Abläufe und eine strukturierte Darstellung, wie in Burp Suite, wären von Vorteil, um die Einarbeitungszeit gering zu halten und die Akzeptanz bei den Nutzern zu stärken.
+    Burp Suite von PortSwigger bietet wie Wireshark eine Proxy-Komponente und kann somit nicht nur, wie in diesem Tool geplant, die Nachrichten protokollieren bzw. überwachen, sondern auch in die Kommunikation eingreifen. Der große Unterschied besteht darin, dass Burp Suite ausschließlich für HTTP/S und (Sec)Websocket Kommunikation zu verwenden ist und keinerlei Unterstützung für das \ac{MQTT}-Protokoll bietet. Ähnliche Abläufe und eine strukturierte Darstellung, wie in Burp Suite, wären von Vorteil, um die Einarbeitungszeit gering zu halten und die Akzeptanz bei den Nutzern zu stärken.
 
 \section{Abgeleitete Anforderungen}
     Im Folgenden werden Use-Cases aus den obigen Nutzerbeschreibungen extrahiert und beschrieben.
@@ -100,8 +100,8 @@ In diesem Kapitel werden zwei Nutzerrollen aus dem Bereich des Netzwerkmanagemen
     	Durch Manipulation der übertragenen Daten einzelner Nachrichten ist es dem Nutzer möglich, die Kommunikation zu verändern.
     	Anhand von selbsterstellten Paketen, welche im Namen der Kommunikationspartner erstellt werden, sollen vom Nutzer gewünschte Informationen übertragen werden.
     	Um die repetitive Arbeit der Nachrichtenerstellung zu beschleunigen, kann eine abgefangene Nachricht kopiert werden.
-    	Diese Änderungen sollen anschließend gespeichert werden können, um veränderte Pakete zu einem späteren Zeitpunkt versenden oder weiter verändern zu können.
-    	Für den Fall, dass übertragene Nachrichten Inhalte beinhalten, welche nicht ankommen dürfen oder nicht den gewünschten Inhalt haben, möchte der Nutzer diese verwerfen und somit nicht dem Zielgerät zustellen.
+    	Diese Änderungen sollen anschließend gespeichert werden können, um veränderte Pakete zu einem späteren Zeitpunkt versenden oder erneut verändern zu können.
+    	Für den Fall, dass übertragene Nachrichten Inhalte beinhalten, welche nicht ankommen dürfen oder nicht den gewünschten Inhalt haben, soll der Nutzer diese verwerfen und somit nicht dem Zielgerät zustellen.
 
     %Tabelle mit Funktionale Anforderungen
     \subsection{Formale Anforderungen} \label{FormaleAnforderungen}
