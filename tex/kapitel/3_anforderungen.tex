@@ -84,7 +84,7 @@ In diesem Kapitel werden zwei Nutzerrollen aus dem Bereich des Netzwerkmanagemen
     \subsection{Use-Cases}
     \begin{figure}[h]%h=direkt danach t=top b=bottom
         \centering
-        \includegraphics[width=7cm]{tex/bilder/3_anforderungen/Use-Case.pdf}
+        \includegraphics[width=7cm]{tex/bilder/3_anforderungen/Use-Case-V2.pdf}
         \captionof{figure}{Use-Case-Diagramm}
         \label{fig:use-case}
     \end{figure}
@@ -94,15 +94,17 @@ In diesem Kapitel werden zwei Nutzerrollen aus dem Bereich des Netzwerkmanagemen
     	Darüber hinaus ist es notwendig, das Abfangen der Pakete pro Gerät einstellen zu können, um nur die gewünschte Kommunikation mitzuschneiden und somit eine selektive Analyse zu ermöglichen.
     	Um dies zu bewerkstelligen, ist es notwendig, die abgefangen Daten nach deren Inhalten zu filtern.
     	
-    Zu \emph{Kommunikation manipulieren}:
-        Über eine Manipulation der Kommunikation spricht man, sobald existierende Pakete verändert oder neue versendet werden. Dadurch, kann die Kommunikation über verschiedene Aktionen manipuliert werden. \glqq Payload ändern\grqq{}, \glqq Nachricht senden\grqq{}, \glqq Nachricht kopieren\grqq{}, \glqq Nachricht ändern\grqq{}, \glqq Nachrichten speichern\grqq{} und \glqq Nachricht verwerfen\grqq{} sind die in dieser Arbeit betrachteten Elemente.
+    Zum zweiten Use-Case \emph{Kommunikation manipulieren}:
+        Über eine Manipulation der Kommunikation spricht man, sobald existierende Pakete verändert oder neue versendet werden. Dadurch, kann die Kommunikation über verschiedene Aktionen manipuliert werden. \glqq Payload ändern\grqq{}, \glqq Nachricht senden\grqq{}, \glqq Nachricht kopieren\grqq{}, \glqq Nachricht ändern\grqq{} und \glqq Nachricht verwerfen\grqq{} sind die in dieser Arbeit betrachteten Elemente.
     	Der Nutzer möchte auf verschiedene Weisen die Kommunikation zwischen zwei Kommunikationspartnern über ein drittes System verändern können.
     	Durch Manipulation der übertragenen Daten einzelner Nachrichten ist es dem Nutzer möglich, die Kommunikation zu verändern.
     	Anhand von selbsterstellten Paketen, welche im Namen der Kommunikationspartner erstellt werden, sollen vom Nutzer gewünschte Informationen übertragen werden.
-    	Um die repetitive Arbeit der Nachrichtenerstellung zu beschleunigen, kann eine abgefangene Nachricht kopiert werden.
-    	Diese Änderungen sollen anschließend gespeichert werden können, um veränderte Pakete zu einem späteren Zeitpunkt versenden oder erneut verändern zu können.
     	Für den Fall, dass übertragene Nachrichten Inhalte beinhalten, welche nicht ankommen dürfen oder nicht den gewünschten Inhalt haben, soll der Nutzer diese verwerfen und somit nicht dem Zielgerät zustellen.
-
+    	
+    Zum dritten Use-Case \emph{Nachrichten verwalten}
+        Um die repetitive Arbeit der Nachrichtenerstellung zu beschleunigen, kann eine abgefangene Nachricht kopiert werden.
+        Nach der Manipulation eines Paketes sollen die Änderungen anschließend gespeichert werden können, um veränderte Pakete zu einem späteren Zeitpunkt versenden oder erneut verändern zu können.
+    
     %Tabelle mit Funktionale Anforderungen
     \subsection{Formale Anforderungen} \label{FormaleAnforderungen}
     Anhand der Use-Cases lassen sich folgende formale Anforderungen ableiten (siehe Tabelle \ref{tab:functional_requirements}).
@@ -112,13 +114,15 @@ In diesem Kapitel werden zwei Nutzerrollen aus dem Bereich des Netzwerkmanagemen
         \begin{tabular}{c|c}
             \hline
             $Nr.$ & $Name$ \\ \hline
-            %Nachricht abfangen vllt auch ein Feature was nennenswert ist oder wird es m it Nr.3 abgedeckt???
             1 & Nachrichten anzeigen \\ \hline
             2 & Nachrichten filtern \\ \hline
-            3 & Abfangen umschalten \\ \hline
-            4 & Nachricht manipulieren \\ \hline
-            5 & Nachricht senden \\ \hline
-            6 & Nachricht verwerfen \\ \hline
+            3 & Nachrichten abfangen \\ \hline
+            4 & Abfangen umschalten \\ \hline
+            5 & Nachricht manipulieren \\ \hline
+            6 & Nachricht senden \\ \hline
+            7 & Nachricht verwerfen \\ \hline
+            8 & Nachricht kopieren \\ \hline
+            9 & Nachricht speichern \\ \hline
         \end{tabular}
         \caption{Funktionale Anforderungen}
         \label{tab:functional_requirements}
@@ -132,22 +136,31 @@ In diesem Kapitel werden zwei Nutzerrollen aus dem Bereich des Netzwerkmanagemen
         \subsubsection{2. Nachrichten filtern}
         Die Software muss angezeigte Nachrichten nach deren Attributen filtern können. Diese sind unter anderem \glqq Payload\grqq{}, \glqq Client\grqq{} und \glqq Quality of Service\grqq{}.
         
-        \subsubsection{3. Abfangen umschalten}
-        Dem Nutzer muss die Möglichkeit gegeben werden, das Abfangen der  Kommunikation der \ac{IoT}-Geräte zu aktivieren oder zu deaktivieren.
-        Dabei werden die Pakete in die Warteschlange eingetragen, und dürfen nicht an den Kommunikationspartner weitergeleitet werden.
-        Dies muss durch den Nutzer, für jedes verbundene Gerät, konfigurierbar sein.
+        \subsubsection{3. Abfangen abfangen}
+        Die Nachrichten müssen, um analysiert werden zu können, abgefangen werden. Dafür ist es notwendig die Pakete umzuleiten, um die Kommunikation mitschneiden zu können.
         
-        \subsubsection{4. Nachricht manipulieren}
+        \subsubsection{4. Abfangen umschalten}
+        Dem Nutzer muss die Möglichkeit gegeben werden, das Abfangen der Kommunikation der \ac{IoT}-Geräte zu aktivieren oder zu deaktivieren.
+        Dabei werden die Pakete in die Warteschlange eingetragen, und dürfen nicht an den Kommunikationspartner weitergeleitet werden.
+        Dies muss der Nutzer, für jedes verbundene Gerät, konfigurieren können.
+        
+        \subsubsection{5. Nachricht manipulieren}
         Der Nutzer muss den Inhalt der aufgezeichneten Nachrichten manipuliert können. Vorrangig muss der übertragene Nachrichteninhalt auf einen gewünschten Wert abgeändert werden können.
         
-        \subsubsection{5. Nachricht senden}
+        \subsubsection{6. Nachricht senden}
         Es muss garantiert werden, dass selbst erstellte Nachrichten gesendet werden können.
-        Das Senden beinhaltet nicht nur die Übertragung dieser, sondern umfasst auch das erneute Senden (auch \emph{replay attack} genannt) von bereits übertragenen Nachrichten. Die Inhalte werden in diesem Fall nicht verändert, sondern wie erfasst erneut versendet.
+        Das Senden beinhaltet nicht nur die Übertragung dieser, sondern umfasst auch das erneute Senden (auch \emph{Replay Attack} genannt) von bereits übertragenen Nachrichten. Die Inhalte werden in diesem Fall nicht verändert, sondern wie erfasst erneut versendet.
         
-        \subsubsection{6. Nachricht verwerfen}
+        \subsubsection{7. Nachricht verwerfen}
         Das System muss es dem Nutzer ermöglichen, abgefangene Nachrichten zu verwerfen.
         Dies bedeutet, dass gesendete Inhalte nicht an den gewünschten Kommunikationspartner weitergeleitet werden. Stattdessen werden sie, nachdem sie abgefangen wurden, aus der Kommunikation entfernt.
         Die ausgewählten Nachrichten werden somit auch in der Oberfläche nicht weiter angezeigt.
+        
+        \subsubsection{8. Nachricht kopieren}
+        Der Nutzer muss die Möglichkeit haben, die abgefangenen Nachrichten kopieren zu können. Somit muss der Nutzer nicht die Inhalte der gewünschten Pakete manuell übertragen und kann damit Zeit sparen und effektiver Arbeiten.
+        
+        \subsubsection{9. Nachricht speichern}
+        Der Nutzer muss Manipulationen der Pakete anschließend speichern können, um veränderte Pakete zu einem späteren Zeitpunkt versenden oder erneut verändern zu können.
         
 \subsubsection{Zusammenfassung}
     In diesem Kapitel wurden die Tätigkeiten der vorgestellten Nutzerrollen beschrieben, ihre Arbeitsprozesse dargestellt und noch verbesserungswürdige Prozessschritte identifiziert. Anhand dieser Verbesserungspotenziale wurden anschließend funktionale Anforderungen definiert, welche die Grundlage für das Konzept bilden.
