@@ -1,15 +1,17 @@
-\chapter{Ergebnis} %TODO: beschreibung des kapitels??
+\chapter{Ergebnis}
+Dieses Kapitel zeigt die wesentlichen Ergebnisse der Arbeit auf. Dabei betrachtet es die Artefakte der vorherigen Kapitel.
+
 %Was sind die gewonnenen Erkenntnisse?
 %Was kann ich jetzt damit anstellen?
+Es wurde ein Anforderungskatalog erstellt, welcher vollständig erfüllt wurde.
+Das daraus entworfene Konzept ist protokollunabhängig. Die modulare Konzeption der Komponenten lässt zu, das \ac{MQTT}-Protokoll durch andere Protokolle auszutauschen. Zusätzlich dazu ist es aufgrund seiner hohen Abstraktionsebene sprachunabhängig. Dank dieser ist es ebenfalls möglich, das Konzept plattformunabhängig zu realisieren.
 
-Es wurde ein Konzept entworfen, welches Protokoll unabhängig ist. Die modulare Konzeption der Komponenten lässt das \ac{MQTT} Protokoll durch andere austauschen. Zusätzlich dazu ist es Sprachen unabhängig, da auf keine sprachen spezifischen Funktionen referenziert werden und das Konzept auf einer hohen Abstraktionsebene gehalten wurde. Dank der Sprachenunabhängigkeit ist es ebenfalls möglich, das Konzept plattformunabhängig zu realisieren.
+In Kapitel 6 wurde festgestellt, dass die entwickelte Software den Nutzer in mehreren Aufgabengebieten unterstützen kann.
+Es ist möglich, eingeschleuste Nachrichten zum \emph{Bruteforcen}\footnote{Strukturiertes Durchprobieren jeder möglichen Kombination von zum Beispiel Zugangsdaten.} von Zugängen anderer Geräte oder Netzwerke zu verwenden, um sich unberechtigten Zugriff zu verschaffen.
+Weiter ist es möglich, dem Endgerät oder Client spezifische Nutzdaten zu senden und anhand der Reaktion des Kommunikationspartners oder der als Antwort darauf  erhaltenen Nachrichten Schwachstellen zu erkennen.
+Falls nur die eingehenden und ausgehenden Nachrichten, und keine Antworten, interessant sind, ist ebenfalls ein aktives Logging möglich. Dies bedeutet, dass die aufgezeichneten Nachrichten fallen gelassen und nicht mehr weitergesendet werden.
 
-Mithilfe von Kapitel 6 wurde festgestellt, dass die entwickelte Software in mehreren Aufgabengebieten den Nutzer unterstützen kann.
-Es ist möglich eingeschleuste Nachrichten zum \emph{bruteforcen}\footnote{Strukturiertes durchprobieren jeder möglichen Kombination.} von Zugängen anderer Geräte oder Netzwerke um sich unberechtigten Zugriff zu verschaffen.
-Weiter ist es möglich, spezifische Nutzdaten dem Endgerät oder Client zu senden und anhand der Reaktion des Kommunikationspartners oder der empfangenen Nachrichten Schwachstellen zu erkennen.
-Falls nur die eingehenden und ausgehenden Nachrichten, und keine Antworten, interessant sind ist ebenfalls ein aktives Logging möglich. Dies bedeutet, dass die aufgezeichneten Nachrichten fallen gelassen und nicht mehr weitergesendet werden.
-
-Zusätzlich, hat sich herausgestellt, dass nicht eine wichtige Funktion für die Überwachung nicht vorhanden ist. Es mangelt an einer separaten Aufzeichnung aller Pakete der verbundenen Clients ohne in die Kommunikation aktiv einzugreifen.
+Zusätzlich, hat sich herausgestellt, dass eine wichtige Funktion für die Überwachung nicht vorhanden ist: Es mangelt an einer separaten Aufzeichnung aller Pakete der verbundenen Clients ohne in die Kommunikation aktiv einzugreifen.
 %Hab Software erstellt um
 %    Bruteforcen
 %    Fuzzen

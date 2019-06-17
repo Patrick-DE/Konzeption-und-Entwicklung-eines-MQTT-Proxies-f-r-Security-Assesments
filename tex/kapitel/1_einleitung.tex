@@ -16,18 +16,18 @@ Zusammen mit der Akzeptanz sind allerdings in den letzten Jahren ebenfalls die A
 %Warum (Fallbeispiele) 
 Darüber hinaus finden sich solche Fälle von Angriffen oder Verstößen gegen die Privatsphäre immer häufiger in den Medien \cite{holland_2016,it_verlag_informationstechnik_gmbh_2018}. Aus diesem Grund beschäftigen sich auch Unternehmen im IT-Sicherheitssektor mit diesen Themen und untersuchen verschiedene Produkte auf ihre Anfälligkeit für solche Attacken bzw. deren Schwachstellen \cite{lorenz_2018,ao_kaspersky_lab_2018}.
 
-Beispielsweise untersuchte die Firma \emph{Positive Technologies} einen intelligenten Saugroboter \cite{salmi_2017}.
-Dieser enthielt zwei kritische Schwachstellen, mithilfe derer ein Angreifer nicht nur Informationen von dem Roboter bekommen konnte, sondern ihn Befehle ausführen lassen und somit die vorhandene Kamera mit einer Nachtsichtfunktion ansteuern konnte. Die Konsequenz war, dass der Angreifer ein aktuelles Kamerabild sowie Zugriff auf das Netzwerk hatte, in dem sich der Roboter befand. Die Tatsache, dass die Schwachstelle in einem, durch eine Anmeldung geschützten Bereich war, störte nicht, da die Standardpasswörter der Produkte oft nicht geändert werden \cite{positive_technologies_2018}.
-Diese Aussage bestätigen auch zwei Berichte von Trustwave aus 2014 und 2018.
+Beispielsweise untersuchte das Unternehmen \emph{Positive Technologies} einen intelligenten Saugroboter \cite{salmi_2017}.
+Dieser enthielt zwei kritische Schwachstellen, mithilfe derer ein Angreifer nicht nur Informationen von dem Roboter bekommen konnte, sondern ihn Befehle ausführen lassen und somit die vorhandene Kamera mit einer Nachtsichtfunktion ansteuern konnte. Die Konsequenz war, dass der Angreifer ein aktuelles Kamerabild sowie Zugriff auf das Netzwerk hatte, in dem sich der Roboter befand. Die Tatsache, dass die Schwachstelle in einem, durch eine Anmeldung geschützten Bereich war, hinderte nicht, da die Standardpasswörter der Produkte oft nicht geändert werden \cite{positive_technologies_2018}.
+Auch deckt sich dies mit den Top 10 Risiken 2018 des \ac{OWASP}, bei der die drei größten Schwachstellen aus den folgenden Kategorien kommen: \glqq Weak Guessable, or Hardcoded Passwords\grqq{}, \glqq Insecure Netzwerk Services\grqq{} und \glqq Insecure Ecosystem Interfaces\grqq{}. Dies bestätigen auch weiteren Artikeln \cite{guzman_2019,eckstein_2018}.
+Diese Aussage bestätigen auch zwei Berichte aus 2014 und 2018.
 Im Jahr 2014 schrieb Trustwave \cite{trustwave_holdings_inc_2014}: \glqq Thirty percent of the time, an attacker gains access because of a weak password.\grqq{}
-Dies bedeutet, dass ungefähr ein Drittel der Angriffe nur durch schwache oder Standardpasswörter möglich waren. Vergleicht man dies mit dem aktuellsten Global Security Report 2018, wird zwar erkenntlich, dass die Anzahl dieser Fälle abgenommen hat, allerdings immer noch die zweithäufigste Schwachstelle mit einem hohen Risiko darstellt \cite{trustwave_holdings_inc_2018}.
-Auch deckt sich dies mit den Top 10 Risiken 2018 des \ac{OWASP}, bei der die größte Schwachstelle und somit Nummer eins folgende Kategorie ist: \glqq I1 Weak Guessable, or Hardcoded Passwords\grqq{}, und weiteren Artikeln \cite{guzman_2019,eckstein_2018}.
+Vergleicht man dies mit dem aktuellsten Global Security Report 2018, wird erkenntlich, dass die Anzahl dieser Fälle abgenommen hat, allerdings immer noch die zweithäufigste Schwachstelle ist \cite{trustwave_holdings_inc_2018}.
 
 \section{Problemstellung}
 %%Problemstellung
-Um das Gerät sowie den vom Betreiber zur Verfügung gestellten Dienst auf Schwachstellen untersuchen zu können, ist es notwendig, sich mit dem zur Kommunikation genutzten Protokoll auseinander zu setzen. Dazu gehört beispielsweise darüber gesendete Nachrichten zu bearbeiten und erneut zu senden oder neue Nachrichten im Namen des eigentlichen Gerätes zu verfassen. Damit wird versucht, dass IT-Schutzziel Authentizität zu umgehen \cite{Bedner2010}.
-    
-Um solche Schwachstellen in Geräten, herstellerübergreifend erkennen zu können, wird ein Tool benötigt, dass die Kommunikation abfangen und manipulieren kann.
+    Um das Gerät sowie den vom Betreiber zur Verfügung gestellten Dienst auf Schwachstellen untersuchen zu können, ist es notwendig, sich mit dem zur Kommunikation genutzten Protokoll auseinander zu setzen. Dazu gehört beispielsweise darüber gesendete Nachrichten zu bearbeiten und erneut zu senden oder neue Nachrichten im Namen des eigentlichen Gerätes zu verfassen. Damit wird versucht, dass IT-Schutzziel Authentizität zu umgehen \cite{Bedner2010}.
+        
+    Um solche Schwachstellen in Geräten, herstellerübergreifend erkennen zu können, wird ein Tool benötigt, dass die Kommunikation abfangen und manipulieren kann.
 
 \section{Ziel der Arbeit}
 %Forschungsfrage!
@@ -92,11 +92,11 @@ Um solche Schwachstellen in Geräten, herstellerübergreifend erkennen zu könne
 
 \section{Struktur der Arbeit}
 %Struktur
-    In Kapitel \ref{MQTT} dieser Arbeit wird Wissen über die benötigten grundlegende Protokoll vermittelt.
-    Anschließend werden in Kapitel \ref{TechKonzepte} die darauf aufbauenden Konzepte erläutert und in Kontext zu der Forschungsfrage gestellt.
+    In Kapitel \ref{MQTT} dieser Arbeit wird Wissen über die benötigten, grundlegende Protokoll vermittelt.
+    Anschließend werden in Kapitel \ref{TechKonzepte} die darauf aufbauenden Konzepte erläutert und in den Kontext der Forschungsfrage gestellt.
     %Nachdem die Grundlagen vermittelt wurden, bekommt der Leser eine Übersicht über bereits vorhandene Konzepte und Herangehensweisen zur Absicherung von \ac{IoT} oder im deutschen Sprachgebrauch \emph{Internet der Dinge}. 
     Dies soll den Leser befähigen, die vorgestellten Produkte sowie die Entwicklung und Umsetzung des in dieser Arbeit erstellten Konzepts korrekt einordnen und bewerten zu können.
-    Direkt im Anschluss wird das Konzept der eigenen Software erläutert und auf Schwierigkeiten sowie die dafür entwickelten Lösungen eingegangen. Das darauf folgende Kapitel \glqq Implementierung\grqq{} beschreibt die Umsetzung des zuvor erläuterten Konzepts und setzt die Rahmenbedingungen und verwendeten Technologien fest. Um die Ergebnisse der Arbeit bewerten zu können, wird im Anschluss eine Validierung anhand von Versuchen durchgeführt und die Ergebnisse der Forschungsfrage festgehalten. Zuletzt wird ein Ausblick gegeben, welche Probleme, Gefahren und Potenziale sich in Zukunft ergeben könnten und welche weiteren Arbeiten sich zu diesen Themen anbieten.
+    Direkt im Anschluss wird das Konzept der eigenen Software erläutert und auf Schwierigkeiten sowie deren Lösungen eingegangen. Das darauf folgende Kapitel \glqq Implementierung des Prototypen\grqq{} beschreibt die Umsetzung des zuvor erläuterten Konzepts und setzt die Rahmenbedingungen und verwendeten Technologien fest. Um die Ergebnisse der Arbeit bewerten zu können, wird im Anschluss eine Validierung anhand von Versuchen durchgeführt und die Ergebnisse der Forschungsfrage festgehalten. Zuletzt wird ein Ausblick gegeben, welche Probleme, Gefahren und Potenziale sich in Zukunft ergeben könnten und welche weiteren Arbeiten sich zu diesen Themen anbieten.
     %Check with Fazit!
     
     %TODO: Zusammenfassung
