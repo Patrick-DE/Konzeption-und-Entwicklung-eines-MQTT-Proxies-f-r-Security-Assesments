@@ -2,8 +2,15 @@
 In diesem Kapitel wird anhand der in Kapitel 3 erfassten Anforderungen ein Konzept entworfen. Nach der Beschreibung des Aufbaus wird der interne Ablauf, anhand von Diagrammen, detaillierter betrachtet.
 
 \section{Aufbau der Software}
-    Das im vorherigen Kapitel dargestellte Use-Case-Diagramm und die daraus abgeleiteten Anforderungen werden in diesem Kapitel zum Aufbau eines Konzepts verwendet.
-    Hierbei wurde zunächst ein Systemdiagramm aus dem Use-Case-Diagramm (Abbildung \ref{fig:use-case}) abgeleitet (siehe Abbildung \ref{fig:system_all}).
+    Das in Abbildung \ref{fig:use-case} dargestellte Use-Case-Diagramm und die daraus abgeleiteten Anforderungen werden in diesem Kapitel zum Aufbau eines Konzepts verwendet.
+    Hierbei wurde zunächst ein Systemdiagramm aus dem Use-Case-Diagramm abgeleitet (siehe Abbildung \ref{fig:system_all}).
+    
+    \begin{figure}[h]%h=direkt danach t=top b=bottom
+        \centering
+        \includegraphics[width=14cm]{tex/bilder/4_konzept/Systemdiagram.pdf}
+        \captionof{figure}{Systemdiagramm}
+        \label{fig:system_all}
+    \end{figure}
     
     Die Akteure (\emph{Netzwerk-, Systemadministrator} und \emph{Security-Auditor}) konnten direkt aus dem Use-Case-Diagramm übernommen werden.
     Sie stellen die mit dem System interagierenden Nutzer dar und kommunizieren direkt mit einem Frontend.
@@ -13,11 +20,12 @@ In diesem Kapitel wird anhand der in Kapitel 3 erfassten Anforderungen ein Konze
     Die Hauptaufgaben des Backends sind die Datenhaltung (unter anderem Speicherung der Nachrichten, Verwalten der Clients) und die Verwaltung des Nachrichtenflusses zwischen allen beteiligten Kommunikationspartnern.
     
     Das \emph{Frontend} hingegen dient nur zur Visualisierung der Nachrichten und Clients sowie zur Interaktion mit dem Nutzer. Hierbei bezieht es die gespeicherten und neu eintreffenden Nachrichten vom Backend.
+
     \begin{figure}[h]%h=direkt danach t=top b=bottom
         \centering
-        \includegraphics[width=14cm]{tex/bilder/4_konzept/Systemdiagram.pdf}
-        \captionof{figure}{Systemdiagramm}
-        \label{fig:system_all}
+        \includegraphics[width=8cm]{tex/bilder/4_konzept/Systemdiagramm_Konzept_Backend.pdf}
+        \captionof{figure}{Komponentendiagramm Backend}
+        \label{fig:system_backend}
     \end{figure}
     
     Abbildung \ref{fig:system_backend} zeigt eine Verfeinerung des Backends. 
@@ -27,12 +35,7 @@ In diesem Kapitel wird anhand der in Kapitel 3 erfassten Anforderungen ein Konze
     Eine grafische Darstellung des Prozesses ist Abbildung \ref{fig:aktivitaetsdiagramm_message} zu entnehmen.
     
     Der \emph{ClientManager} ermittelt die externen Clients zu den dazugehörigen \emph{ClientIn}- und \emph{ClientOut}-Instanzen. Damit wird sichergestellt, dass die Kommunikation mit dem externen Broker stattfinden kann.
-    \begin{figure}[h]%h=direkt danach t=top b=bottom
-        \centering
-        \includegraphics[width=8cm]{tex/bilder/4_konzept/Systemdiagramm_Konzept_Backend.pdf}
-        \captionof{figure}{Komponentendiagramm Backend}
-        \label{fig:system_backend}
-    \end{figure}
+
     
     Abbildung \ref{fig:system_frontend} stellt die Komponenten des Frontends dar. Alle drei Komponenten sind voneinander unabhängig und arbeiten mit unabhängigen Informationen.
     
