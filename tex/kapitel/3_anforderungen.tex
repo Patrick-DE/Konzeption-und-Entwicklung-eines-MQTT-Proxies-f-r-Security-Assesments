@@ -30,7 +30,7 @@ In diesem Kapitel werden zwei Nutzerrollen aus dem Bereich des Netzwerkmanagemen
         \item \glqq Application-level services\grqq{}
         
         %Reverse Proxies und DNS
-        Hier müssen Administratoren verschiedene Applikationen (beispielsweise \ac{DNS}-Server oder Proxys) konfigurieren und Anwendungen miteinander verbinden, um neue Systeme in bestehende Systemlandschaften zu integrieren.
+        Hier müssen Administratoren verschiedene Applikationen (beispielsweise \\ \ac{DNS}-Server oder Proxys) konfigurieren und Anwendungen miteinander verbinden, um neue Systeme in bestehende Systemlandschaften zu integrieren.
         
     \end{itemize}
 
@@ -44,9 +44,9 @@ In diesem Kapitel werden zwei Nutzerrollen aus dem Bereich des Netzwerkmanagemen
     
 % Was müsste die eigene Software verbessern
     %Log Messages
-    Der Nutzer soll, wenn er mit diesem Programm arbeitet, den Proxy in den Modus \glqq intercept\grqq{} oder \glqq none intercept\grqq{} stellen können, um Inhalte spezieller Clients einzeln und gezielt prüfen zu können, ohne Daten anderer Geräte im Netzwerk zu erhalten.
+    Der Nutzer soll, wenn er mit diesem Programm arbeitet, den Proxy in den Modus \emph{intercept} oder \emph{none intercept} stellen können, um Inhalte spezieller Clients einzeln und gezielt prüfen zu können, ohne Daten anderer Geräte im Netzwerk zu erhalten.
     %View Messages
-    Weiterhin möchte der Nutzer, dass die Nachrichten, welche durch den \glqq intercept\grqq{}-Modus abgefangen wurden, aufgelistet und angezeigt werden.
+    Weiterhin möchte der Nutzer, dass die Nachrichten, welche durch den \emph{intercept}-Modus abgefangen wurden, aufgelistet und angezeigt werden.
     %View ClientInfos
     Für den Fall, dass etwas nicht ordnungsgemäß funktioniert oder fehlerhaft konfiguriert wurde, ist es ebenfalls relevant, die Verbindungsdaten der einzelnen Proxy-Clients, die eine Verknüpfung zu dem zu untersuchenden \acs{IoT}-Gerät haben, einsehen zu können.
     
@@ -55,7 +55,7 @@ In diesem Kapitel werden zwei Nutzerrollen aus dem Bereich des Netzwerkmanagemen
 %=====================================================================%
 % Motivation
 \subsubsection{Security-Auditor}
-    Auf der anderen Seite existiert der Security-Auditor (auch "Penetration-Tester") welcher versucht, Schwachstellen in Kommunikation, Geräten oder Endpunkten zu identifizieren.
+    Auf der anderen Seite existiert der Security-Auditor (auch \emph{Penetration-Tester}) welcher versucht, Schwachstellen in Kommunikation, Geräten oder Endpunkten zu identifizieren.
 % Ziel
     Dies befähigt den Hersteller, von dem der Tester beauftragt wird, seine Produkte im Rahmen der Qualitätssicherung vor ihrer Veröffentlichung zu testen, um Fehler zu erkennen, diese beheben zu können und somit potentielle Probleme zu vermeiden. Das ist nicht nur für Vertrauen innerhalb der Branche wichtig, sondern darüber hinaus in bestimmten Bereichen (z.B. kritischen Infrastrukturen) sogar gesetzlich vorgeschrieben.
     Zusätzlich bestätigt es, dass der Dienst eines Unternehmens gute und effiziente Sicherheitsmechanismen korrekt implementiert hat, um die Kundendaten vor Gefährdungen der Vertraulichkeit, Integrität oder Verfügbarkeit zu schützen.
@@ -71,7 +71,7 @@ In diesem Kapitel werden zwei Nutzerrollen aus dem Bereich des Netzwerkmanagemen
     Wie in Kapitel \ref{NetzwerkUndSystemadmin} beschrieben, kann Wireshark zur Informationsbeschaffung verwendet werden.
     Da von Wireshark viele verschiedene Protokolle unterstützt und auch sehr detaillierte Informationen angezeigt werden, kann es passieren, dass durch die große Menge an dargestellten Informationen wichtige oder relevante Informationen untergehen (auch \emph{visual clutter} genannt) oder nur mit Aufwand gefunden werden können.
     
-    Burp Suite von PortSwigger bietet wie Wireshark eine Proxy-Komponente und kann somit nicht nur, wie in diesem Tool geplant, die Nachrichten protokollieren bzw. überwachen, sondern auch in die Kommunikation eingreifen. Der große Unterschied besteht darin, dass Burp Suite ausschließlich für HTTP/S und (Sec)Websocket Kommunikation zu verwenden ist und keinerlei Unterstützung für das \ac{MQTT}-Protokoll bietet. Ähnliche Abläufe und eine strukturierte Darstellung, wie in Burp Suite, wären von Vorteil, um die Einarbeitungszeit gering zu halten und die Akzeptanz bei den Nutzern zu stärken.
+    Burp Suite von PortSwigger bietet wie Wireshark eine Proxy-Komponente und kann somit nicht nur, wie in diesem Tool geplant, die Nachrichten protokollieren bzw. überwachen, sondern auch in die Kommunikation eingreifen. Der große Unterschied besteht darin, dass Burp Suite ausschließlich für HTTP/S und (Sec)Websocket Kommunikation zu verwenden ist und keinerlei Unterstützung für das \ac{MQTT}- \\ Protokoll bietet. Ähnliche Abläufe und eine strukturierte Darstellung, wie in Burp Suite, wären von Vorteil, um die Einarbeitungszeit gering zu halten und die Akzeptanz bei den Nutzern zu stärken.
 
 \section{Abgeleitete Anforderungen}
     Im Folgenden werden Use-Cases aus den obigen Nutzerbeschreibungen extrahiert und beschrieben.
@@ -90,7 +90,7 @@ In diesem Kapitel werden zwei Nutzerrollen aus dem Bereich des Netzwerkmanagemen
     	Um dies zu bewerkstelligen, ist es notwendig, die abgefangen Daten nach deren Inhalten zu filtern.
     	
     Zum zweiten Use-Case \emph{Kommunikation manipulieren}:
-        Über eine Manipulation der Kommunikation spricht man, sobald existierende Pakete verändert oder neue versendet werden. Dadurch, kann die Kommunikation über verschiedene Aktionen manipuliert werden. \glqq Payload ändern\grqq{}, \glqq Nachricht senden\grqq{}, \glqq Nachricht kopieren\grqq{}, \glqq Nachricht ändern\grqq{} und \glqq Nachricht verwerfen\grqq{} sind die in dieser Arbeit betrachteten Elemente.
+        Über eine Manipulation der Kommunikation spricht man, sobald existierende Pakete verändert oder neue versendet werden. Dadurch, kann die Kommunikation über verschiedene Aktionen manipuliert werden. \emph{Payload ändern}, \emph{Nachricht senden}, \emph{Nachricht kopieren}, \emph{Nachricht ändern} und \emph{Nachricht verwerfen} sind die in dieser Arbeit betrachteten Elemente.
     	Der Nutzer möchte auf verschiedene Weisen die Kommunikation zwischen zwei Kommunikationspartnern über ein drittes System verändern können.
     	Durch Manipulation der übertragenen Daten einzelner Nachrichten ist es dem Nutzer möglich, die Kommunikation zu verändern.
     	Anhand von selbsterstellten Paketen, welche im Namen der Kommunikationspartner erstellt werden, sollen vom Nutzer gewünschte Informationen übertragen werden.
@@ -129,7 +129,7 @@ In diesem Kapitel werden zwei Nutzerrollen aus dem Bereich des Netzwerkmanagemen
         In dieser Arbeit werden jedoch nicht alle eingehenden, sondern nur aktiv abgefangene Nachrichten betrachtet, da diese die höchste Priorität besitzen.
         
         \subsubsection{2. Nachrichten filtern}
-        Die Software muss angezeigte Nachrichten nach deren Attributen filtern können. Diese sind unter anderem \glqq Payload\grqq{}, \glqq Client\grqq{} und \glqq Quality of Service\grqq{}.
+        Die Software muss angezeigte Nachrichten nach deren Attributen filtern können. Diese sind unter anderem \emph{Payload}, \emph{Client} und \emph{Quality of Service}.
         
         \subsubsection{3. Abfangen abfangen}
         Die Nachrichten müssen, um analysiert werden zu können, abgefangen werden. Dafür ist es notwendig die Pakete umzuleiten, um die Kommunikation mitschneiden zu können.
