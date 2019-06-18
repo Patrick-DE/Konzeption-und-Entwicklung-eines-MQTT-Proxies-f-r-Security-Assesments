@@ -32,11 +32,6 @@ In diesem Kapitel werden zwei Nutzerrollen aus dem Bereich des Netzwerkmanagemen
         %Reverse Proxies und DNS
         Hier müssen Administratoren verschiedene Applikationen (beispielsweise \ac{DNS}-Server oder Proxys) konfigurieren und Anwendungen miteinander verbinden, um neue Systeme in bestehende Systemlandschaften zu integrieren.
         
-        \item \glqq Network-level services\grqq{}
-        
-        Auch können verschiedene Protokolle miteinander verbunden werden.
-        %TODO: bisschen mehr..
-        
     \end{itemize}
 
 % Ziel
@@ -74,7 +69,7 @@ In diesem Kapitel werden zwei Nutzerrollen aus dem Bereich des Netzwerkmanagemen
     
     %was gibt es bereits (Wireshark) was kann die Software besser/kann nur die Software
     Wie in Kapitel \ref{NetzwerkUndSystemadmin} beschrieben, kann Wireshark zur Informationsbeschaffung verwendet werden.
-    Da von Wireshark viele verschiedene Protokolle unterstützt und auch sehr detaillierte Informationen angezeigt werden, passiert es schnell, dass durch die große Menge wichtige Bestandteile untergehen (auch \emph{visual clutter} genannt) oder nur mit Aufwand gefunden werden.
+    Da von Wireshark viele verschiedene Protokolle unterstützt und auch sehr detaillierte Informationen angezeigt werden, kann es passieren, dass durch die große Menge an dargestellten Informationen wichtige oder relevante Informationen untergehen (auch \emph{visual clutter} genannt) oder nur mit Aufwand gefunden werden können.
     
     Burp Suite von PortSwigger bietet wie Wireshark eine Proxy-Komponente und kann somit nicht nur, wie in diesem Tool geplant, die Nachrichten protokollieren bzw. überwachen, sondern auch in die Kommunikation eingreifen. Der große Unterschied besteht darin, dass Burp Suite ausschließlich für HTTP/S und (Sec)Websocket Kommunikation zu verwenden ist und keinerlei Unterstützung für das \ac{MQTT}-Protokoll bietet. Ähnliche Abläufe und eine strukturierte Darstellung, wie in Burp Suite, wären von Vorteil, um die Einarbeitungszeit gering zu halten und die Akzeptanz bei den Nutzern zu stärken.
 

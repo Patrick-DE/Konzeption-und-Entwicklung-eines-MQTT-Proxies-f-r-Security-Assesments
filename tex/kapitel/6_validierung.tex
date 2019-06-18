@@ -7,7 +7,7 @@ Um bewerten zu können, ob das entwickelte Programm den in Kapitel 4 genannten A
 Zunächst wird der Aufbau der Laborumgebung beschrieben und anschließend wird die Software ausgeführt und die sich daraus ergebenen Ergebnisse dokumentiert. Abschließend werden Beobachtungen zur Leistungsanforderung der Implementierung präsentiert.
 
 %Szenario, was mit dem Labor versucht wird zu erreichen.
-Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in einer Glühbirne in den Wohnräumen des Nutzer befindet, und einem Broker des Herstellers ab. Der Sensor, im weiteren \emph{Client} genannt, stellt dem Broker jede Sekunde seinen aktuelle Status zur Verfügung (\emph{ON} oder \emph{OFF}). Der Broker hingegen erwartet den Status eines Clients und veröffentlicht diesen für andere verbundene Clients.
+Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in einer Glühbirne in den Wohnräumen des Nutzers befindet, und einem Broker des Herstellers ab. Der Sensor, im weiteren \emph{Client} genannt, stellt dem Broker jede Sekunde seinen aktuelle Status zur Verfügung (\emph{ON} oder \emph{OFF}). Der Broker hingegen erwartet den Status eines Clients und veröffentlicht diesen für andere verbundene Clients.
 
 \begin{figure}[h]%h=direkt danach t=top b=bottom
     \centering
@@ -19,17 +19,17 @@ Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in einer 
 \section{Laboraufbau} \label{Laboraufbau}
     %Warum Virtualisierung/ Virtualisierte Umgebung
     Das Labor wird mithilfe der Virtualisierungslösung \emph{ESXi} %\cite{https://www.vmware.com/de/products/esxi-and-esx.html}
-    der Firma \emph{VMware} umgesetzt. Dadurch, dass alle Systeme und Applikationen in sogenannten virtuellen Maschinen laufen, sind sie, obwohl sie auf dem gleichen physikalischen Gerät (bzw. Server) laufen können, voneinander unabhängig. Das bedeutet, dass ganze Systeme abgeschottet und auf virtuellen Festplatten (sog. \emph{\acp{VMDK}}) gespeichert und somit auch sehr einfach gesichert oder untereinander ausgetauscht werden können. Durch die dynamische Verteilung von zum Beispiel \ac{CPU} oder \ac{RAM} ist ebenfalls eine effektivere Nutzung von Hardwareressourcen möglich. Damit wird nur ein Server oder leistungsfähiger Computer benötigt um ganze Systemlandschaften und Netzwerke abzubilden. Des Weiteren ermöglicht es auch, die hier durchgeführten Tests und somit Ergebnisse in der gleichen Umgebung durch die Bereitstellung der Dateien nachvollziehen zu können, ohne selbst Arbeit und Zeit in den Aufbau derselben Systeme investieren zu müssen.
+    der Firma \emph{VMware} umgesetzt. Dadurch, dass alle Systeme und Applikationen in sogenannten virtuellen Maschinen (VMs) laufen, sind sie, obwohl sie auf dem gleichen physikalischen Gerät (bzw. Server) laufen können, voneinander unabhängig. Das bedeutet, dass ganze Systeme abgeschottet und auf virtuellen Festplatten (sogenannten \emph{\acp{VMDK}}) gespeichert und somit auch sehr einfach gesichert oder untereinander ausgetauscht werden können. Durch die dynamische Verteilung von zum Beispiel \ac{CPU} oder \ac{RAM} ist ebenfalls eine effektivere Nutzung von Hardware-Ressourcen möglich. Damit wird nur ein Server oder leistungsfähiger Computer benötigt, um ganze Systemlandschaften und Netzwerke abzubilden. Des Weiteren ermöglicht es auch, die hier durchgeführten Tests und somit Ergebnisse in der gleichen Umgebung durch die Bereitstellung der Dateien nachvollziehen zu können, ohne selbst Arbeit und Zeit in den Aufbau derselben Systeme investieren zu müssen.
     %Warum mit ESXI
-    \emph{ESXi} wurde als Lösung gewählt, da bereits Wissen und Erfahrung im Umgang mit der Lösung vorhanden war. Zusätzlich stand ein Server mit benötigter Leistung bereits zur Verfügung wodurch das Aufsetzen und Konfigurieren eines solchen oder ähnlichen Produkts nicht mehr nötig war.
+    \emph{ESXi} wurde als Lösung gewählt, da bereits Wissen und Erfahrung im Umgang mit der Lösung vorhanden war. Zusätzlich stand ein Server mit benötigter Leistung bereits zur Verfügung, wodurch das Aufsetzen und Konfigurieren eines solchen oder ähnlichen Produkts nicht mehr erforderlich war.
     
-    Die folgenden Voraussetzungen sind notwendig um das Programm ausführen zu können:
+    Die folgenden Voraussetzungen sind notwendig, um das Programm ausführen zu können:
     \begin{itemize}
         \item Betriebssystem: ab Windows 7, Linux mit Mono
         \item Abhängigkeiten: .NET Framework v4.6.1, Mono ab 4.2.0.X
         \item Speicher: 50 \ac{MB} frei
         \item RAM: 100 \ac{MB} frei
-        \item Prozessor: 2 virtuelle Kerne  mit 2,0 Ghz
+        \item Prozessor: 2 virtuelle Kerne  mit 2,0 \ac{GHz}
         \item Netzwerkkarte: Ja
     \end{itemize}
     
@@ -44,7 +44,7 @@ Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in einer 
             RAM & 512 \ac{MB} & 512 \ac{MB} & 8 GB \\
             HDD & 5 GB & 5 GB & 50 GB \\
         \end{tabular}
-        \caption{Ressourcen der Virtuelle Maschinen}
+        \caption{Ressourcen der virtuellen Maschinen}
         \label{tab:ressourcenverteilung}
     \end{table}
     
@@ -64,13 +64,13 @@ Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in einer 
     \begin{itemize}
         \item Microsoft Visual C++ 2008
         \item Microsoft Visual C++ 2017
-        \item .NET Framework 4.6.1\footnote{Dadurch, dass das .NET Framework Bibliotheken, Kompiler und Laufzeitumgebungen bereitstellt, ist es notwendig diese in der oben genannten Version zu installieren um in diesem Projekt verwendete Funktionen nutzen zu können und das Programm zu kompilieren.}
+        \item .NET Framework 4.6.1\footnote{Dadurch, dass das .NET Framework Bibliotheken, Kompiler und Laufzeitumgebungen bereitstellt, ist es notwendig, diese in der oben genannten Version zu installieren, um die in diesem Projekt verwendete Funktionen nutzen zu können und das Programm zu kompilieren.}
     \end{itemize}
     
     \subsection{Netzwerk}
-    Es werden verschiedene Netzwerke verwendet in denen sich die Geräte befinden. 
-    Das erste Netzwerk beinhaltet den Audit-PC, die Proxyanwendung und den virtuellen Broker sowie die Firewall als Schnittstelle zum zweiten Netzwerk.
-    Die Firewall spannt ein \ac{VLAN} auf, in dem sich der Client befindet. Mittels Portweiterleitung\footnote{Pakete, die an einen spezifizierten Port beinhalten, werden an ein festgelegte Adresse weitergeleitet.} leitet es den Datenverkehr des Clients zum Proxy um.
+    Es werden verschiedene Netzwerke verwendet, in denen sich die Geräte befinden. 
+    Das erste Netzwerk beinhaltet den Audit-PC, die Proxy-Anwendung und den virtuellen Broker sowie die Firewall als Schnittstelle zum zweiten Netzwerk.
+    Die Firewall spannt ein \ac{VLAN} auf, in dem sich der Client befindet. Mittels Portweiterleitung\footnote{Pakete, die über einen spezifizierten Port versendet werden, werden an eine festgelegte Adresse weitergeleitet.} leitet es den Datenverkehr des Clients zum Proxy um.
     
     \begin{figure}[h]%h=direkt danach t=top b=bottom
         \centering
@@ -85,10 +85,10 @@ Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in einer 
     Eine Unterstützung für weitere Architekturen ist durch die Installation plattformübergreifender Implementierungen von Mono und Python möglich. Auch muss hierzu in Visual Studio die Zielarchitektur auf \emph{Any CPU} gesetzt werden. 
     Zusätzlich ist zur Ausführung der Anwendung ein privilegiertes Benutzerkonto erforderlich, um die Berechtigung für Zugriff auf die erforderlichen Ports zu erhalten.
     
-    Es werden Port \emph{1883} für die Kommunikation über das \ac{MQTT}-Protokoll und Port \emph{80} für die \ac{REST} Schnittstelle und einen Webserver, der die Weboberfläche bereitstellt, benötigt.
+    Es werden Port \emph{1883} für die Kommunikation über das \ac{MQTT}-Protokoll und Port \emph{80} für die \ac{REST}-Schnittstelle und einen Webserver, der die Weboberfläche bereitstellt, benötigt.
     Der Proxy ist ausschließlich über die Adresse \emph{127.0.0.1} oder \emph{localhost} erreichbar, da keine Benutzerauthentifizierung implementiert wurde. Im lokalen Netz oder bei Bereitstellung über eine öffentlich erreichbare Adresse kann eine unberechtigte Verwendung nicht ausgeschlossen werden. Daher wird dies auch nicht empfohlen. Sofern jedoch die Notwendigkeit bestehen sollte, ist es möglich, die Adresse im Quellcode durch die lokale IP-Adresse des Gerätes, auf dem der Proxy ausgeführt wird, auszutauschen, um eine parallele oder externe Verwendung zu ermöglichen.
 
-    Für den Broker wird eine Konfigurationsdatei, wie in Listing \ref{fig:broker_config} zu sehen, angelegt. Diese definiert unter anderem, wie viele Verbindungen akzeptiert werden und auf welchem Interface gelauscht wird. Anschließend wird noch die Authentifizierung deaktiviert und mithilfe von einem Plugin werden \emph{Topics} von eingehenden Nachrichten automatisch erzeugt. 
+    Für den Broker wird eine Konfigurationsdatei, wie in Listing \ref{fig:broker_config} zu sehen, angelegt. Diese definiert unter anderem, wie viele Verbindungen akzeptiert werden und auf welchem Interface gelauscht wird. Anschließend wird noch die Authentifizierung deaktiviert und mithilfe eines Plugins werden \emph{Topics} von eingehenden Nachrichten automatisch erzeugt. 
     \begin{figure}[h]
         \begin{lstlisting}
             listeners:
@@ -103,7 +103,7 @@ Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in einer 
             plugins:
               - topic_taboo
         \end{lstlisting}
-        \captionof{figure}{Broker Konfiguration}
+        \captionof{figure}{Broker-Konfiguration}
         \label{fig:broker_config}
     \end{figure}
 
@@ -114,11 +114,11 @@ Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in einer 
     \begin{figure}[!h]%h=direkt danach t=top b=bottom
         \centering
         \includegraphics[width=10cm]{tex/bilder/6_validierung/ClientMessages.png}
-        \captionof{figure}{Darstellung des gesendeten Nachrichten vom Client}
+        \captionof{figure}{Darstellung der gesendeten Nachrichten vom Client}
         \label{fig:client_messages}
     \end{figure}
     
-    In Abbildung \ref{fig:broker_connections} ist die Initialisierung des Brokers zu sehen. Er wird mithilfe einer Konfigurationsdatei gestartet (siehe \ref{KonfigurationDerSoftware}). Anschließend wird angezeigt, dass erst eine und danach eine zweite Verbindung zum Broker aufgebaut wird. Diese Verbindungen werden allerdings nicht mit dem simulierten physischen Geräten, sondern den virtuellen Clients (\emph{ClientIn} und \emph{ClientOut}) des Brokers aufgebaut.
+    In Abbildung \ref{fig:broker_connections} ist die Initialisierung des Brokers zu sehen. Er wird mithilfe einer Konfigurationsdatei gestartet (siehe \ref{KonfigurationDerSoftware}). Anschließend wird angezeigt, dass erst eine und danach eine zweite Verbindung zum Broker aufgebaut wird. Diese Verbindungen werden allerdings nicht mit den simulierten physischen Geräten, sondern den virtuellen Clients (\emph{ClientIn} und \emph{ClientOut}) des Brokers aufgebaut.
     \begin{figure}[!h]%h=direkt danach t=top b=bottom
         \centering
         \includegraphics[width=14cm]{tex/bilder/6_validierung/BrokerConnections.png}
@@ -127,8 +127,8 @@ Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in einer 
     \end{figure}
     
     Der Proxy zeigt, wie Abbildung \ref{fig:proxy_messages} zu entnehmen ist, beim Erhalt einer Nachricht vom Client (\ac{IoT}-Gerät) sowie vom Proxy-Client (in diesem Fall \emph{ClientIn}) deren Inhalt an.
-    Darüber hinaus, zeigt er auch weitere Aktionen des \emph{ClientManagers} und der virtuellen Clients an.
-    Mithilfe der Nachrichten lassen sich der Ablauf des Programms und etwaige auftretende Fehler nachvollziehen. Diese Ausgabe kostet jedoch vergleichsweise viel Leistung, woraus die in \ref{Laboraufbau} aufgeführten Systemanforderungen resultieren. 
+    Darüber hinaus zeigt er auch weitere Aktionen des \emph{ClientManagers} und der virtuellen Clients an.
+    Mithilfe der Nachrichten lassen sich der Ablauf des Programms und etwaige auftretende Fehler nachvollziehen. Diese Ausgabe kostet jedoch vergleichsweise viel Leistung, woraus die in Kapitel \ref{Laboraufbau} aufgeführten Systemanforderungen resultieren. 
     \begin{figure}[!h]%h=direkt danach t=top b=bottom
         \centering
         \includegraphics[width=12cm]{tex/bilder/6_validierung/ProxyMessages.png}
@@ -136,7 +136,7 @@ Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in einer 
         \label{fig:proxy_messages}
     \end{figure}
     
-    Das Frontend des \emph{Interceptors}, welches auf Abbildung \ref{fig:frontend_messages} zu sehen ist, ist die Kernkomponente der Anwendung. Sie zeigt alle abgefangenen Nachrichten und ermöglicht es, diese zu filtern, editieren und erneut zu versenden. Die Nachrichten werden chronologisch untereinander aufgelistet. Je Nachricht werden dem Nutzer alle wichtigen Inhalte bereitgestellt.
+    Das Frontend des \emph{Interceptors}, welches auf Abbildung \ref{fig:frontend_messages} zu sehen ist, ist die Kernkomponente der Anwendung. Sie zeigt alle abgefangenen Nachrichten und ermöglicht es, diese zu filtern, zu editieren und erneut zu versenden. Die Nachrichten werden chronologisch untereinander aufgelistet. Je Nachricht werden dem Nutzer alle wichtigen Inhalte bereitgestellt.
     \begin{figure}[!h]%h=direkt danach t=top b=bottom
         \centering
         \includegraphics[width=14cm]{tex/bilder/6_validierung/FrontendInterceptor.png}
@@ -146,30 +146,30 @@ Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in einer 
 
 \section{Leistung}
     Hier wird die Leistung des Proxys analysiert, um Hinweise auf Skalierbarkeit und zur Ausführung notwendige Ressourcen zu erhalten.
-    Folgende Messwerte wurden mithilfe des \emph{Visual Studio Profilers} auf der \ac{VM} des Proxys erfasst (siehe Abbildung \ref{fig:performance}).
+    Folgende Messwerte wurden mithilfe des \emph{Visual Studio Profilers} auf der virtuellen Maschine des Proxys erfasst (siehe Abbildung \ref{fig:performance}).
     
     \begin{itemize}
         \item Ohne Clients:
-        Solange das Programm im Leerlauf arbeitet, also nur Events registriert, die auf Einwirkung anderer Komponenten warten, benötigt es rund 19 \ac{MB} \ac{RAM} und hat eine maximale \ac{CPU} Auslastung von einem Prozent.
+        Solange das Programm im Leerlauf arbeitet, also nur Events registriert, die auf Einwirkung anderer Komponenten warten, benötigt es rund 19 \ac{MB} \ac{RAM} und hat eine maximale \ac{CPU}-Auslastung von einem Prozent.
         \item Mit einem Client:
-        Sobald der erste Client sich verbunden hat (\emph{1} in der Abbildung), wir nur ein \ac{MB} mehr \ac{RAM} benötigt, das in einer Summe von 20 \ac{MB} resultiert. Im Gegensatz dazu werden nun nach der ankommenden Nachricht vom \ac{IoT}-Client alle Funktionen des Programms ausgeführt. Dies führt zu einer Erhöhung beim Ausführen der \emph{Connect}-Funktion auf 20 Prozent und anschießend maximal 17 Prozent der \ac{CPU}.
+        Sobald der erste Client sich verbunden hat (\emph{1} in der Abbildung \ref{fig:performance}), wird nur ein \ac{MB} mehr \ac{RAM} benötigt, was in einer Summe von 20 \ac{MB} resultiert. In diesem Fall wurden nach der ankommenden Nachricht vom \ac{IoT}-Client alle Funktionen des Programms ausgeführt. Dies führt zu einer Erhöhung beim Ausführen der \emph{Connect}-Funktion auf 20 Prozent und anschießend maximal 17 Prozent der \ac{CPU}.
         \item Mit zwei Clients:
-        Kommt nun ein weiterer Client dazu (\emph{2} in der Abbildung), sodass nun zwei Clients mit dem Proxy verbunden sind, steigt der \ac{RAM}-Verbrauch weiterhin nur um ein \ac{MB} auf 21 \ac{MB} an. Die maximale \ac{CPU} Auslastung steigt jedoch auf 33 Prozent an, was eine Steigerung um 95 Prozent darstellt. Dies ist unter anderem auf ein aktuelles Problem in der Proxy-Implementierung %\cite{https://github.com/Patrick-DE/MQTT-Proxy/issues/3}
+        Kommt nun ein weiterer Client dazu (\emph{2} in der Abbildung \ref{fig:performance}), sodass nun zwei Clients mit dem Proxy verbunden sind, steigt der \ac{RAM}-Verbrauch weiterhin nur um ein \ac{MB} auf 21 \ac{MB} an. Die maximale \ac{CPU} Auslastung steigt jedoch auf 33 Prozent an, was eine Steigerung um 95 Prozent darstellt. Dies ist unter anderem auf ein aktuelles Problem in der Proxy-Implementierung %\cite{https://github.com/Patrick-DE/MQTT-Proxy/issues/3}
         zurückzuführen, das dazu führt, dass jeder Client die Antworten aller Clients an den Proxy schickt. Dies bedeutet, dass Antworten des externen Brokers doppelt erfasst und publiziert werden.
         Bei genauerer Analyse beider am Anstieg beteiligten Funktionen, ist zu erkennen, dass der größte Ressourcenbedarf bei den folgenden Funktionen zu verorten ist:
         \begin{itemize}
             \item Für 30 Prozent der maximalen \ac{CPU}-Auslastung des Programms ist die \emph{Connect}-Funktion verantwortlich. Sie wird aufgerufen, sobald sich ein \ac{IoT}-Client bei dem Proxy registriert. Sie beinhaltet mehrere kaskadierende Methodenaufrufe, womit der Verbindungsaufbau von Clients ressourcenintensiv wird.  
-            \item Für 57 Prozent der maximalen \ac{CPU}-Auslastung des Programms ist die Systemfunktion \emph{Console.WriteLine()} Funktion verantwortlich. Da in diesem Programm viele Informationen an die Konsole zur Information an den Entwickler oder Nutzer weitergereicht werden, ist dies die Hauptursache dafür, dass das Programm die oben genannten \ac{CPU}-Auslastung aufweist. Zu bemerken ist jedoch, dass diese nur den maximalen Wert anzeigen, welcher nur vorhanden ist, wenn Nachrichten an den externen Broker weitergeleitet werden.
+            \item Für 57 Prozent der maximalen \ac{CPU}-Auslastung des Programms ist die Systemfunktion \emph{Console.WriteLine()} verantwortlich. Da in diesem Programm viele Informationen an die Konsole zur Information an den Entwickler oder Nutzer weitergereicht werden, ist dies die Hauptursache dafür, dass das Programm die oben genannte \ac{CPU}-Auslastung aufweist. Zu bemerken ist jedoch, dass diese nur den maximalen Wert anzeigen, welcher nur vorhanden ist, wenn Nachrichten an den externen Broker weitergeleitet werden.
         \end{itemize}
         \item Mit weiteren Clients:
-        Markierung \emph{3} in der Abbildung zeigt, wie sich ein weiterer Client verbunden hat. Hierbei gilt zu beachten, dass der Arbeitsspeicherbedarf nur unwesentlich steigt. Dies könnte daran liegen, dass zu diesem Zeitpunkt bereits alle relevanten Programmteile durch den Compiler des \emph{.NET Framworks} in nativen Maschinencode kompiliert wurde.
+        Markierung \emph{3} in der Abbildung \ref{fig:performance} zeigt, wie sich ein weiterer Client verbunden hat. Hierbei gilt zu beachten, dass der Arbeitsspeicherbedarf nur unwesentlich steigt. Dies könnte daran liegen, dass zu diesem Zeitpunkt bereits alle relevanten Programmteile durch den Compiler des \emph{.NET Frameworks} in nativen Maschinencode kompiliert wurde.
     \end{itemize}
     \begin{figure}[!h]%h=direkt danach t=top b=bottom
         \centering
         \includegraphics[width=14cm]{tex/bilder/6_validierung/Performance.png}
-        \captionof{figure}{Visual Studio Profiler mit Performanceanalyse}
+        \captionof{figure}{Visual Studio Profiler mit Performance-Analyse}
         \label{fig:performance}
     \end{figure}
     
 \subsubsection{Zusammenfassung}
-    In diesem Kapitel wurde die Laborumgebung aufgebaut, getestet und deren Ausführung untersucht. Die hierbei gewonnenen Leistungsanforderungen entsprechen dem Character eines Prototypen: da die Anwendung noch nicht optimiert war und viele Debuggingausgaben vorhanden waren, war mit größeren Leistungseinbußen zu rechnen.
+    In diesem Kapitel wurde die Laborumgebung aufgebaut, getestet und deren Ausführung untersucht. Die hierbei gewonnenen Leistungsanforderungen entsprechen dem Charakter eines Prototypen: da die Anwendung noch nicht optimiert war und viele Debugging-Ausgaben vorhanden waren, war mit größeren Leistungseinbußen zu rechnen.

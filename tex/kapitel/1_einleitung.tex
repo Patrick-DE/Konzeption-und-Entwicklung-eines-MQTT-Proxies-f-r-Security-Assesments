@@ -1,4 +1,4 @@
-\chapter{Einleitung} %TODO
+\chapter{Einleitung}
 %Motivation
 %%Umfeld
 %Problemstellung
@@ -31,10 +31,10 @@ Vergleicht man dies mit dem aktuellsten Global Security Report 2018, wird erkenn
 
 \section{Ziel der Arbeit}
 %Forschungsfrage!
-    In der Arbeit wird untersucht, ob es möglich ist, mithilfe eines Programms die übertragenen Daten der intelligenten Geräte herstellerübergreifend abzufangen und zu verändern.
+    In der Arbeit wird untersucht, ob es möglich ist, mithilfe eines Programms die übertragenen Daten der intelligenten Geräte herstellerübergreifend abzufangen und verändern zu können.
 
 %%Herangehensweise
-    Um diese Fragestellung zu beantworten, wird ein Konzept entworfen, welches mithilfe eines Proxies in der Lage sein soll, die gewünschte Verbindung zu verändern. Es wird versucht eine möglichst zuverlässige Weiterleitung der Pakete ermöglichen um die Lösung praktikabel zu machen. %TODO vllt noch mehr?
+    Um diese Fragestellung zu beantworten, wird ein Konzept entworfen, welches mithilfe eines Proxies in der Lage sein soll, die gewünschte Verbindung zu verändern. Es wird versucht eine möglichst zuverlässige Weiterleitung der Pakete ermöglichen um die Lösung praktikabel zu machen.
     
 \section{Existierende Lösungen}
 %Implementierungen auf dem Markt
@@ -47,7 +47,7 @@ Vergleicht man dies mit dem aktuellsten Global Security Report 2018, wird erkenn
     
     \subsection{Axway - API Management Plus}
         Die API-Management-Software von Axway vereint das Erstellen und Organisieren vieler verschiedener Schnittstellen mit direkten Anbindungsmöglichkeiten für Endgeräte. Darüber hinaus können alle Endpunkte auf fehlerhaftes Verhalten oder Anfragen geprüft werden. Dies soll ermöglichen, auf schnelle Änderungen des Marktes einzugehen und viele verschiedene Geräte parallel zu unterstützen.
-        Um auch intelligente Geräte aus dem \ac{IoT}-Bereich unterstützen zu können, wurde ein Proxy für das \ac{MQTT}-Protokoll entwickelt \cite{axway_2018}. Der Proxy befindet sich zwischen dem Client und dem Broker. Dadurch hat er die Möglichkeit, die eingehenden Pakete abzufangen und anhand eines Regelwerks, welches per \ac{REST}\footnote{Ist ein Architekturstiel der helfen soll verteilte Anwendungen zu realisieren und organisieren. Es ist kein Regelwerk und besitzt somit auch keine Regeln oder Standards die eingehalten werden müssen. \cite{Doglio2015}} über den \acs{API}-Manager erreichbar ist, Daten zu validieren.
+        Um auch intelligente Geräte aus dem \ac{IoT}-Bereich unterstützen zu können, wurde ein Proxy für das \ac{MQTT}-Protokoll entwickelt \cite{axway_2018}. Der Proxy befindet sich zwischen dem Client und dem Broker. Dadurch hat er die Möglichkeit, die eingehenden Pakete abzufangen und anhand eines Regelwerks, welches per \ac{REST}\footnote{Ist ein Architekturstiel der helfen soll verteilte Anwendungen zu realisieren und zu organisieren. Es ist kein Regelwerk und besitzt somit auch keine Regeln oder Standards die eingehalten werden müssen. \cite{Doglio2015}} über den \acs{API}-Manager erreichbar ist, Daten zu validieren.
         
         Das Ziel dieser Lösung ist somit, auf Basis der Richtlinien, welche auf dem Management-Server hinterlegt werden, gesendete Nachrichten des \ac{MQTT}-Protokolls zu filtern und nicht regelkonforme Kommunikation zu blockieren. Dies ermöglicht, mithilfe eines Identifizierungsmerkmals, Beispielsweise Zugriffe auf Topics oder das Versenden von Nachrichten einzuschränken..
         
@@ -92,6 +92,3 @@ Vergleicht man dies mit dem aktuellsten Global Security Report 2018, wird erkenn
     %Nachdem die Grundlagen vermittelt wurden, bekommt der Leser eine Übersicht über bereits vorhandene Konzepte und Herangehensweisen zur Absicherung von \ac{IoT} oder im deutschen Sprachgebrauch \emph{Internet der Dinge}. 
     Dies soll den Leser befähigen, die vorgestellten Produkte sowie die Entwicklung und Umsetzung des in dieser Arbeit erstellten Konzepts korrekt einordnen und bewerten zu können.
     Direkt im Anschluss wird das Konzept der eigenen Software erläutert und auf Schwierigkeiten sowie deren Lösungen eingegangen. Das darauf folgende Kapitel \emph{Implementierung des Prototypen} beschreibt die Umsetzung des zuvor erläuterten Konzepts und setzt die Rahmenbedingungen und verwendeten Technologien fest. Um die Ergebnisse der Arbeit bewerten zu können, wird im Anschluss eine Validierung anhand von Versuchen durchgeführt und die Ergebnisse der Forschungsfrage festgehalten. Zuletzt wird ein Ausblick gegeben, welche Probleme, Gefahren und Potenziale sich in Zukunft ergeben könnten und welche weiteren Arbeiten sich zu diesen Themen anbieten.
-    %Check with Fazit!
-    
-    %TODO: Zusammenfassung
