@@ -86,7 +86,7 @@ Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in einer 
     Zusätzlich ist zur Ausführung der Anwendung ein privilegiertes Benutzerkonto erforderlich, um die Berechtigung für Zugriff auf die erforderlichen Ports zu erhalten.
     
     Es werden Port \emph{1883} für die Kommunikation über das \ac{MQTT}-Protokoll und Port \emph{80} für die \ac{REST} Schnittstelle und einen Webserver, der die Weboberfläche bereitstellt, benötigt.
-    Der Proxy ist ausschließlich über die Adresse \emph{127.0.0.1} oder \emph{localhost} erreichbar, da keine Benutzerauthentifizierung implementiert wurde. Im lokalen Netz oder bei Bereitstellung über eine öffentlich erreichbare Adresse, kann eine unberechtigte Verwendung nicht ausgeschlossen werden. Daher wird dies auch nicht empfohlen. Sofern jedoch die Notwendigkeit bestehen sollte, ist es möglich, die Adresse im Quellcode durch die lokale IP-Adresse des Gerätes, auf dem der Proxy ausgeführt wird, auszutauschen, um eine parallele oder externe Verwendung zu ermöglichen.
+    Der Proxy ist ausschließlich über die Adresse \emph{127.0.0.1} oder \emph{localhost} erreichbar, da keine Benutzerauthentifizierung implementiert wurde. Im lokalen Netz oder bei Bereitstellung über eine öffentlich erreichbare Adresse kann eine unberechtigte Verwendung nicht ausgeschlossen werden. Daher wird dies auch nicht empfohlen. Sofern jedoch die Notwendigkeit bestehen sollte, ist es möglich, die Adresse im Quellcode durch die lokale IP-Adresse des Gerätes, auf dem der Proxy ausgeführt wird, auszutauschen, um eine parallele oder externe Verwendung zu ermöglichen.
 
     Für den Broker wird eine Konfigurationsdatei, wie in Listing \ref{fig:broker_config} zu sehen, angelegt. Diese definiert unter anderem, wie viele Verbindungen akzeptiert werden und auf welchem Interface gelauscht wird. Anschließend wird noch die Authentifizierung deaktiviert und mithilfe von einem Plugin werden \emph{Topics} von eingehenden Nachrichten automatisch erzeugt. 
     \begin{figure}[h]
@@ -110,7 +110,7 @@ Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in einer 
 \section{Ausführung und Bewertung}
     Auf Abbildung \ref{fig:client_messages} ist der erstellte virtuelle Client zu sehen, welcher Nachrichten über den Proxy an den Broker schickt.
     %Was für Nachrichten
-    Nach dem erfolgreichen Abonnieren des \emph{Topics}, sendet der virtuelle Client jede Sekunde eine Nachrichten mit seinem aktuellen Status an den Broker. Kurz darauf veröffentlicht der Broker diese Nachricht in dem abonnierten \emph{Topic}. Aus diesem Grund erhält der Client anschließend dieselbe Nachricht wieder zurück. Abhängig vom Szenario muss der Client nicht an seinen Veröffentlichungen interessiert sein und kann auch andere \emph{Topics} abonnieren.
+    Nach dem erfolgreichen Abonnieren des \emph{Topics} sendet der virtuelle Client jede Sekunde eine Nachricht mit seinem aktuellen Status an den Broker. Kurz darauf veröffentlicht der Broker diese Nachricht in dem abonnierten \emph{Topic}. Aus diesem Grund erhält der Client anschließend dieselbe Nachricht wieder zurück. Abhängig vom Szenario muss der Client nicht an seinen Veröffentlichungen interessiert sein und kann auch andere \emph{Topics} abonnieren.
     \begin{figure}[!h]%h=direkt danach t=top b=bottom
         \centering
         \includegraphics[width=10cm]{tex/bilder/6_validierung/ClientMessages.png}
@@ -126,7 +126,7 @@ Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in einer 
         \label{fig:broker_connections}
     \end{figure}
     
-    Der Proxy zeigt, wie Abbildung \ref{fig:proxy_messages} zu entnehmen ist, beim Erhalt einer Nachricht, vom Client (\ac{IoT}-Gerät), sowie vom Proxy-Client (in diesem Fall \emph{ClientIn}), deren Inhalt an.
+    Der Proxy zeigt, wie Abbildung \ref{fig:proxy_messages} zu entnehmen ist, beim Erhalt einer Nachricht vom Client (\ac{IoT}-Gerät) sowie vom Proxy-Client (in diesem Fall \emph{ClientIn}) deren Inhalt an.
     Darüber hinaus, zeigt er auch weitere Aktionen des \emph{ClientManagers} und der virtuellen Clients an.
     Mithilfe der Nachrichten lassen sich der Ablauf des Programms und etwaige auftretende Fehler nachvollziehen. Diese Ausgabe kostet jedoch vergleichsweise viel Leistung, woraus die in \ref{Laboraufbau} aufgeführten Systemanforderungen resultieren. 
     \begin{figure}[!h]%h=direkt danach t=top b=bottom
@@ -136,7 +136,7 @@ Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in einer 
         \label{fig:proxy_messages}
     \end{figure}
     
-    Das Frontend des \emph{Interceptors}, welches auf Abbildung \ref{fig:frontend_messages} zu sehen ist, ist die Kernkomponente der Anwendung. Sie zeigt alle abgefangenen Nachrichten und ermöglicht, diese zu filtern, editieren und erneut zu versenden. Die Nachrichten werden chronologisch untereinander aufgelistet. Je Nachricht werden dem Nutzer alle wichtigen Inhalte bereitgestellt.
+    Das Frontend des \emph{Interceptors}, welches auf Abbildung \ref{fig:frontend_messages} zu sehen ist, ist die Kernkomponente der Anwendung. Sie zeigt alle abgefangenen Nachrichten und ermöglicht es, diese zu filtern, editieren und erneut zu versenden. Die Nachrichten werden chronologisch untereinander aufgelistet. Je Nachricht werden dem Nutzer alle wichtigen Inhalte bereitgestellt.
     \begin{figure}[!h]%h=direkt danach t=top b=bottom
         \centering
         \includegraphics[width=14cm]{tex/bilder/6_validierung/FrontendInterceptor.png}
@@ -152,11 +152,11 @@ Das Labor bildet die Kommunikation zwischen einem Sensor, welcher sich in einer 
         \item Ohne Clients:
         Solange das Programm im Leerlauf arbeitet, also nur Events registriert, die auf Einwirkung anderer Komponenten warten, benötigt es rund 19 \ac{MB} \ac{RAM} und hat eine maximale \ac{CPU} Auslastung von einem Prozent.
         \item Mit einem Client:
-        Sobald der erste Client sich verbunden hat (\emph{1} in der Abbildung), wir nur ein \ac{MB} mehr \ac{RAM} benötigt, in einer Summe von 20 \ac{MB} resultiert. Im Gegensatz dazu werden nun nach der ankommenden Nachricht vom \ac{IoT}-Client alle Funktionen des Programms ausgeführt. Dies führt zu einer Erhöhung beim Ausführen der \emph{Connect} -Funktion auf 20 Prozent und anschießend maximal 17 Prozent.
+        Sobald der erste Client sich verbunden hat (\emph{1} in der Abbildung), wir nur ein \ac{MB} mehr \ac{RAM} benötigt, das in einer Summe von 20 \ac{MB} resultiert. Im Gegensatz dazu werden nun nach der ankommenden Nachricht vom \ac{IoT}-Client alle Funktionen des Programms ausgeführt. Dies führt zu einer Erhöhung beim Ausführen der \emph{Connect}-Funktion auf 20 Prozent und anschießend maximal 17 Prozent der \ac{CPU}.
         \item Mit zwei Clients:
-        Kommt nun ein weiterer Client dazu (\emph{2} in der Abbildung), sodass nun zwei Clients mit dem Proxy verbunden sind, steigt der \ac{RAM}-Verbrauch weiterhin nur um einen Prozent auf 21 \ac{MB} an. Die maximale \ac{CPU} Auslastung steigt jedoch auf 33 Prozent an, was eine Steigerung um 95 Prozent darstellt. Dies ist unter anderem auf ein aktuelles Problem in der Proxy-Implementierung %\cite{https://github.com/Patrick-DE/MQTT-Proxy/issues/3}
+        Kommt nun ein weiterer Client dazu (\emph{2} in der Abbildung), sodass nun zwei Clients mit dem Proxy verbunden sind, steigt der \ac{RAM}-Verbrauch weiterhin nur um ein \ac{MB} auf 21 \ac{MB} an. Die maximale \ac{CPU} Auslastung steigt jedoch auf 33 Prozent an, was eine Steigerung um 95 Prozent darstellt. Dies ist unter anderem auf ein aktuelles Problem in der Proxy-Implementierung %\cite{https://github.com/Patrick-DE/MQTT-Proxy/issues/3}
         zurückzuführen, das dazu führt, dass jeder Client die Antworten aller Clients an den Proxy schickt. Dies bedeutet, dass Antworten des externen Brokers doppelt erfasst und publiziert werden.
-        Bei genauerer Analyse beider am Ansteigen beteiligten Funktionen, ist zu erkennen, dass der größte Ressourcenbedarf bei den folgenden Funktionen zu verorten ist:
+        Bei genauerer Analyse beider am Anstieg beteiligten Funktionen, ist zu erkennen, dass der größte Ressourcenbedarf bei den folgenden Funktionen zu verorten ist:
         \begin{itemize}
             \item Für 30 Prozent der maximalen \ac{CPU}-Auslastung des Programms ist die \emph{Connect}-Funktion verantwortlich. Sie wird aufgerufen, sobald sich ein \ac{IoT}-Client bei dem Proxy registriert. Sie beinhaltet mehrere kaskadierende Methodenaufrufe, womit der Verbindungsaufbau von Clients ressourcenintensiv wird.  
             \item Für 57 Prozent der maximalen \ac{CPU}-Auslastung des Programms ist die Systemfunktion \emph{Console.WriteLine()} Funktion verantwortlich. Da in diesem Programm viele Informationen an die Konsole zur Information an den Entwickler oder Nutzer weitergereicht werden, ist dies die Hauptursache dafür, dass das Programm die oben genannten \ac{CPU}-Auslastung aufweist. Zu bemerken ist jedoch, dass diese nur den maximalen Wert anzeigen, welcher nur vorhanden ist, wenn Nachrichten an den externen Broker weitergeleitet werden.

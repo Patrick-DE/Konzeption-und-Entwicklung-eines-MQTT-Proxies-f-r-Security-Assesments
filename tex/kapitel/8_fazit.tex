@@ -1,7 +1,7 @@
 \chapter{Fazit}
 %Zusammenfassung
 Es wurde ein Konzept für eine Software erstellt, die einen Proxy realisiert und von System-, Netzwerkadministratoren sowie Security Auditoren verwendet werden kann, um deren Arbeit zu erleichtern. Dieses Konzept kann nicht nur unabhängig von der Programmiersprache entwickelt, sondern auch für verschiedene Plattformen realisiert werden. Eine weitere Besonderheit des Konzepts ist, dass selbst das Protokoll dank der Modularität ausgetauscht werden kann und somit weitere Protokolle unterstützt werden können.
-Die Software, welche im Rahmen der Arbeit entwickelt wurde, erfüllt die erfassten Anforderungen und unterstützt mithilfe verschiedener Funktionen (wie Nachrichten zu manipulieren oder verwerfen) die Nutzer bei Ihrer Arbeit. Es wurde jedoch eine Schwäche bei der Überwachung identifiziert, da Nachrichten nicht ohne einen aktiven Eingriff in die Kommunikation aufgezeichnet werden können. Dies wurde im Rahmen dieser Arbeit in Kapitel \ref{FormaleAnforderungen} ausgeschlossen.
+Die Software, welche im Rahmen der Arbeit entwickelt wurde, erfüllt die erfassten Anforderungen und unterstützt mithilfe verschiedener Funktionen (wie Nachrichten zu manipulieren oder verwerfen) die Nutzer bei ihrer Arbeit. Es wurde jedoch eine Schwäche bei der Überwachung identifiziert, da Nachrichten nicht ohne einen aktiven Eingriff in die Kommunikation aufgezeichnet werden können. Dies wurde im Rahmen dieser Arbeit in Kapitel \ref{FormaleAnforderungen} ausgeschlossen.
 
 %Was gemacht
 %Was gelernt
@@ -11,12 +11,12 @@ Die Software, welche im Rahmen der Arbeit entwickelt wurde, erfüllt die erfasst
 \section{Ausblick}
 %Wo kann es in Zukunft genutzt werden?
 Die Software kann in Zukunft in Netzwerken eingesetzt werden, um die Kommunikation eines oder mehrerer Geräte zu einem Broker zu überprüfen.
-Weiter kann sie eingesetzt werden, um mithilfe verschiedener Methoden (zum Beispiel: \emph{Fuzzen}, \emph{Bruteforce}, \emph{Replay}) Endpunkte eines Gerätes oder eines Brokers auf Schwachstellen zu prüfen. Somit kann die Sicherheit der Geräte durch Melden der fehlerhaften Funktionen an den Hersteller oder Entwickler erhöht werden. Darüberhinaus ist es möglich, herauszufinden, welche Daten an den Hersteller übertragen werden, um somit mehr Transparenz in Bezug auf Themen rund um den Datenschutz zu ermöglichen. %TODO FOOTNODE FÜR BEGRIFFE
+Weiter kann sie eingesetzt werden, um mithilfe verschiedener Methoden (zum Beispiel \emph{Fuzzen}\footnote{Ist eine Form des automatischen Testens bei der zufällig oder nach einer Heuristik generierte Werte gesendet werden}, \emph{Bruteforce}, \emph{Replay Angriff}) Endpunkte eines Gerätes oder eines Brokers auf Schwachstellen zu prüfen. Somit kann die Sicherheit der Geräte durch Melden der fehlerhaften Funktionen an den Hersteller oder Entwickler erhöht werden. Darüber hinaus ist es möglich, herauszufinden, welche Daten an den Hersteller übertragen werden, um somit mehr Transparenz in Bezug auf Themen rund um den Datenschutz zu ermöglichen.
 
 \section{Weiterführende Arbeiten}
 %Was wäre noch als Erweiterung möglich
 %konkrete Projekte zur Erweiterung/ Verbesserung vorschlagen
 Im Laufe der Arbeit wurden verschiedene Ideen und Konzepte über potenzielle Erweiterungen entwickelt, welche im Folgenden aufgeführt werden.
-Es könnte ein \emph{Discovery-Modus} hinzugefügt werden, der in unbekannten Netzwerkverbindungen, anhand von speziellen Mustern, die implementierten Protokolle automatisch erkennt. Zusätzlich soll die Erkennung auch umschließende Transporttechnologien und somit geschachtelte Verbindungen identifiziert können. Dies würde in unbekannten oder neuen Netzen das Suchen von Geräten beschleunigen und die Überwachung dieser präzisieren und vervollständigen.
+Es könnte ein \emph{Discovery-Modus} hinzugefügt werden, der in unbekannten Netzwerkverbindungen anhand von speziellen Mustern die implementierten Protokolle automatisch erkennt. Zusätzlich soll die Erkennung auch umschließende Transporttechnologien und somit geschachtelte Verbindungen identifiziert können. Dies würde in unbekannten oder neuen Netzen das Suchen von Geräten beschleunigen und die Überwachung dieser präzisieren und vervollständigen.
 Dadurch, dass Anfang 2019 MQTT in der Version 5 verabschiedet wurde, wäre es notwendig, in Zukunft eine Unterstützung für das neue Protokoll hinzuzufügen, um auch die Kommunikation von neueren Geräten verarbeiten zu können \cite{mqtt_org_2019}.
 Darauf aufbauend könnte eine automatisierte Analyse der Protokolle erfolgen und auf Basis der erkannten \ac{MQTT}-Version der korrekte Dekoder ausgewählt werden. Dies würde die Nutzereingabe bezüglich der verwendeten Version pro Client überflüssig machen und die Bedienung des Programms komfortabler werden lassen.

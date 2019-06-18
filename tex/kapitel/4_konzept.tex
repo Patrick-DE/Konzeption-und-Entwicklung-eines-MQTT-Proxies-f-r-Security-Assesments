@@ -8,7 +8,7 @@ In diesem Kapitel wird anhand der in Kapitel 3 erfassten Anforderungen ein Konze
     \begin{figure}[h]%h=direkt danach t=top b=bottom
         \centering
         \includegraphics[width=14cm]{tex/bilder/4_konzept/Systemdiagram.pdf}
-        \captionof{figure}{Systemdiagramm}
+        \captionof{figure}{Systemdiagramm der Software}
         \label{fig:system_all}
     \end{figure}
     
@@ -21,12 +21,7 @@ In diesem Kapitel wird anhand der in Kapitel 3 erfassten Anforderungen ein Konze
     
     Das \emph{Frontend} hingegen dient nur zur Visualisierung der Nachrichten und Clients sowie zur Interaktion mit dem Nutzer. Hierbei bezieht es die gespeicherten und neu eintreffenden Nachrichten vom Backend.
 
-    \begin{figure}[h]%h=direkt danach t=top b=bottom
-        \centering
-        \includegraphics[width=8cm]{tex/bilder/4_konzept/Systemdiagramm_Konzept_Backend.pdf}
-        \captionof{figure}{Komponentendiagramm Backend}
-        \label{fig:system_backend}
-    \end{figure}
+
     
     Abbildung \ref{fig:system_backend} zeigt eine Verfeinerung des Backends. 
     Durch das \emph{Publish/Subscribe}-Programmiermuster des \ac{MQTT}-Protokolls ist es notwendig, für jedes verbundene Gerät zwei Clients zu erzeugen, die die Nachrichten an den Betreiber übermitteln und die veröffentlichten Nachrichten wieder an den Broker des Proxys übermitteln.
@@ -36,14 +31,21 @@ In diesem Kapitel wird anhand der in Kapitel 3 erfassten Anforderungen ein Konze
     
     Der \emph{ClientManager} ermittelt die externen Clients zu den dazugehörigen \emph{ClientIn}- und \emph{ClientOut}-Instanzen. Damit wird sichergestellt, dass die Kommunikation mit dem externen Broker stattfinden kann.
 
+    \begin{figure}[h]%h=direkt danach t=top b=bottom
+        \centering
+        \includegraphics[width=8cm]{tex/bilder/4_konzept/Systemdiagramm_Konzept_Backend.pdf}
+        \captionof{figure}{Komponentendiagramm Backend}
+        \label{fig:system_backend}
+    \end{figure}
     
     Abbildung \ref{fig:system_frontend} stellt die Komponenten des Frontends dar. Alle drei Komponenten sind voneinander unabhängig und arbeiten mit unabhängigen Informationen.
     
     Die \emph{Clients}-Komponente enthält die Informationen der virtuellen Clients (\emph{ClientIn} und \emph{ClientOut}). Diese werden, sobald der Nutzer die Seite besucht, vom Backend geladen und anschließend angezeigt. Sie ermöglicht ebenfalls die Konfiguration der abzufangenden Kommunikation pro Gerät.
     
-    Die \emph{NewMessages}-Komponente ermöglicht das Erzeugen von neuen Nachrichten auf der Seite des Frontends und überträgt am Ende alle Informationen an das Backend, wo diese weiter verarbeitet (z.B. versendet) werden.
+    Die \emph{NewMessages}-Komponente ermöglicht das Erzeugen von neuen Nachrichten auf der Seite des Frontends und überträgt auf Knopfdruck alle Informationen an das Backend, wo diese weiter verarbeitet (z.B. versendet) werden.
     
     Der \emph{Interceptor} ist für die Anzeige der abgefangen Nachrichten zuständig. Zu Beginn werden alle bestehenden Nachrichten abgefangen und, um das wiederholte Laden der Webseite zu verhindern und die Aktualität der Inhalte zu gewährleisten, dynamisch alle weiteren eingehenden Nachrichten nachgeladen. Um die Anzeige noch weiter strukturieren zu können, werden verschiedene Filter zur Verfügung gestellt, welche auf die Nachrichteninhalte und -attribute angewendet werden können.
+    
     \begin{figure}[h]%h=direkt danach t=top b=bottom
         \centering
         \includegraphics[width=8cm]{tex/bilder/4_konzept/Systemdiagramm_Konzept_Frontend.pdf}
@@ -55,24 +57,24 @@ In diesem Kapitel wird anhand der in Kapitel 3 erfassten Anforderungen ein Konze
     Im Folgenden wird der interne Ablauf des zu entwickelnden Systems (auch Proxy genannt), bestehend aus dem darin enthaltenen Broker, \emph{ClientIn} und \emph{ClientOut}, beschrieben.
 
     Das Aktivitätsdiagramm \ref{fig:aktivitaetsdiagramm_connect} veranschaulicht den Ablauf des Verbindungsprozesses nach der Verbindungsanfrage des Clients und terminiert mit dem erfolgreichen Verbindungsaufbau.
-    Sobald ein \ac{IoT}-Gerät eine Verbindung zum Broker des Backends aufbaut, werden zwei virtuelle Clients (\emph{ClientOut} und \emph{ClientIn}) erzeugt.
+    Sobald ein \ac{IoT}-Gerät eine Verbindung zum Proxy-Backend aufbaut, wird ein \emph{ClientManager} mit zwei virtuelle Clients (\emph{ClientOut} und \emph{ClientIn}) erzeugt. Dieser befindet sich im Proxy und steuert die Kommunikation der virtuellen Clients mit dem Broker des Betreibers. Es existiert pro physischem \ac{IoT}-Gerät nur ein \emph{ClientManager} und für den Fall, dass sich ein virtueller Client verbindet, wird die Verbindung initiiert oder erneut aufgebaut, da anzunehmen ist, dass die Verbindung unterbrochen wurde.
     
     \begin{figure}[!h]%h=direkt danach t=top b=bottom
         \centering
         \includegraphics[width=14cm]{tex/bilder/4_konzept/Activity_Connect.pdf}
-        \captionof{figure}{Aktivitätsdiagramm für das Event \glqq Client verbindet sich\grqq{}}
+        \captionof{figure}{Aktivitätsdiagramm für das Event \emph{Client verbindet sich}}
         \label{fig:aktivitaetsdiagramm_connect}
     \end{figure}
     %%%%%%%%%%%%%%%%%%%%%%%%
     \newpage
     %%%%%%%%%%%%%%%%%%%%%%%%
     Das nächste Diagramm (\ref{fig:aktivitaetsdiagramm_message}) stellt den Nachrichtenempfangsprozess im Proxy dar.
-    Durch das Event \glqq Nachricht empfangen\grqq{} wird geprüft, ob die eingehende Nachricht von einem virtuellen Client kommt. Ist dies der Fall, wird diese veröffentlicht und somit dem physischen Gerät bereitgestellt. Falls nicht, wird die Veröffentlichung verhindert und abhängig von der Einstellung zum Abfangen der Nachrichten an den externen Broker weitergeleitet.
+    Durch das Event \emph{Nachricht empfangen} wird geprüft, ob die eingehende Nachricht von einem virtuellen Client kommt. Ist dies der Fall, wird diese veröffentlicht und somit dem physischen Gerät bereitgestellt. Falls nicht, wird die Veröffentlichung verhindert und abhängig von der Einstellung zum Abfangen der Nachrichten an den externen Broker weitergeleitet.
     
     \begin{figure}[!h]%h=direkt danach t=top b=bottom
         \centering
         \includegraphics[width=14cm]{tex/bilder/4_konzept/Activity_Message.pdf}
-        \captionof{figure}{Aktivitätsdiagramm für das Event \glqq Nachricht erhalten\grqq{}}
+        \captionof{figure}{Aktivitätsdiagramm für das Event \emph{Nachricht erhalten}}
         \label{fig:aktivitaetsdiagramm_message}
     \end{figure}
     
@@ -83,7 +85,7 @@ In diesem Kapitel wird anhand der in Kapitel 3 erfassten Anforderungen ein Konze
     \begin{figure}[!h]%h=direkt danach t=top b=bottom
         \centering
         \includegraphics[width=14cm]{tex/bilder/4_konzept/Sequenz.pdf}
-        \captionof{figure}{Sequenzdiagramm}
+        \captionof{figure}{Sequenzdiagramm für die Kommunikation der Komponenten}
         \label{fig:sequenzdiagramm}
     \end{figure}
 
